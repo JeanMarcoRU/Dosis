@@ -68,12 +68,12 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           SpeedDialChild(
             onTap: _incrementCounter,
-            label: "Increment",
+            label: "Suma uno",
             child: Icon(Icons.exposure_plus_1),
           ),
           SpeedDialChild(
             onTap: _decrementCounter,
-            label: "Decrement",
+            label: "Resta uno",
             child: Icon(Icons.exposure_neg_1),
           )
         ],
