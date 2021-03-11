@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
+              'Practica:',
             ),
             Text(
               '$_counter',
@@ -64,18 +64,24 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: SpeedDial(
-        animatedIcon: AnimatedIcons.menu_close,
+        backgroundColor: Colors.black,
+        closeManually: true,
+        child: Icon(Icons.adjust),
+        //animatedIcon: AnimatedIcons.list_view,
+        curve: Curves.bounceInOut,
         children: [
-          SpeedDialChild(
-            onTap: _incrementCounter,
-            label: "Suma uno",
-            child: Icon(Icons.exposure_plus_1),
-          ),
           SpeedDialChild(
             onTap: _decrementCounter,
             label: "Resta uno",
             child: Icon(Icons.exposure_neg_1),
-          )
+            backgroundColor: Colors.red,
+          ),
+          SpeedDialChild(
+            onTap: _incrementCounter,
+            label: "Suma uno",
+            child: Icon(Icons.exposure_plus_1),
+            backgroundColor: Colors.green,
+          ),
         ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
