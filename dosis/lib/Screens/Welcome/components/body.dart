@@ -16,18 +16,24 @@ class Body extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "WELCOME TO EDU",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
+            /*Text(
+              "dosis",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 55,
+                color: Colors.white,
+              ),
+            ),*/
             SizedBox(height: size.height * 0.05),
             SvgPicture.asset(
-              "assets/icons/chat.svg",
+              "assets/icons/logow.svg",
               height: size.height * 0.45,
             ),
             SizedBox(height: size.height * 0.05),
             RoundedButton(
-              text: "LOGIN",
+              text: "Iniciar sesión",
+              color: kPrimaryLightColor,
+              textColor: Colors.black,
               press: () {
                 Navigator.push(
                   context,
@@ -40,7 +46,7 @@ class Body extends StatelessWidget {
               },
             ),
             RoundedButton(
-              text: "SIGN UP",
+              text: "Regístrarse",
               color: kPrimaryLightColor,
               textColor: Colors.black,
               press: () {

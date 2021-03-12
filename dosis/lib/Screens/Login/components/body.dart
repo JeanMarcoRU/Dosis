@@ -20,31 +20,25 @@ class Body extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "dosis",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 55,
-              ),
-            ),
-            SizedBox(height: size.height * 0.03),
+            SizedBox(height: size.height * 0.05),
             SvgPicture.asset(
-              "assets/icons/login.svg",
+              "assets/icons/logow.svg",
               height: size.height * 0.35,
             ),
-            SizedBox(height: size.height * 0.03),
+            SizedBox(height: size.height * 0.05),
             RoundedInputField(
-              hintText: "Your Email",
+              hintText: "Cédula",
               onChanged: (value) {},
             ),
             RoundedPasswordField(
               onChanged: (value) {},
             ),
+            SizedBox(height: size.height * 0.08),
             RoundedButton(
               text: "Iniciar sesión",
               press: () {},
             ),
-            SizedBox(height: size.height * 0.03),
+            SizedBox(height: size.height * 0.00),
             AlreadyHaveAnAccountCheck(
               press: () {
                 Navigator.push(

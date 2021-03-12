@@ -10,7 +10,9 @@ class RoundedButton extends StatelessWidget {
     this.text,
     this.press,
     this.color = kPrimaryColor,
-    this.textColor = Colors.white,
+    this.textColor = Colors.black,
+    TextStyle style,
+    List<Widget> children,
   }) : super(key: key);
 
   @override
@@ -20,14 +22,17 @@ class RoundedButton extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 10),
       width: size.width * 0.8,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(29),
+        borderRadius: BorderRadius.circular(30),
         child: FlatButton(
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-          color: color,
+          padding: EdgeInsets.symmetric(vertical: 18, horizontal: 40),
+          color: kPrimaryLightColor,
           onPressed: press,
           child: Text(
             text,
-            style: TextStyle(color: textColor),
+            style: TextStyle(
+              color: textColor,
+              fontSize: 22,
+            ),
           ),
         ),
       ),
