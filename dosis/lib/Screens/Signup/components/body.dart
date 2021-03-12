@@ -26,12 +26,18 @@ class Body extends StatelessWidget {
             SizedBox(height: size.height * 0.05),
             RoundedInputField(
               hintText: "Cédula",
+              icon: Icons.person,
+              onChanged: (value) {},
+            ),
+            RoundedInputField(
+              hintText: "Correo electrónico",
+              icon: Icons.email,
               onChanged: (value) {},
             ),
             RoundedPasswordField(
               onChanged: (value) {},
             ),
-            SizedBox(height: size.height * 0.08),
+            SizedBox(height: size.height * 0.01),
             RoundedButton(
               text: "Regístrarse",
               press: () {},

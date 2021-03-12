@@ -32,6 +32,7 @@ class Body extends StatelessWidget {
             SizedBox(height: size.height * 0.05),
             RoundedInputField(
               hintText: "Cédula",
+              icon: Icons.person,
               onChanged: (value) {},
             ),
             RoundedPasswordField(
