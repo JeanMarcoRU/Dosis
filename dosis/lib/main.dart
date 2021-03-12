@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Dosis',
       theme: ThemeData(
         primaryColor: kPrimaryColor,
-        scaffoldBackgroundColor: Colors.white,
+        //scaffoldBackgroundColor: Colors.white,
       ),
       home: WelcomeScreen(),
     );

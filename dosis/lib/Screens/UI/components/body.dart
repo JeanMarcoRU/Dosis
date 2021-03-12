@@ -1,43 +1,87 @@
+import 'package:dosis/Screens/UI/Pages/calendario.dart';
+import 'package:dosis/Screens/UI/Pages/medicinas.dart';
+import 'package:dosis/Screens/UI/Pages/perfil.dart';
+import 'package:dosis/Screens/UI/Pages/recetas.dart';
 import 'package:flutter/material.dart';
-import 'package:dosis/constants.dart';
-import 'package:flutter_svg/svg.dart';
+import '../../../constants.dart';
 
-class Body extends StatelessWidget {
+//void main() => runApp(MyApp());
+
+class Body extends StatefulWidget {
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  int _currentPage = 2;
+
+  List<Widget> _pages = [Perfil(), Calendario(), Medicinas(), Recetas()];
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      initialIndex: 1,
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('TabBar Widget'),
-          bottom: TabBar(
-            tabs: <Widget>[
-              Tab(
-                icon: Icon(Icons.cloud_outlined),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'UI',
+      home: Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: (index) {
+            setState(() {
+              _currentPage = index;
+            });
+          },
+          currentIndex: _currentPage,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person,
+                color: kgreyDColor,
               ),
-              Tab(
-                icon: Icon(Icons.beach_access_sharp),
+              title: Text(
+                "Perfil",
+                style: TextStyle(
+                  color: kgreyDColor,
+                ),
               ),
-              Tab(
-                icon: Icon(Icons.brightness_5_sharp),
-              ),
-            ],
-          ),
-        ),
-        body: TabBarView(
-          children: <Widget>[
-            Center(
-              child: Text('It\'s cloudy here'),
             ),
-            Center(
-              child: Text('It\'s rainy here'),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.calendar_today,
+                color: kgreyDColor,
+              ),
+              title: Text(
+                "Calendario",
+                style: TextStyle(
+                  color: kgreyDColor,
+                ),
+              ),
             ),
-            Center(
-              child: Text('It\'s sunny here'),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.circle,
+                color: kgreyDColor,
+              ),
+              title: Text(
+                "Medicinas",
+                style: TextStyle(
+                  color: kgreyDColor,
+                ),
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.table_chart,
+                color: kgreyDColor,
+              ),
+              title: Text(
+                "Recetas",
+                style: TextStyle(
+                  color: kgreyDColor,
+                ),
+              ),
             ),
           ],
         ),
+        body: _pages[_currentPage],
       ),
     );
   }
