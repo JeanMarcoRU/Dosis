@@ -1,3 +1,4 @@
+import 'package:dosis/Screens/UI/ui.dart';
 import 'package:dosis/components/forgot_password.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/Screens/Login/components/background.dart';
@@ -51,7 +52,16 @@ class Body extends StatelessWidget {
             SizedBox(height: size.height * 0.08),
             RoundedButton(
               text: "Iniciar sesión",
-              press: () {},
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ui();
+                    },
+                  ),
+                );
+              },
             ),
             SizedBox(height: size.height * 0.00),
             AlreadyHaveAnAccountCheck(
