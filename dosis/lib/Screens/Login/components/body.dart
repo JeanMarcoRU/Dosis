@@ -1,3 +1,4 @@
+import 'package:dosis/components/forgot_password.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/Screens/Login/components/background.dart';
 import 'package:dosis/Screens/Signup/signup_screen.dart';
@@ -6,6 +7,8 @@ import 'package:dosis/components/rounded_button.dart';
 import 'package:dosis/components/rounded_input_field.dart';
 import 'package:dosis/components/rounded_password_field.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../../../constants.dart';
 
 class Body extends StatelessWidget {
   const Body({
@@ -32,6 +35,18 @@ class Body extends StatelessWidget {
             ),
             RoundedPasswordField(
               onChanged: (value) {},
+            ),
+            ForgotPassword(
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return SignUpScreen();
+                    },
+                  ),
+                );
+              },
             ),
             SizedBox(height: size.height * 0.08),
             RoundedButton(
