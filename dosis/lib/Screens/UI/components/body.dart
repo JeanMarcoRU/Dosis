@@ -1,7 +1,9 @@
+import 'package:dosis/Screens/Signup/components/social_icon.dart';
 import 'package:dosis/Screens/UI/Pages/calendario.dart';
 import 'package:dosis/Screens/UI/Pages/medicinas.dart';
 import 'package:dosis/Screens/UI/Pages/perfil.dart';
 import 'package:dosis/Screens/UI/Pages/recetas.dart';
+import 'package:dosis/dosis_icons.dart';
 import 'package:flutter/material.dart';
 import '../../../constants.dart';
 
@@ -30,52 +32,75 @@ class _BodyState extends State<Body> {
             });
           },
           currentIndex: _currentPage,
+          //type: BottomNavigationBarType.fixed,
+          backgroundColor: Colors.white,
           items: [
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
+              /*icon: Icon(
+                DosisIcons.personui,
                 color: kgreyDColor,
-              ),
+              ),*/
+              icon: _currentPage == 0
+                  ? SocalIcon(
+                      iconSrc: "assets/icons/personui.svg",
+                      color: kPrimaryColor,
+                    )
+                  : SocalIcon(
+                      iconSrc: "assets/icons/personui.svg",
+                    ),
               title: Text(
                 "Perfil",
                 style: TextStyle(
-                  color: kgreyDColor,
+                  color: kPrimaryColor,
                 ),
               ),
+              //backgroundColor: Colors.blue,
             ),
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.calendar_today,
-                color: kgreyDColor,
-              ),
+              icon: _currentPage == 1
+                  ? SocalIcon(
+                      iconSrc: "assets/icons/calendarUI.svg",
+                      color: kPrimaryColor,
+                    )
+                  : SocalIcon(
+                      iconSrc: "assets/icons/calendarUI.svg",
+                    ),
               title: Text(
                 "Calendario",
                 style: TextStyle(
-                  color: kgreyDColor,
+                  color: kPrimaryColor,
                 ),
               ),
             ),
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.circle,
-                color: kgreyDColor,
-              ),
+              icon: _currentPage == 2
+                  ? SocalIcon(
+                      iconSrc: "assets/icons/pastilladosis.svg",
+                      color: kPrimaryColor,
+                    )
+                  : SocalIcon(
+                      iconSrc: "assets/icons/pastilladosis.svg",
+                    ),
               title: Text(
                 "Medicinas",
                 style: TextStyle(
-                  color: kgreyDColor,
+                  color: kPrimaryColor,
                 ),
               ),
             ),
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.table_chart,
-                color: kgreyDColor,
-              ),
+              icon: _currentPage == 3
+                  ? SocalIcon(
+                      iconSrc: "assets/icons/recetasdosis.svg",
+                      color: kPrimaryColor,
+                    )
+                  : SocalIcon(
+                      iconSrc: "assets/icons/recetasdosis.svg",
+                    ),
               title: Text(
                 "Recetas",
                 style: TextStyle(
-                  color: kgreyDColor,
+                  color: kPrimaryColor,
                 ),
               ),
             ),
