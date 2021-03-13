@@ -47,18 +47,23 @@ class Perfil extends StatelessWidget {
           preferredSize: Size.fromHeight(100)),
       body: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 50,
+          horizontal: 15,
+          vertical: 100,
         ),
         child: Expanded(
-          child: GridView.builder(
-            itemCount: perfiles.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 0.75,
-            ),
-            itemBuilder: (context, index) => PerfilObj(
-              index: 0,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+            child: GridView.builder(
+              itemCount: perfiles.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                //mainAxisSpacing: 20,
+                //crossAxisSpacing: 20,
+                childAspectRatio: 0.83,
+              ),
+              itemBuilder: (context, index) => PerfilObj(
+                i: index,
+              ),
             ),
           ),
         ),
@@ -70,12 +75,12 @@ class Perfil extends StatelessWidget {
 class PerfilObj extends StatelessWidget {
   final Perfil perfil;
   final Function press;
-  final int index;
+  final int i;
   const PerfilObj({
     Key key,
     this.perfil,
     this.press,
-    this.index,
+    this.i,
   }) : super(key: key);
 
   @override
@@ -83,21 +88,21 @@ class PerfilObj extends StatelessWidget {
     return Column(
       children: <Widget>[
         Container(
-          padding: EdgeInsets.all(30),
-          height: 140,
-          width: 140,
+          padding: EdgeInsets.all(0),
+          height: 110,
+          width: 110,
           decoration: BoxDecoration(
-            color: perfiles[index].color,
+            color: perfiles[i].color,
             borderRadius: BorderRadius.circular(100),
           ),
           child: Center(
             child: Text(
-              perfiles[index].letralogo,
+              perfiles[i].letralogo,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 75,
+                fontSize: 70,
               ),
             ),
           ),
@@ -105,9 +110,9 @@ class PerfilObj extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 5),
           child: Text(
-            perfiles[index].nombre,
+            perfiles[i].nombre,
             style: TextStyle(
-              color: perfiles[index].color,
+              color: perfiles[i].color,
               fontSize: 20,
             ),
           ),
