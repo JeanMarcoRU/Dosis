@@ -42,11 +42,11 @@ class _BodyState extends State<Body> {
               ),*/
               icon: _currentPage == 0
                   ? SocalIcon(
-                      iconSrc: "assets/icons/personui.svg",
+                      iconSrc: "assets/icons/personUI.svg",
                       color: kPrimaryColor,
                     )
                   : SocalIcon(
-                      iconSrc: "assets/icons/personui.svg",
+                      iconSrc: "assets/icons/personUI.svg",
                     ),
               title: Text(
                 "Perfil",
@@ -75,11 +75,11 @@ class _BodyState extends State<Body> {
             BottomNavigationBarItem(
               icon: _currentPage == 2
                   ? SocalIcon(
-                      iconSrc: "assets/icons/pastilladosis.svg",
+                      iconSrc: "assets/icons/pastillaDosis.svg",
                       color: kPrimaryColor,
                     )
                   : SocalIcon(
-                      iconSrc: "assets/icons/pastilladosis.svg",
+                      iconSrc: "assets/icons/pastillaDosis.svg",
                     ),
               title: Text(
                 "Medicinas",
@@ -91,11 +91,11 @@ class _BodyState extends State<Body> {
             BottomNavigationBarItem(
               icon: _currentPage == 3
                   ? SocalIcon(
-                      iconSrc: "assets/icons/recetasdosis.svg",
+                      iconSrc: "assets/icons/recetasDosis.svg",
                       color: kPrimaryColor,
                     )
                   : SocalIcon(
-                      iconSrc: "assets/icons/recetasdosis.svg",
+                      iconSrc: "assets/icons/recetasDosis.svg",
                     ),
               title: Text(
                 "Recetas",
