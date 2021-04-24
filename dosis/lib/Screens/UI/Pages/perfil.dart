@@ -20,7 +20,7 @@ class Perfil extends StatelessWidget {
                   children: <Widget>[
                     IconButton(
                       icon: SocalIcon(
-                        iconSrc: "assets/icons/personui.svg",
+                        iconSrc: "assets/icons/personUI.svg",
                         //color: Colors.white,
                       ),
                       onPressed: () {},
