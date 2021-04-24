@@ -17,7 +17,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   int _currentPage = 2;
 
-  List<Widget> _pages = [Perfil(), Calendario(), Medicinas(), Recetas()];
+  List<Widget> _pages = [Perfil(), Calendario(), Medicinas()];
 
   @override
   Widget build(BuildContext context) {
@@ -36,74 +36,64 @@ class _BodyState extends State<Body> {
           backgroundColor: Colors.white,
           items: [
             BottomNavigationBarItem(
-              /*icon: Icon(
-                DosisIcons.personui,
-                color: kgreyDColor,
-              ),*/
-              icon: _currentPage == 0
-                  ? SocalIcon(
-                      iconSrc: "assets/icons/personUI.svg",
-                      color: kPrimaryColor,
-                    )
-                  : SocalIcon(
-                      iconSrc: "assets/icons/personUI.svg",
-                    ),
-              title: Text(
-                "Perfil",
-                style: TextStyle(
-                  color: kPrimaryColor,
-                ),
-              ),
-              //backgroundColor: Colors.blue,
-            ),
+                icon: _currentPage == 0
+                    ? SocalIcon(
+                        iconSrc: "assets/icons/personUI.svg",
+                        color: kPrimaryColor,
+                        //iconHeight: 33,
+                        //iconWidth: 33,
+                      )
+                    : SocalIcon(
+                        iconSrc: "assets/icons/personUI.svg",
+                      ),
+                title: _currentPage == 0
+                    ? Text(
+                        "Perfiles",
+                        style: TextStyle(
+                          color: kPrimaryColor,
+                        ),
+                      )
+                    : Text(
+                        "",
+                      )),
             BottomNavigationBarItem(
-              icon: _currentPage == 1
-                  ? SocalIcon(
-                      iconSrc: "assets/icons/calendarUI.svg",
-                      color: kPrimaryColor,
-                    )
-                  : SocalIcon(
-                      iconSrc: "assets/icons/calendarUI.svg",
-                    ),
-              title: Text(
-                "Calendario",
-                style: TextStyle(
-                  color: kPrimaryColor,
-                ),
-              ),
-            ),
+                icon: _currentPage == 1
+                    ? SocalIcon(
+                        iconSrc: "assets/icons/calendarUI.svg",
+                        color: kPrimaryColor,
+                      )
+                    : SocalIcon(
+                        iconSrc: "assets/icons/calendarUI.svg",
+                      ),
+                title: _currentPage == 1
+                    ? Text(
+                        "Calendario",
+                        style: TextStyle(
+                          color: kPrimaryColor,
+                        ),
+                      )
+                    : Text(
+                        "",
+                      )),
             BottomNavigationBarItem(
-              icon: _currentPage == 2
-                  ? SocalIcon(
-                      iconSrc: "assets/icons/pastillaDosis.svg",
-                      color: kPrimaryColor,
-                    )
-                  : SocalIcon(
-                      iconSrc: "assets/icons/pastillaDosis.svg",
-                    ),
-              title: Text(
-                "Medicinas",
-                style: TextStyle(
-                  color: kPrimaryColor,
-                ),
-              ),
-            ),
-            BottomNavigationBarItem(
-              icon: _currentPage == 3
-                  ? SocalIcon(
-                      iconSrc: "assets/icons/recetasDosis.svg",
-                      color: kPrimaryColor,
-                    )
-                  : SocalIcon(
-                      iconSrc: "assets/icons/recetasDosis.svg",
-                    ),
-              title: Text(
-                "Recetas",
-                style: TextStyle(
-                  color: kPrimaryColor,
-                ),
-              ),
-            ),
+                icon: _currentPage == 2
+                    ? SocalIcon(
+                        iconSrc: "assets/icons/pastillaDosis.svg",
+                        color: kPrimaryColor,
+                      )
+                    : SocalIcon(
+                        iconSrc: "assets/icons/pastillaDosis.svg",
+                      ),
+                title: _currentPage == 2
+                    ? Text(
+                        "Medicinas",
+                        style: TextStyle(
+                          color: kPrimaryColor,
+                        ),
+                      )
+                    : Text(
+                        "",
+                      )),
           ],
         ),
         body: _pages[_currentPage],

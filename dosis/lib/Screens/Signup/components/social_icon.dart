@@ -7,6 +7,7 @@ class SocalIcon extends StatelessWidget {
   final Color color;
   final int index;
   final int currentIndex;
+  final double size;
   final Function press;
   const SocalIcon({
     Key key,
@@ -15,6 +16,7 @@ class SocalIcon extends StatelessWidget {
     this.index,
     this.currentIndex,
     this.press,
+    this.size = 28,
   }) : super(key: key);
 
   @override
@@ -27,8 +29,8 @@ class SocalIcon extends StatelessWidget {
         //color: color,
         child: SvgPicture.asset(
           iconSrc,
-          height: 28,
-          width: 28,
+          height: size,
+          width: size,
           color: color,
         ),
       ),
