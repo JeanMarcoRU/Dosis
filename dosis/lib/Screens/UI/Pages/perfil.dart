@@ -26,9 +26,9 @@ class Perfil extends StatelessWidget {
                       onPressed: () {},
                     ),
                     Text(
-                      'Usuarios',
+                      'Perfiles',
                       style: TextStyle(
-                        color: Colors.black,
+                        color: kPrimaryColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 35,
                       ),
