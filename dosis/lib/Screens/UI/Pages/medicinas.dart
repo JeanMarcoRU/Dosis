@@ -1,17 +1,65 @@
+import 'package:dosis/Screens/UI/Pages/Medicinas/formCategoria.dart';
+import 'package:dosis/Screens/UI/Pages/Medicinas/formMedicamentos.dart';
 import 'package:flutter/material.dart';
 import '../../../constants.dart';
 
 class Medicinas extends StatelessWidget {
   const Medicinas({Key key}) : super(key: key);
 
+  static const String _title = 'Medicamentos';
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        "Medicinas",
-        style: TextStyle(
-          fontSize: 35,
-          color: kgreyDColor,
+    return const MaterialApp(
+      title: _title,
+      home: BotonFlotante(),
+    );
+  }
+}
+
+class BotonFlotante extends StatelessWidget {
+  const BotonFlotante({Key key}) : super(key: key);
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 8.0),
+            FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return formMedicamento();
+                    },
+                  ),
+                );
+                // Respond to button press
+              },
+              icon: Icon(Icons.add),
+              label: Text('Medicamento'),
+              backgroundColor: kPrimaryColor,
+            ),
+            SizedBox(height: 8.0),
+            FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return formCategoria();
+                    },
+                  ),
+                );
+                // Respond to button press
+              },
+              icon: Icon(Icons.add),
+              label: Text('Categoria'),
+              backgroundColor: kPrimaryColor,
+            ),
+          ],
         ),
       ),
     );
