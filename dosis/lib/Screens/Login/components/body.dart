@@ -53,6 +53,7 @@ class Body extends StatelessWidget {
             SizedBox(height: size.height * 0.08),
             RoundedButton(
               text: "Iniciar sesión",
+              color: kPrimaryLightColor,
               press: () {
                 Navigator.push(
                   context,

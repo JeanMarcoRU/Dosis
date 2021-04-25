@@ -1,3 +1,4 @@
+import 'package:dosis/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/Screens/Login/login_screen.dart';
 import 'package:dosis/Screens/Signup/components/background.dart';
@@ -40,6 +41,7 @@ class Body extends StatelessWidget {
             SizedBox(height: size.height * 0.01),
             RoundedButton(
               text: "Regístrarse",
+              color: kPrimaryLightColor,
               press: () {},
             ),
             SizedBox(height: size.height * 0.00),

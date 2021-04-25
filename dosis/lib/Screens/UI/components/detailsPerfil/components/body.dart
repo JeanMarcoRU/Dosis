@@ -1,6 +1,7 @@
 import 'package:dosis/Classes/perfiles.dart';
 import 'package:dosis/Screens/Signup/components/social_icon.dart';
 import 'package:dosis/components/rounded_button.dart';
+import 'package:dosis/constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -31,18 +32,27 @@ class Body extends StatelessWidget {
                     )),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(),
                 child: Column(
                   children: <Widget>[
-                    Text(
-                      perfil.nombre,
-                      style: TextStyle(
-                        color: perfil.color,
-                        fontSize: 40,
+                    Center(
+                      child: Text(
+                        perfil.nombre,
+                        style: TextStyle(
+                          color: perfil.color,
+                          fontSize: 40,
+                        ),
                       ),
                     ),
                     RoundedButton(
                       text: "Editar",
+                      color: kPrimaryColor,
+                      textColor: Colors.white,
+                      fontSize: 20,
+                      paddingV: 3,
+                      paddingH: 10,
+                      ancho: 100,
+                      largo: 30,
                       press: () {
                         Navigator.push(
                           context,
