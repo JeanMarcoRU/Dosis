@@ -1,7 +1,8 @@
+import 'package:dosis/Classes/perfiles.dart';
 import 'package:dosis/Screens/Signup/components/social_icon.dart';
 import 'package:dosis/Screens/UI/Pages/calendario.dart';
 import 'package:dosis/Screens/UI/Pages/medicinas.dart';
-import 'package:dosis/Screens/UI/Pages/perfil.dart';
+import 'package:dosis/Screens/UI/Pages/perfiles.dart';
 import 'package:dosis/Screens/UI/Pages/recetas.dart';
 import 'package:dosis/dosis_icons.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   int _currentPage = 2;
 
-  List<Widget> _pages = [Perfil(), Calendario(), Medicinas()];
+  List<Widget> _pages = [Perfiles(), Calendario(), Medicinas()];
 
   @override
   Widget build(BuildContext context) {

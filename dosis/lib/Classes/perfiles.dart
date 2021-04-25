@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class Perfil {
   final String letralogo,
+      avatar,
       nombre,
       apellido1,
       apellido2,
@@ -12,6 +13,7 @@ class Perfil {
   final Color color;
   Perfil({
     this.letralogo,
+    this.avatar,
     this.nombre,
     this.apellido1,
     this.apellido2,
@@ -25,6 +27,7 @@ class Perfil {
 List<Perfil> perfiles = [
   Perfil(
       letralogo: "J",
+      avatar: "dosis\assets\Avatares\blue.svg",
       nombre: "Jean Marco",
       apellido1: "Rojas",
       fechaNacimiento: "fresco como lechuga",
@@ -32,6 +35,7 @@ List<Perfil> perfiles = [
       color: userblueColor),
   Perfil(
       letralogo: "Y",
+      avatar: "dosis\assets\Avatares\green.svg",
       nombre: "Yanina",
       apellido1: "Contreras",
       fechaNacimiento: "fresca como lechuga",
@@ -39,6 +43,7 @@ List<Perfil> perfiles = [
       color: usergreenColor),
   Perfil(
       letralogo: "V",
+      avatar: "dosis\assets\Avatares\orange.svg",
       nombre: "Victor",
       apellido1: "Víquez",
       fechaNacimiento: "fresco como lechuga",
