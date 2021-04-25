@@ -1,7 +1,7 @@
-import 'package:dosis/Screens/UI/Pages/Medicinas/formCategoria.dart';
-import 'package:dosis/Screens/UI/Pages/Medicinas/formMedicamentos.dart';
 import 'package:flutter/material.dart';
 import '../../../constants.dart';
+import 'Medicamentos/formCategoria.dart';
+import 'Medicamentos/formMedicamentos.dart';
 
 class Medicinas extends StatelessWidget {
   const Medicinas({Key key}) : super(key: key);

@@ -1,4 +1,4 @@
-import 'package:datetime_picker_formfield/time_picker_formfield.dart';
+//import 'package:datetime_picker_formfield/time_picker_formfield.dart';
 import 'package:dosis/Screens/Signup/components/backgroundWhite.dart';
 import 'package:dosis/Screens/UI/Pages/medicinas.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +6,8 @@ import 'package:dosis/Screens/Signup/components/backgroundWhite.dart';
 import 'package:dosis/components/rounded_button.dart';
 import 'package:dosis/components/rounded_input_field.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
-import 'package:intl/intl.dart';
+//import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+//import 'package:intl/intl.dart';
 
 class formMedicamento extends StatelessWidget {
   const formMedicamento({Key key}) : super(key: key);
