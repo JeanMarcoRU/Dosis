@@ -27,7 +27,7 @@ class Perfil {
 List<Perfil> perfiles = [
   Perfil(
       letralogo: "J",
-      avatar: "dosis\assets\Avatares\blue.svg",
+      avatar: "assets/avatares/blue.png",
       nombre: "Jean Marco",
       apellido1: "Rojas",
       fechaNacimiento: "fresco como lechuga",
@@ -35,7 +35,7 @@ List<Perfil> perfiles = [
       color: userblueColor),
   Perfil(
       letralogo: "Y",
-      avatar: "dosis\assets\Avatares\green.svg",
+      avatar: "assets/avatares/green.png",
       nombre: "Yanina",
       apellido1: "Contreras",
       fechaNacimiento: "fresca como lechuga",
@@ -43,7 +43,7 @@ List<Perfil> perfiles = [
       color: usergreenColor),
   Perfil(
       letralogo: "V",
-      avatar: "dosis\assets\Avatares\orange.svg",
+      avatar: "assets/avatares/orange.png",
       nombre: "Victor",
       apellido1: "Víquez",
       fechaNacimiento: "fresco como lechuga",

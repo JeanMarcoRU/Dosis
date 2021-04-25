@@ -13,7 +13,7 @@ class Body extends StatelessWidget {
   const Body({Key key, this.perfil}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size * 0.9;
     return SingleChildScrollView(
         child: Column(
       children: <Widget>[
@@ -23,7 +23,7 @@ class Body extends StatelessWidget {
             children: <Widget>[
               Container(
                 margin: EdgeInsets.only(top: size.height * 0.3),
-                height: 500,
+                height: 700,
                 decoration: BoxDecoration(
                     color: perfil.color,
                     borderRadius: BorderRadius.only(
@@ -34,7 +34,13 @@ class Body extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    Center(
+                      child: Image.asset(perfil.avatar),
+                    ),
+
+                    //Expanded(child: Image.asset(perfil.avatar)),
                     Center(
                       child: Text(
                         perfil.nombre,
@@ -44,26 +50,42 @@ class Body extends StatelessWidget {
                         ),
                       ),
                     ),
-                    RoundedButton(
-                      text: "Editar",
-                      color: kPrimaryColor,
-                      textColor: Colors.white,
-                      fontSize: 20,
-                      paddingV: 3,
-                      paddingH: 10,
-                      ancho: 100,
-                      largo: 30,
-                      press: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return ui();
-                            },
-                          ),
-                        );
-                      },
+                    Center(
+                      child: RoundedButton(
+                        text: "Editar",
+                        color: kPrimaryColor,
+                        textColor: Colors.white,
+                        fontSize: 20,
+                        paddingV: 3,
+                        paddingH: 10,
+                        ancho: 100,
+                        largo: 30,
+                        press: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ui();
+                              },
+                            ),
+                          );
+                        },
+                      ),
                     ),
+                    /*Row(
+                      children: <Widget>[
+                        RichText(
+                            text: TextSpan(
+                          children: [
+                            TextSpan(text: " \n"),
+                          ],
+                        )),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        //Expanded(child: Image.asset(perfil.avatar)),
+                      ],
+                    )*/
                   ],
                 ),
               )
