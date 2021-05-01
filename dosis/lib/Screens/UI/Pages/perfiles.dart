@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dosis/Classes/perfiles.dart';
-import 'package:dosis/Screens/Login/components/body.dart';
 import 'package:dosis/Screens/Signup/components/social_icon.dart';
 import 'package:dosis/Screens/UI/components/detailsPerfil/details_screen.dart';
 import 'package:dosis/Screens/UI/components/perfil.dart';
 import 'package:flutter/material.dart';
+import 'package:dosis/Screens/UI/Pages/configurations.dart';
 import '../../../constants.dart';
 
 class Perfiles extends StatelessWidget {
@@ -51,7 +51,13 @@ class Perfiles extends StatelessWidget {
                       icon: SocalIcon(
                         iconSrc: "assets/icons/settings.svg",
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new Config()),
+                        );
+                      },
                     ),
                   ],
                 ),
