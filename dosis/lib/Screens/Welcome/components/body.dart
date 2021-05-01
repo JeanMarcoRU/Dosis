@@ -34,6 +34,8 @@ class Body extends StatelessWidget {
               text: "Iniciar sesión",
               color: kPrimaryLightColor,
               textColor: Colors.black,
+              ancho: 250,
+              largo: 65,
               press: () {
                 Navigator.push(
                   context,
@@ -49,6 +51,8 @@ class Body extends StatelessWidget {
               text: "Regístrarse",
               color: kPrimaryLightColor,
               textColor: Colors.black,
+              ancho: 250,
+              largo: 65,
               press: () {
                 Navigator.push(
                   context,

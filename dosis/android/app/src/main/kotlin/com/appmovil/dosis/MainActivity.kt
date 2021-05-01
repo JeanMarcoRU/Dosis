@@ -1,4 +1,4 @@
-package com.example.dosis
+package com.appmovil.dosis
 
 import io.flutter.embedding.android.FlutterActivity
 

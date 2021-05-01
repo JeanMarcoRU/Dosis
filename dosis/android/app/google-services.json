@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "1050057174696",
+    "project_id": "dosisfirebase",
+    "storage_bucket": "dosisfirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050057174696:android:ac269eee9ec746ca641c9d",
+        "android_client_info": {
+          "package_name": "com.appmovil.dosis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1050057174696-094jk8eehkdimiunqfiqgp4tcpt49921.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKCKaEfEHxylrW7eMlW5ZgjFpMshy9-cQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1050057174696-094jk8eehkdimiunqfiqgp4tcpt49921.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050057174696:android:d4e48fcdede38d47641c9d",
+        "android_client_info": {
+          "package_name": "com.historialdosis.dosisfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1050057174696-094jk8eehkdimiunqfiqgp4tcpt49921.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKCKaEfEHxylrW7eMlW5ZgjFpMshy9-cQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1050057174696-094jk8eehkdimiunqfiqgp4tcpt49921.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

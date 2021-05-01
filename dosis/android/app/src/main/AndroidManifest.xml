@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.dosis">
+    package="com.appmovil.dosis">
    <application
         android:label="dosis"
         android:icon="@mipmap/ic_launcher">
