@@ -1,10 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dosis/Classes/perfiles.dart';
 import 'package:dosis/Screens/Signup/components/social_icon.dart';
 import 'package:dosis/Screens/UI/Pages/calendario.dart';
 import 'package:dosis/Screens/UI/Pages/medicinas.dart';
 import 'package:dosis/Screens/UI/Pages/perfiles.dart';
-import 'package:dosis/Screens/UI/Pages/recetas.dart';
-import 'package:dosis/dosis_icons.dart';
 import 'package:flutter/material.dart';
 import '../../../constants.dart';
 
@@ -41,8 +40,6 @@ class _BodyState extends State<Body> {
                     ? SocalIcon(
                         iconSrc: "assets/icons/personUI.svg",
                         color: kPrimaryColor,
-                        //iconHeight: 33,
-                        //iconWidth: 33,
                       )
                     : SocalIcon(
                         iconSrc: "assets/icons/personUI.svg",

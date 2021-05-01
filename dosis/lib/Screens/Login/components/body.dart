@@ -19,12 +19,8 @@ class Body extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
-  static List perfileslist = [];
-
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
-  static String user, password;
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +88,7 @@ class Body extends StatelessWidget {
                       password: passwordController.text.trim(),
                     );
 
-                cargaPerfiles();
+                //cargaPerfiles();
               },
             ),
             SizedBox(height: size.height * 0.00),
@@ -112,73 +108,5 @@ class Body extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void cargaPerfiles() async {
-    perfileslist = [];
-    perfiles.clear();
-    CollectionReference collectionReference =
-        FirebaseFirestore.instance.collection("Perfil");
-
-    QuerySnapshot perfilesQS = await collectionReference.get();
-
-    if (perfilesQS.docs.length != 0) {
-      for (var doc in perfilesQS.docs) {
-        //print(doc.data());
-        perfileslist.add(doc.data());
-      }
-    }
-
-    for (var i = 0; i < perfileslist.length; i++) {
-      perfiles.add(Perfil(
-          letralogo: perfileslist[i]["letralogo"],
-          avatar: perfileslist[i]["avatar"],
-          nombre: perfileslist[i]["nombre"],
-          apellido1: perfileslist[i]["apellido1"],
-          apellido2: perfileslist[i]["apellido2"],
-          fechaNacimiento: "hay que pasarlo a fecha",
-          edad: perfileslist[i]["edad"],
-          color: getColor(perfileslist[i]["color"])));
-    }
-  } //void
-
-  Color getColor(String color) {
-    switch (color) {
-      case "userpinkColor":
-        {
-          return userpinkColor;
-        }
-        break;
-
-      case "userblueColor":
-        {
-          return userblueColor;
-        }
-        break;
-
-      case "userpurpleColor":
-        {
-          return userpurpleColor;
-        }
-        break;
-
-      case "usergreenColor":
-        {
-          return usergreenColor;
-        }
-        break;
-
-      case "userorangeColor":
-        {
-          return userorangeColor;
-        }
-        break;
-
-      default:
-        {
-          return userblueColor;
-        }
-        break;
-    }
   }
 }

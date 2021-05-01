@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dosis/Classes/perfiles.dart';
+import 'package:dosis/Screens/Login/components/body.dart';
 import 'package:dosis/Screens/Signup/components/social_icon.dart';
 import 'package:dosis/Screens/UI/components/detailsPerfil/details_screen.dart';
 import 'package:dosis/Screens/UI/components/perfil.dart';
@@ -6,7 +8,9 @@ import 'package:flutter/material.dart';
 import '../../../constants.dart';
 
 class Perfiles extends StatelessWidget {
-  const Perfiles({Key key}) : super(key: key);
+  Perfiles({Key key}) : super(key: key);
+
+  final List perfileslist = [];
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +27,17 @@ class Perfiles extends StatelessWidget {
                   children: <Widget>[
                     IconButton(
                       icon: SocalIcon(
-                        iconSrc: "assets/icons/personUI.svg",
+                        iconSrc: "assets/icons/refresh.svg",
                         //color: Colors.white,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        cargaPerfiles();
+                        /*Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new Perfiles()),
+                        );*/
+                      },
                     ),
                     Text(
                       'Perfiles',
@@ -80,4 +91,72 @@ class Perfiles extends StatelessWidget {
       ),
     );
   }
+
+  void cargaPerfiles() async {
+    perfileslist.clear();
+    perfiles.clear();
+    CollectionReference collectionReference =
+        FirebaseFirestore.instance.collection("Perfil");
+
+    QuerySnapshot perfilesQS = await collectionReference.get();
+
+    if (perfilesQS.docs.length != 0) {
+      for (var doc in perfilesQS.docs) {
+        //print(doc.data());
+        perfileslist.add(doc.data());
+      }
+    }
+    perfiles.clear();
+    for (var i = 0; i < perfileslist.length; i++) {
+      perfiles.add(Perfil(
+          letralogo: perfileslist[i]["letralogo"],
+          avatar: perfileslist[i]["avatar"],
+          nombre: perfileslist[i]["nombre"],
+          apellido1: perfileslist[i]["apellido1"],
+          apellido2: perfileslist[i]["apellido2"],
+          fechaNacimiento: "hay que pasarlo a fecha",
+          edad: perfileslist[i]["edad"],
+          color: getColor(perfileslist[i]["color"])));
+    }
+  } //void
+
+  Color getColor(String color) {
+    switch (color) {
+      case "userpinkColor":
+        {
+          return userpinkColor;
+        }
+        break;
+
+      case "userblueColor":
+        {
+          return userblueColor;
+        }
+        break;
+
+      case "userpurpleColor":
+        {
+          return userpurpleColor;
+        }
+        break;
+
+      case "usergreenColor":
+        {
+          return usergreenColor;
+        }
+        break;
+
+      case "userorangeColor":
+        {
+          return userorangeColor;
+        }
+        break;
+
+      default:
+        {
+          return userblueColor;
+        }
+        break;
+    }
+  } //getcolor
 }
