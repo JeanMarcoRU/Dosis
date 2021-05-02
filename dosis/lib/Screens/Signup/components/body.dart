@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dosis/Classes/perfiles.dart';
 import 'package:dosis/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/Screens/Login/login_screen.dart';
@@ -9,8 +11,14 @@ import 'package:dosis/components/rounded_button.dart';
 import 'package:dosis/components/rounded_input_field.dart';
 import 'package:dosis/components/rounded_password_field.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:dosis/authentication_service.dart';
+import 'package:provider/provider.dart';
+import 'package:dosis/components/text_field_container.dart';
 
 class Body extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -25,24 +33,45 @@ class Body extends StatelessWidget {
               height: size.height * 0.35,
             ),
             SizedBox(height: size.height * 0.05),
-            RoundedInputField(
-              hintText: "Cédula",
-              icon: Icons.person,
-              onChanged: (value) {},
+            TextFieldContainer(
+              child: TextField(
+                controller: emailController,
+                cursorColor: kPrimaryColor,
+                decoration: InputDecoration(
+                  icon: Icon(
+                    Icons.mail,
+                    color: kPrimaryColor,
+                  ),
+                  hintText: "Correo Electrónico",
+                  border: InputBorder.none,
+                ),
+              ),
             ),
-            RoundedInputField(
-              hintText: "Correo electrónico",
-              icon: Icons.email,
-              onChanged: (value) {},
+            TextFieldContainer(
+              child: TextField(
+                controller: passwordController,
+                obscureText: true,
+                cursorColor: kPrimaryColor,
+                decoration: InputDecoration(
+                  icon: Icon(
+                    Icons.lock,
+                    color: kPrimaryColor,
+                  ),
+                  hintText: "Contraseña",
+                  border: InputBorder.none,
+                ),
+              ),
             ),
-            RoundedPasswordField(
-              onChanged: (value) {},
-            ),
-            SizedBox(height: size.height * 0.01),
+            SizedBox(height: size.height * 0.08),
             RoundedButton(
               text: "Regístrarse",
               color: kPrimaryLightColor,
-              press: () {},
+              press: () {
+                context.read<AuthenticationService>().signUp(
+                      email: emailController.text.trim(),
+                      password: passwordController.text.trim(),
+                    );
+              },
             ),
             SizedBox(height: size.height * 0.00),
             AlreadyHaveAnAccountCheck(
@@ -57,7 +86,7 @@ class Body extends StatelessWidget {
                   ),
                 );
               },
-            ),
+            )
           ],
         ),
       ),
