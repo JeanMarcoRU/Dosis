@@ -106,10 +106,31 @@ class Medicinas extends StatelessWidget {
     }
   }
 
-  //Funcion para crear una categoria
-  void crearCategoria(String idCategoria, data) async {
+  //Funcion para leer un medicamento
+  void leerMedicamento(String idMedicamento) async {
+    DocumentSnapshot documentSnapshot;
     try {
-      db.collection("Categoria").doc(idCategoria).set(data);
+      documentSnapshot =
+          await db.collection("Medicamento").doc(idMedicamento).get();
+      print(documentSnapshot.data());
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  //Funcion para eliminar un medicamento
+  void eliminarMedicamento(String idMedicamento) async {
+    try {
+      db.collection("Medicamento").doc(idMedicamento).delete();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  //Funcion para actualizar un medicamento
+  void updateMedicamento(String idMedicamento, data) async {
+    try {
+      db.collection("Medicamento").doc(idMedicamento).update(data);
     } catch (e) {
       print(e);
     }

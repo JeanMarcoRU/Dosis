@@ -3,7 +3,6 @@ import 'package:dosis/Screens/Signup/components/backgroundWhite.dart';
 import 'package:dosis/Screens/UI/Pages/medicinas.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/components/rounded_button.dart';
-import 'package:dosis/components/rounded_input_field.dart';
 import 'package:dosis/components/text_field_container.dart';
 import 'package:dosis/constants.dart';
 
@@ -30,10 +29,6 @@ class formCategoria extends StatelessWidget {
                 controller: nombreController,
                 cursorColor: kPrimaryColor,
                 decoration: InputDecoration(
-                  icon: Icon(
-                    Icons.mail,
-                    color: kPrimaryColor,
-                  ),
                   labelText: "Nombre",
                   border: InputBorder.none,
                 ),
@@ -45,10 +40,6 @@ class formCategoria extends StatelessWidget {
                 controller: descripcionController,
                 cursorColor: kPrimaryColor,
                 decoration: InputDecoration(
-                  icon: Icon(
-                    Icons.mail,
-                    color: kPrimaryColor,
-                  ),
                   labelText: "Descripcion",
                   border: InputBorder.none,
                 ),
@@ -60,11 +51,7 @@ class formCategoria extends StatelessWidget {
                 controller: emojiController,
                 cursorColor: kPrimaryColor,
                 decoration: InputDecoration(
-                  icon: Icon(
-                    Icons.mail,
-                    color: kPrimaryColor,
-                  ),
-                  hintText: "Emoji",
+                  labelText: "Emoji",
                   border: InputBorder.none,
                 ),
               ),
