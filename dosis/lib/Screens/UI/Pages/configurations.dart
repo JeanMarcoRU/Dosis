@@ -27,7 +27,7 @@ class Config extends StatelessWidget {
                         iconSrc: "assets/icons/cuack.svg",
                         //color: Colors.white,
                       ),
-                      onPressed: () {},
+                     onPressed: () => Navigator.pop(context),
                     ),
                     Text(
                       'Configuraciones',
