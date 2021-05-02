@@ -65,7 +65,7 @@ class _BodyState extends State<Body> {
                       ),
                 title: _currentPage == 1
                     ? Text(
-                        "Calendario",
+                        "Horarios",
                         style: TextStyle(
                           color: kPrimaryColor,
                         ),
@@ -84,7 +84,7 @@ class _BodyState extends State<Body> {
                       ),
                 title: _currentPage == 2
                     ? Text(
-                        "Medicinas",
+                        "Medicamentos",
                         style: TextStyle(
                           color: kPrimaryColor,
                         ),
