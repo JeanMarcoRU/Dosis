@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:dosis/Classes/categoria.dart';
 import 'package:dosis/Classes/medicamento.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class Medicinas extends StatelessWidget {
   static const String _title = 'Medicamentos';
   final List categoriaslist = [];
   final List medicamentosList = [];
-
+  final FirebaseFirestore db = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -73,6 +74,45 @@ class Medicinas extends StatelessWidget {
           hora: medicamentosList[i]["Hora"]));
     }
     print(medicamentos);
+  }
+
+  //Funcion para leer una categoria
+  void leerCategoria(String idCategoria) async {
+    DocumentSnapshot documentSnapshot;
+    try {
+      documentSnapshot =
+          await db.collection("Categoria").doc(idCategoria).get();
+      print(documentSnapshot.data());
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  //Funcion para eliminar una categoria
+  void eliminarCategoria(String idCategoria) async {
+    try {
+      db.collection("Categoria").doc(idCategoria).delete();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  //Funcion para actualizar una categoria
+  void updateCategoria(String idCategoria, data) async {
+    try {
+      db.collection("Categoria").doc(idCategoria).update(data);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  //Funcion para crear una categoria
+  void crearCategoria(String idCategoria, data) async {
+    try {
+      db.collection("Categoria").doc(idCategoria).set(data);
+    } catch (e) {
+      print(e);
+    }
   }
 }
 
