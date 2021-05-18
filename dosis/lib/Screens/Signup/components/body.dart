@@ -71,6 +71,14 @@ class Body extends StatelessWidget {
                       email: emailController.text.trim(),
                       password: passwordController.text.trim(),
                     );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return LoginScreen();
+                    },
+                  ),
+                );
               },
             ),
             SizedBox(height: size.height * 0.00),
