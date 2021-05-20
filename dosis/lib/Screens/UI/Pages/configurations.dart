@@ -1,6 +1,7 @@
 import 'package:dosis/Screens/Login/components/background.dart';
 import 'package:dosis/Screens/Signup/components/social_icon.dart';
 import 'package:dosis/components/rounded_button.dart';
+import 'package:dosis/components/text_field_container.dart';
 import 'package:flutter/material.dart';
 import '../../../authentication_service.dart';
 import '../../../constants.dart';
@@ -49,7 +50,40 @@ class Config extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(height: size.height * 0.5),
+              SizedBox(height: size.height * 0.05),
+              Text(
+                'Opciones de sonido',
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                ),
+              ),
+              SizedBox(height: size.height * 0.05),
+              TextButton(
+                child: Text(
+                  'Cambiar Contraseña',
+                  style: TextStyle(
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
+                  ),
+                ),
+                onPressed: () {/* ... */},
+              ),
+              SizedBox(height: size.height * 0.01),
+              TextButton(
+                child: Text(
+                  'Eliminar Cuenta',
+                  style: TextStyle(
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
+                  ),
+                ),
+                onPressed: () {/* ... */},
+              ),
+              SizedBox(height: size.height * 0.01),
               RoundedButton(
                 text: "Cerrar sesión",
                 color: kPrimaryColor,

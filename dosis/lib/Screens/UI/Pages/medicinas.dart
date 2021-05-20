@@ -19,7 +19,7 @@ class Medicinas extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: _title,
-      home: BotonFlotante(),
+      home: PestanasMedicamentos(),
     );
   }
 
@@ -135,7 +135,66 @@ class Medicinas extends StatelessWidget {
       print(e);
     }
   }
-}
+} //  Fin clase medicamentos
+
+class PestanasMedicamentos extends StatelessWidget {
+  const PestanasMedicamentos({Key key}) : super(key: key);
+  //Solo para probar
+  static List categoriasPrueb = [
+    ["Y", "Yanina", "2 x s", "XD"],
+    ["S", "Sebas", "7 x s", "XD"],
+    ["P", "Prueba", "4 x s", ":("]
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: TabBar(
+              tabs: [
+                Tab(
+                  text: 'Categorías',
+                ),
+                Tab(
+                  text: 'Todos los medicamentos',
+                ),
+              ],
+            ),
+            title: Text('Medicamentos'),
+          ),
+          body: TabBarView(
+            children: [
+              _buildGrid(),
+              BotonFlotante(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGrid() => GridView.extent(
+      maxCrossAxisExtent: 250,
+      padding: const EdgeInsets.all(10),
+      mainAxisSpacing: 8,
+      crossAxisSpacing: 8,
+      children: _buildGridTileList(categoriasPrueb.length));
+
+  List<Container> _buildGridTileList(int count) => List.generate(
+      count,
+      (i) => Container(
+            child: Text(
+                '${categoriasPrueb[i][1]}, ${categoriasPrueb[i][2]}, ${categoriasPrueb[i][3]}'),
+            decoration: BoxDecoration(
+              color: kPrimaryLightColor,
+              borderRadius: BorderRadius.circular(10),
+            ),
+          )); //Solo para probar
+
+} // Fin pestanaMedicinas
 
 class BotonFlotante extends StatelessWidget {
   const BotonFlotante({Key key}) : super(key: key);
