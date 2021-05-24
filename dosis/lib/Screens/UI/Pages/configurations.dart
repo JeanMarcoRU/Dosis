@@ -91,7 +91,9 @@ class Config extends StatelessWidget {
                     fontSize: 18,
                   ),
                 ),
-                onPressed: () {/* ... */},
+                onPressed: () {
+                  context.read<AuthenticationService>().deleteUser();
+                },
               ),
               SizedBox(height: size.height * 0.01),
               RoundedButton(

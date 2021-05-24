@@ -57,6 +57,15 @@ class AuthenticationService {
     } on FirebaseAuthException catch (e) {
       return e.message;
     }
-    ;
+  }
+
+  Future<String> deleteUser() async {
+    //Pass in the password to updatePassword.
+    try {
+      _firebaseAuth.currentUser.delete();
+      return "Cuenta eliminada";
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
   }
 }
