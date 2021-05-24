@@ -145,6 +145,7 @@ class PestanasMedicamentos extends StatelessWidget {
     ["S", "Sebas", "7 x s", "XD"],
     ["P", "Prueba", "4 x s", ":("]
   ];
+  static List categoriaslist = Medicinas().categoriaslist;
 
   @override
   Widget build(BuildContext context) {
@@ -181,13 +182,12 @@ class PestanasMedicamentos extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       mainAxisSpacing: 8,
       crossAxisSpacing: 8,
-      children: _buildGridTileList(categoriasPrueb.length));
+      children: _buildGridTileList(categoriaslist.length));
 
   List<Container> _buildGridTileList(int count) => List.generate(
       count,
       (i) => Container(
-            child: Text(
-                '${categoriasPrueb[i][1]}, ${categoriasPrueb[i][2]}, ${categoriasPrueb[i][3]}'),
+            child: Text('${categoriaslist[i][1]}'),
             decoration: BoxDecoration(
               color: kPrimaryLightColor,
               borderRadius: BorderRadius.circular(10),

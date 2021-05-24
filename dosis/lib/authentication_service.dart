@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
 class AuthenticationService {
@@ -46,5 +47,16 @@ class AuthenticationService {
     } on FirebaseAuthException catch (e) {
       return e.message;
     }
+  }
+
+  Future<String> changePassword(String password) async {
+    //Pass in the password to updatePassword.
+    try {
+      _firebaseAuth.currentUser.updatePassword(password);
+      return "Change Password";
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
+    ;
   }
 }

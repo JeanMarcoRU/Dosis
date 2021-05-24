@@ -1,4 +1,5 @@
 import 'package:dosis/Screens/Login/components/background.dart';
+import 'package:dosis/Screens/Password/passwordScreen.dart';
 import 'package:dosis/Screens/Signup/components/social_icon.dart';
 import 'package:dosis/components/rounded_button.dart';
 import 'package:dosis/components/text_field_container.dart';
@@ -69,7 +70,16 @@ class Config extends StatelessWidget {
                     fontSize: 18,
                   ),
                 ),
-                onPressed: () {/* ... */},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return passwordScreen();
+                      },
+                    ),
+                  );
+                },
               ),
               SizedBox(height: size.height * 0.01),
               TextButton(
