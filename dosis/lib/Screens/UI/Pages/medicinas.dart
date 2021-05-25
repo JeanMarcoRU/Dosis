@@ -11,7 +11,6 @@ import 'package:dosis/Screens/UI/components/categoria.dart';
 class Medicinas extends StatelessWidget {
   Medicinas({Key key}) : super(key: key);
 
-  //static const String _title = 'Medicamentos';
   final List categoriaslist = [];
   final List medicamentosList = [];
   final FirebaseFirestore db = FirebaseFirestore.instance;
@@ -77,16 +76,7 @@ class Medicinas extends StatelessWidget {
       ),
     );
   }
-  /*
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: _title,
-      home: BotonFlotante(),
-    );
-  }*/
-
+ 
   /* Funcion para cargar los datos de Categoria */
   void cargaCategoria() async {
     categoriaslist.clear();
@@ -106,7 +96,7 @@ class Medicinas extends StatelessWidget {
       categorias.add(Categoria(
           letralogo: categoriaslist[i]["letralogo"],
           nombre: categoriaslist[i]["Nombre"],
-          descripcion: categoriaslist[i]["Descripción"],
+          descripcion: categoriaslist[i]["Descripcion"],
           emoji: categoriaslist[i]["Emoji"]));
     }
   }
@@ -197,7 +187,7 @@ class Medicinas extends StatelessWidget {
       print(e);
     }
   }
-}
+} //  Fin clase medicamentos
 
 class BotonFlotante extends StatelessWidget {
   const BotonFlotante({Key key}) : super(key: key);
@@ -239,6 +229,40 @@ class BotonFlotante extends StatelessWidget {
               },
               icon: Icon(Icons.add),
               label: Text('Categoria'),
+              backgroundColor: kPrimaryColor,
+            ),
+            SizedBox(height: 8.0),
+            FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return formCategoria();
+                    },
+                  ),
+                );
+                // Respond to button press
+              },
+              icon: Icon(Icons.add),
+              label: Text('Editar Categoria'),
+              backgroundColor: kPrimaryColor,
+            ),
+            SizedBox(height: 8.0),
+            FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return formCategoria();
+                    },
+                  ),
+                );
+                // Respond to button press
+              },
+              icon: Icon(Icons.add),
+              label: Text('Eliminar Categoria'),
               backgroundColor: kPrimaryColor,
             ),
           ],
