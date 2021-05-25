@@ -10,16 +10,59 @@ import 'Medicamentos/formMedicamentos.dart';
 class Medicinas extends StatelessWidget {
   Medicinas({Key key}) : super(key: key);
 
-  static const String _title = 'Medicamentos';
   final List categoriaslist = [];
   final List medicamentosList = [];
   final FirebaseFirestore db = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: _title,
-      home: PestanasMedicamentos(),
+    Medicinas().cargaCategoria();
+    cargaMedicamentos();
+    print(medicamentos);
+    print("-----------");
+    print(categorias);
+    final int total = categorias.length;
+    print(total);
+    return MaterialApp(
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: TabBar(
+              tabs: [
+                Tab(
+                  text: 'Categorías',
+                ),
+                Tab(
+                  text: 'Todos los medicamentos',
+                ),
+              ],
+            ),
+            title: Text('Medicamentos'),
+          ),
+          body: TabBarView(
+            children: [
+              GridView.extent(
+                maxCrossAxisExtent: 250,
+                padding: const EdgeInsets.all(10),
+                mainAxisSpacing: 8,
+                crossAxisSpacing: 8,
+                children: List.generate(
+                  total,
+                  (i) => Container(
+                    child: Text('$categorias'),
+                    decoration: BoxDecoration(
+                      color: kPrimaryLightColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+              ),
+              BotonFlotante(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
@@ -42,7 +85,7 @@ class Medicinas extends StatelessWidget {
       categorias.add(Categoria(
           letralogo: categoriaslist[i]["letralogo"],
           nombre: categoriaslist[i]["Nombre"],
-          descripcion: categoriaslist[i]["Descripción"],
+          descripcion: categoriaslist[i]["Descripcion"],
           emoji: categoriaslist[i]["Emoji"]));
     }
     print(categorias);
@@ -73,7 +116,6 @@ class Medicinas extends StatelessWidget {
           dias: medicamentosList[i]["Dias"],
           hora: medicamentosList[i]["Hora"]));
     }
-    print(medicamentos);
   }
 
   //Funcion para leer una categoria
@@ -137,65 +179,6 @@ class Medicinas extends StatelessWidget {
   }
 } //  Fin clase medicamentos
 
-class PestanasMedicamentos extends StatelessWidget {
-  const PestanasMedicamentos({Key key}) : super(key: key);
-  //Solo para probar
-  static List categoriasPrueb = [
-    ["Y", "Yanina", "2 x s", "XD"],
-    ["S", "Sebas", "7 x s", "XD"],
-    ["P", "Prueba", "4 x s", ":("]
-  ];
-  static List categoriaslist = Medicinas().categoriaslist;
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-            bottom: TabBar(
-              tabs: [
-                Tab(
-                  text: 'Categorías',
-                ),
-                Tab(
-                  text: 'Todos los medicamentos',
-                ),
-              ],
-            ),
-            title: Text('Medicamentos'),
-          ),
-          body: TabBarView(
-            children: [
-              _buildGrid(),
-              BotonFlotante(),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildGrid() => GridView.extent(
-      maxCrossAxisExtent: 250,
-      padding: const EdgeInsets.all(10),
-      mainAxisSpacing: 8,
-      crossAxisSpacing: 8,
-      children: _buildGridTileList(categoriaslist.length));
-
-  List<Container> _buildGridTileList(int count) => List.generate(
-      count,
-      (i) => Container(
-            child: Text('${categoriaslist[i][1]}'),
-            decoration: BoxDecoration(
-              color: kPrimaryLightColor,
-              borderRadius: BorderRadius.circular(10),
-            ),
-          )); //Solo para probar
-
-} // Fin pestanaMedicinas
-
 class BotonFlotante extends StatelessWidget {
   const BotonFlotante({Key key}) : super(key: key);
   Widget build(BuildContext context) {
@@ -236,6 +219,40 @@ class BotonFlotante extends StatelessWidget {
               },
               icon: Icon(Icons.add),
               label: Text('Categoria'),
+              backgroundColor: kPrimaryColor,
+            ),
+            SizedBox(height: 8.0),
+            FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return formCategoria();
+                    },
+                  ),
+                );
+                // Respond to button press
+              },
+              icon: Icon(Icons.add),
+              label: Text('Editar Categoria'),
+              backgroundColor: kPrimaryColor,
+            ),
+            SizedBox(height: 8.0),
+            FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return formCategoria();
+                    },
+                  ),
+                );
+                // Respond to button press
+              },
+              icon: Icon(Icons.add),
+              label: Text('Eliminar Categoria'),
               backgroundColor: kPrimaryColor,
             ),
           ],
