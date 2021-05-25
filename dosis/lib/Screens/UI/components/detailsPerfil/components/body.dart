@@ -1,7 +1,7 @@
 import 'package:dosis/Classes/perfiles.dart';
 //import 'package:dosis/Screens/Signup/components/social_icon.dart';
 import 'package:dosis/Screens/UI/components/detailsPerfil/components/perfil_title_with_avatar.dart';
-import 'package:dosis/components/text_field_container.dart';
+//import 'package:dosis/components/text_field_container.dart';
 //import 'package:dosis/components/rounded_button.dart';
 //import 'package:dosis/constants.dart';
 import 'package:flutter/foundation.dart';
@@ -29,8 +29,8 @@ class Body extends StatelessWidget {
                 margin: EdgeInsets.only(top: size.height * 0.3),
                 padding: EdgeInsets.only(
                   top: 40,
-                  left: 20,
-                  right: 0,
+                  left: 15,
+                  right: 15,
                 ),
                 //height: 700,
                 decoration: BoxDecoration(
@@ -69,9 +69,6 @@ class Body extends StatelessWidget {
                             ),
                           ),
                         ),
-                        /*SizedBox(
-                          width: 15,
-                        ),*/
                         Container(
                           margin: EdgeInsets.symmetric(vertical: 0),
                           padding: EdgeInsets.symmetric(
@@ -107,7 +104,7 @@ class Body extends StatelessWidget {
                       children: <Widget>[
                         Expanded(
                           child: Text(
-                            "Nombre completo",
+                            "Número de cédula",
                             style: TextStyle(
                               color: kgreyDColor,
                               fontSize: 14,
@@ -115,9 +112,6 @@ class Body extends StatelessWidget {
                             ),
                           ),
                         ),
-                        /*SizedBox(
-                          width: 15,
-                        ),*/
                         Container(
                           margin: EdgeInsets.symmetric(vertical: 0),
                           padding: EdgeInsets.symmetric(
@@ -135,11 +129,202 @@ class Body extends StatelessWidget {
                               color: kgreyDColor,
                             ),
                             decoration: InputDecoration(
-                              hintText: perfil.nombre +
-                                  " " +
-                                  perfil.apellido1 +
-                                  " " +
-                                  perfil.apellido2,
+                              hintText: perfil.numeroCedula,
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            "Fecha de nacimiento",
+                            style: TextStyle(
+                              color: kgreyDColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 0),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          width: 200,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: TextField(
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              height: 0,
+                              color: kgreyDColor,
+                            ),
+                            decoration: InputDecoration(
+                              hintText: perfil.fechaNacimiento.toString(),
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            "Edad",
+                            style: TextStyle(
+                              color: kgreyDColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 0),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          width: 200,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: TextField(
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              height: 0,
+                              color: kgreyDColor,
+                            ),
+                            decoration: InputDecoration(
+                              hintText: perfil.edad.toString(),
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            "Género",
+                            style: TextStyle(
+                              color: kgreyDColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 0),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          width: 200,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: TextField(
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              height: 0,
+                              color: kgreyDColor,
+                            ),
+                            decoration: InputDecoration(
+                              hintText: perfil.genero,
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            "Tipo de sangre",
+                            style: TextStyle(
+                              color: kgreyDColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 0),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          width: 200,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: TextField(
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              height: 0,
+                              color: kgreyDColor,
+                            ),
+                            decoration: InputDecoration(
+                              hintText: perfil.tipoSangre,
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            "Estado civil",
+                            style: TextStyle(
+                              color: kgreyDColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 0),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          width: 200,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: TextField(
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              height: 0,
+                              color: kgreyDColor,
+                            ),
+                            decoration: InputDecoration(
+                              hintText: perfil.estadoCivil,
                               border: InputBorder.none,
                             ),
                           ),

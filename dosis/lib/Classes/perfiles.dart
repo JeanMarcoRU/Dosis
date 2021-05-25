@@ -6,10 +6,13 @@ class Perfil {
       nombre,
       apellido1,
       apellido2,
-      fechaNacimiento,
-      numeroCedula;
+      numeroCedula,
+      genero,
+      tipoSangre,
+      estadoCivil;
   final int edad;
   final Color color;
+  final DateTime fechaNacimiento;
   //void cargaPerfiles();
   Perfil({
     this.letralogo,
@@ -21,6 +24,9 @@ class Perfil {
     this.numeroCedula,
     this.edad,
     this.color,
+    this.genero,
+    this.tipoSangre,
+    this.estadoCivil,
   });
 }
 
