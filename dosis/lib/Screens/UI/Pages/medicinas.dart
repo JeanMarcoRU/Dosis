@@ -7,6 +7,7 @@ import '../../../constants.dart';
 import 'Medicamentos/formCategoria.dart';
 import 'Medicamentos/formMedicamentos.dart';
 import 'package:dosis/Screens/UI/components/categoria.dart';
+import 'package:dosis/Screens/UI/components/Categorias/detailsCategoria/detailsCategoria.dart';
 
 class Medicinas extends StatelessWidget {
   Medicinas({Key key}) : super(key: key);
@@ -14,9 +15,50 @@ class Medicinas extends StatelessWidget {
   final List categoriaslist = [];
   final List medicamentosList = [];
   final FirebaseFirestore db = FirebaseFirestore.instance;
+  final List catPrueb = [
+    {
+      "Nombre": "categoría prueba",
+      "Emoji": ":/",
+      "Descripcion": "categoría de prueb",
+      "letralogo": "D"
+    },
+    {
+      "Nombre": "Dolor de cabeza",
+      "Emoji": ":(",
+      "Descripción": "categoria para dolor",
+      "letralogo": "Y"
+    },
+    {
+      "Nombre": "tratamiento infantil",
+      "Emoji": "😁",
+      "Descripcion": "tratamiento infantil",
+      "letralogo": "S"
+    },
+    {
+      "Nombre": "yyabana",
+      "Emoji": "😁",
+      "Descripcion": "ghahaj",
+      "letralogo": "S"
+    }
+  ];
+
+  void cargarDatosCategoria(List c) {
+    for (var i = 0; i < c.length; i++) {
+      categorias.add(Categoria(
+          letralogo: c[i]["letralogo"],
+          nombre: c[i]["Nombre"],
+          descripcion: c[i]["Descripcion"],
+          emoji: c[i]["Emoji"]));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    cargaCategoria();
+    //print(categorias);
+    cargarDatosCategoria(catPrueb);
+    print(catPrueb[0]["Nombre"]);
+    print(categorias);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
@@ -37,38 +79,41 @@ class Medicinas extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
-              /*GridView.builder(
+              GridView.builder(
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 200,
+                    childAspectRatio: 3 / 2,
+                    crossAxisSpacing: 20,
+                    mainAxisSpacing: 20),
+                itemCount: categorias.length,
+                itemBuilder: (context, index) => CategoriaObj(
+                  i: index,
+                  press: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => detailsCategoria(
+                                categoria: categorias[index],
+                              ))),
+                ),
+              ),
+              /*
+              GridView.builder(
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 200,
                       childAspectRatio: 3 / 2,
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 20),
-                  itemCount: categoriaslist.length,
+                  itemCount: categorias.length,
                   itemBuilder: (BuildContext ctx, index) {
                     return Container(
                       alignment: Alignment.center,
-                      child: Text(categoriaslist[index]["nombre"]),
-                      decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(15)),
-                    );
-                  }),*/
-              GridView.count(
-                crossAxisCount: 2,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
-                children: List.generate(4, (index) {
-                  return Container(
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Categoria ... $index',
-                        style: Theme.of(context).textTheme.headline,
-                      ),
+                      child: Text('$categorias[index]'),
                       decoration: BoxDecoration(
                           color: kgreyLColor,
-                          borderRadius: BorderRadius.circular(15)));
-                }),
-              ),
+                          borderRadius: BorderRadius.circular(15)),
+                    );
+                  }),
+                  */
               BotonFlotante(),
             ],
           ),
@@ -76,7 +121,7 @@ class Medicinas extends StatelessWidget {
       ),
     );
   }
- 
+
   /* Funcion para cargar los datos de Categoria */
   void cargaCategoria() async {
     categoriaslist.clear();

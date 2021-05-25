@@ -26,24 +26,13 @@ class CategoriaObj extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.vertical(),
             ),
-            child: Center(
-              child: Text(
-                categorias[i].letralogo,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 70,
-                ),
-              ),
-            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
             child: Text(
               categorias[i].nombre,
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 16,
               ),
             ),
           ),
