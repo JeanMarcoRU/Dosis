@@ -1,10 +1,10 @@
 import 'package:dosis/Classes/perfiles.dart';
+import 'package:dosis/Screens/UI/components/editPerfil/edit_screen.dart';
 import 'package:dosis/components/rounded_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../constants.dart';
-import '../../../ui.dart';
 
 class PerfilTittleWithAvatar extends StatelessWidget {
   const PerfilTittleWithAvatar({
@@ -50,7 +50,9 @@ class PerfilTittleWithAvatar extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return ui();
+                      return EditScreen(
+                        perfil: perfil,
+                      );
                     },
                   ),
                 );
