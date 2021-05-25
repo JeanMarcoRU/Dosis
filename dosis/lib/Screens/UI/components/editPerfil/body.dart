@@ -1,15 +1,12 @@
 import 'package:dosis/Classes/perfiles.dart';
-//import 'package:dosis/Screens/Signup/components/social_icon.dart';
-import 'package:dosis/Screens/UI/components/detailsPerfil/components/perfil_title_with_avatar.dart';
-//import 'package:dosis/components/text_field_container.dart';
-//import 'package:dosis/components/rounded_button.dart';
-//import 'package:dosis/constants.dart';
+
+import 'package:dosis/Screens/UI/components/editPerfil/perfil_title_without_edit.dart';
+import 'package:dosis/Screens/UI/ui.dart';
+import 'package:dosis/components/rounded_button.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../constants.dart';
-
-//import '../../../ui.dart';
+import '../../../../constants.dart';
 
 class Body extends StatelessWidget {
   final Perfil perfil;
@@ -331,10 +328,64 @@ class Body extends StatelessWidget {
                         ),
                       ],
                     ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: RoundedButton(
+                            text: "Eliminar",
+                            color: kgreyDColor,
+                            textColor: Colors.white,
+                            fontSize: 20,
+                            paddingV: 3,
+                            paddingH: 10,
+                            ancho: 100,
+                            largo: 50,
+                            press: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return ui();
+                                  },
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          width: 100,
+                        ),
+                        Expanded(
+                          child: RoundedButton(
+                            text: "Guardar",
+                            color: kPrimaryColor,
+                            textColor: Colors.white,
+                            fontSize: 20,
+                            paddingV: 3,
+                            paddingH: 10,
+                            ancho: 100,
+                            largo: 50,
+                            press: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return ui();
+                                  },
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
-              PerfilTittleWithAvatar(perfil: perfil)
+              PerfilTittleWithoutEdit(perfil: perfil)
             ],
           ),
         )

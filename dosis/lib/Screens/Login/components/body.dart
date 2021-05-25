@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dosis/Classes/perfiles.dart';
 //import 'package:dosis/Screens/UI/ui.dart';
 import 'package:dosis/components/forgot_password.dart';
+import 'package:dosis/main.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/Screens/Login/components/background.dart';
 import 'package:dosis/Screens/Signup/signup_screen.dart';
@@ -87,7 +88,14 @@ class Body extends StatelessWidget {
                       email: emailController.text.trim(),
                       password: passwordController.text.trim(),
                     );
-
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return MyApp();
+                    },
+                  ),
+                );
                 //cargaPerfiles();
               },
             ),

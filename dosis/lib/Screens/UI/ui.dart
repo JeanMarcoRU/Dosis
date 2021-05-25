@@ -41,8 +41,13 @@ class ui extends StatelessWidget {
           nombre: perfileslist[i]["nombre"],
           apellido1: perfileslist[i]["apellido1"],
           apellido2: perfileslist[i]["apellido2"],
-          fechaNacimiento: "hay que pasarlo a fecha",
+          numeroCedula: perfileslist[i]["cedula"],
+          fechaNacimiento: DateTime.parse(
+              perfileslist[i]["fechaNacimiento"].toDate().toString()),
           edad: perfileslist[i]["edad"],
+          genero: perfileslist[i]["genero"],
+          tipoSangre: perfileslist[i]["tipoSangre"],
+          estadoCivil: perfileslist[i]["estadoCivil"],
           color: getColor(perfileslist[i]["color"])));
     }
   } //void

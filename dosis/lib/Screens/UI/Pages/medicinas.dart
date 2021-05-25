@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../constants.dart';
 import 'Medicamentos/formCategoria.dart';
 import 'Medicamentos/formMedicamentos.dart';
+import 'package:dosis/Screens/UI/components/categoria.dart';
 
 class Medicinas extends StatelessWidget {
   Medicinas({Key key}) : super(key: key);
@@ -16,14 +17,8 @@ class Medicinas extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Medicinas().cargaCategoria();
-    cargaMedicamentos();
-    print(medicamentos);
-    print("-----------");
-    print(categorias);
-    final int total = categorias.length;
-    print(total);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
@@ -31,10 +26,10 @@ class Medicinas extends StatelessWidget {
             bottom: TabBar(
               tabs: [
                 Tab(
-                  text: 'Categorías',
+                  text: "Categorías",
                 ),
                 Tab(
-                  text: 'Todos los medicamentos',
+                  text: "Todos los medicamentos",
                 ),
               ],
             ),
@@ -42,21 +37,37 @@ class Medicinas extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
-              GridView.extent(
-                maxCrossAxisExtent: 250,
-                padding: const EdgeInsets.all(10),
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 8,
-                children: List.generate(
-                  total,
-                  (i) => Container(
-                    child: Text('$categorias'),
-                    decoration: BoxDecoration(
-                      color: kPrimaryLightColor,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
+              /*GridView.builder(
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 200,
+                      childAspectRatio: 3 / 2,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20),
+                  itemCount: categoriaslist.length,
+                  itemBuilder: (BuildContext ctx, index) {
+                    return Container(
+                      alignment: Alignment.center,
+                      child: Text(categoriaslist[index]["nombre"]),
+                      decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(15)),
+                    );
+                  }),*/
+              GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
+                children: List.generate(4, (index) {
+                  return Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Categoria ... $index',
+                        style: Theme.of(context).textTheme.headline,
+                      ),
+                      decoration: BoxDecoration(
+                          color: kgreyLColor,
+                          borderRadius: BorderRadius.circular(15)));
+                }),
               ),
               BotonFlotante(),
             ],
@@ -65,7 +76,7 @@ class Medicinas extends StatelessWidget {
       ),
     );
   }
-
+ 
   /* Funcion para cargar los datos de Categoria */
   void cargaCategoria() async {
     categoriaslist.clear();
@@ -88,7 +99,6 @@ class Medicinas extends StatelessWidget {
           descripcion: categoriaslist[i]["Descripcion"],
           emoji: categoriaslist[i]["Emoji"]));
     }
-    print(categorias);
   }
 
   /* Funcion para cargar los datos de los medicamentos */
