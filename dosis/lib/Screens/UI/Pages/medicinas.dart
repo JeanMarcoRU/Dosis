@@ -7,6 +7,7 @@ import '../../../constants.dart';
 import 'Medicamentos/formCategoria.dart';
 import 'Medicamentos/formMedicamentos.dart';
 import 'package:dosis/Screens/UI/components/categoria.dart';
+import 'package:dosis/Screens/UI/components/Categorias/detailsCategoria/detailsCategoria.dart';
 
 class Medicinas extends StatelessWidget {
   Medicinas({Key key}) : super(key: key);
@@ -14,9 +15,31 @@ class Medicinas extends StatelessWidget {
   final List categoriaslist = [];
   final List medicamentosList = [];
   final FirebaseFirestore db = FirebaseFirestore.instance;
+  final List catPrueba = [
+    {
+      "Nombre": "tratamiento infantil",
+      "Emoji": "😁",
+      "Descripcion": "tratamiento infantil",
+      "letralogo": "S"
+    }
+  ];
+
+  void cargarDatosCategoria(List c) {
+    for (var i = 0; i < c.length; i++) {
+      categorias.add(Categoria(
+          idCategoria: "0",
+          letralogo: c[i]["letralogo"],
+          nombre: c[i]["Nombre"],
+          descripcion: c[i]["Descripcion"],
+          emoji: c[i]["Emoji"]));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    //cargaCategoria();
+    cargarDatosCategoria(catPrueba);
+    print(categorias);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
@@ -33,41 +56,34 @@ class Medicinas extends StatelessWidget {
                 ),
               ],
             ),
-            title: Text('Medicamentos'),
+            title: Text(
+              'Medicamentos',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            ),
+            backgroundColor: kPrimaryColor,
           ),
           body: TabBarView(
             children: [
-              /*GridView.builder(
-                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 200,
-                      childAspectRatio: 3 / 2,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20),
-                  itemCount: categoriaslist.length,
-                  itemBuilder: (BuildContext ctx, index) {
-                    return Container(
-                      alignment: Alignment.center,
-                      child: Text(categoriaslist[index]["nombre"]),
-                      decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(15)),
-                    );
-                  }),*/
-              GridView.count(
-                crossAxisCount: 2,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
-                children: List.generate(4, (index) {
-                  return Container(
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Categoria ... $index',
-                        style: Theme.of(context).textTheme.headline,
-                      ),
-                      decoration: BoxDecoration(
-                          color: kgreyLColor,
-                          borderRadius: BorderRadius.circular(15)));
-                }),
+              GridView.builder(
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 200,
+                    childAspectRatio: 3 / 2,
+                    crossAxisSpacing: 20,
+                    mainAxisSpacing: 20),
+                itemCount: categorias.length,
+                itemBuilder: (context, index) => CategoriaObj(
+                  i: index,
+                  press: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => detailsCategoria(
+                                categoria: categorias[index],
+                              ))),
+                ),
               ),
               BotonFlotante(),
             ],
@@ -76,7 +92,7 @@ class Medicinas extends StatelessWidget {
       ),
     );
   }
- 
+
   /* Funcion para cargar los datos de Categoria */
   void cargaCategoria() async {
     categoriaslist.clear();
@@ -127,66 +143,6 @@ class Medicinas extends StatelessWidget {
           hora: medicamentosList[i]["Hora"]));
     }
   }
-
-  //Funcion para leer una categoria
-  void leerCategoria(String idCategoria) async {
-    DocumentSnapshot documentSnapshot;
-    try {
-      documentSnapshot =
-          await db.collection("Categoria").doc(idCategoria).get();
-      print(documentSnapshot.data());
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  //Funcion para eliminar una categoria
-  void eliminarCategoria(String idCategoria) async {
-    try {
-      db.collection("Categoria").doc(idCategoria).delete();
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  //Funcion para actualizar una categoria
-  void updateCategoria(String idCategoria, data) async {
-    try {
-      db.collection("Categoria").doc(idCategoria).update(data);
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  //Funcion para leer un medicamento
-  void leerMedicamento(String idMedicamento) async {
-    DocumentSnapshot documentSnapshot;
-    try {
-      documentSnapshot =
-          await db.collection("Medicamento").doc(idMedicamento).get();
-      print(documentSnapshot.data());
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  //Funcion para eliminar un medicamento
-  void eliminarMedicamento(String idMedicamento) async {
-    try {
-      db.collection("Medicamento").doc(idMedicamento).delete();
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  //Funcion para actualizar un medicamento
-  void updateMedicamento(String idMedicamento, data) async {
-    try {
-      db.collection("Medicamento").doc(idMedicamento).update(data);
-    } catch (e) {
-      print(e);
-    }
-  }
 } //  Fin clase medicamentos
 
 class BotonFlotante extends StatelessWidget {
@@ -229,40 +185,6 @@ class BotonFlotante extends StatelessWidget {
               },
               icon: Icon(Icons.add),
               label: Text('Categoria'),
-              backgroundColor: kPrimaryColor,
-            ),
-            SizedBox(height: 8.0),
-            FloatingActionButton.extended(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return formCategoria();
-                    },
-                  ),
-                );
-                // Respond to button press
-              },
-              icon: Icon(Icons.add),
-              label: Text('Editar Categoria'),
-              backgroundColor: kPrimaryColor,
-            ),
-            SizedBox(height: 8.0),
-            FloatingActionButton.extended(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return formCategoria();
-                    },
-                  ),
-                );
-                // Respond to button press
-              },
-              icon: Icon(Icons.add),
-              label: Text('Eliminar Categoria'),
               backgroundColor: kPrimaryColor,
             ),
           ],
