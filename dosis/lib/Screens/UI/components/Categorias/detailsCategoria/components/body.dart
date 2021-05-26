@@ -8,6 +8,7 @@ import 'package:dosis/constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/components/rounded_button.dart';
+import 'package:dosis/Screens/UI/ui.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -227,9 +228,9 @@ class Body extends StatelessWidget {
                             press: () async {
                               //Arreglar lo del id
                               await _categoria
-                                  .doc("KuL0i4Pji5JPYk2ydMTd")
+                                  .doc(categoria.idCategoria)
                                   .delete();
-                              /*
+
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -238,7 +239,6 @@ class Body extends StatelessWidget {
                                   },
                                 ),
                               );
-                              */
                             },
                           ),
                         ),

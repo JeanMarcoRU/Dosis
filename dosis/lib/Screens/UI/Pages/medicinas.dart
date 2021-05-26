@@ -15,29 +15,11 @@ class Medicinas extends StatelessWidget {
   final List categoriaslist = [];
   final List medicamentosList = [];
   final FirebaseFirestore db = FirebaseFirestore.instance;
-  final List catPrueb = [
-    {
-      "Nombre": "categoría prueba",
-      "Emoji": ":/",
-      "Descripcion": "categoría de prueb",
-      "letralogo": "D"
-    },
-    {
-      "Nombre": "Dolor de cabeza",
-      "Emoji": ":(",
-      "Descripción": "categoria para dolor",
-      "letralogo": "Y"
-    },
+  final List catPrueba = [
     {
       "Nombre": "tratamiento infantil",
       "Emoji": "😁",
       "Descripcion": "tratamiento infantil",
-      "letralogo": "S"
-    },
-    {
-      "Nombre": "yyabana",
-      "Emoji": "😁",
-      "Descripcion": "ghahaj",
       "letralogo": "S"
     }
   ];
@@ -45,6 +27,7 @@ class Medicinas extends StatelessWidget {
   void cargarDatosCategoria(List c) {
     for (var i = 0; i < c.length; i++) {
       categorias.add(Categoria(
+          idCategoria: "0",
           letralogo: c[i]["letralogo"],
           nombre: c[i]["Nombre"],
           descripcion: c[i]["Descripcion"],
@@ -55,8 +38,7 @@ class Medicinas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //cargaCategoria();
-    //print(categorias.length);
-    cargarDatosCategoria(catPrueb);
+    cargarDatosCategoria(catPrueba);
     print(categorias);
     return MaterialApp(
       debugShowCheckedModeBanner: false,

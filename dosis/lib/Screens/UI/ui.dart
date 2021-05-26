@@ -10,6 +10,7 @@ import '../../constants.dart';
 class ui extends StatelessWidget {
   final List perfileslist = [];
   final List categoriaslist = [];
+  final List categoriaIDs = [];
   @override
   Widget build(BuildContext context) {
     cargaPerfiles();
@@ -55,6 +56,7 @@ class ui extends StatelessWidget {
   /* Funcion para cargar los datos de Categoria */
   void cargaCategoria() async {
     categoriaslist.clear();
+    categoriaIDs.clear();
     categorias.clear();
     CollectionReference collectionReference =
         FirebaseFirestore.instance.collection("Categoria");
@@ -63,12 +65,15 @@ class ui extends StatelessWidget {
 
     if (categoriaQS.docs.length != 0) {
       for (var doc in categoriaQS.docs) {
+        //print(doc.id);
+        categoriaIDs.add(doc.id);
         categoriaslist.add(doc.data());
       }
     }
     categorias.clear();
     for (var i = 0; i < categoriaslist.length; i++) {
       categorias.add(Categoria(
+          idCategoria: categoriaIDs[i],
           letralogo: categoriaslist[i]["letralogo"],
           nombre: categoriaslist[i]["Nombre"],
           descripcion: categoriaslist[i]["Descripcion"],

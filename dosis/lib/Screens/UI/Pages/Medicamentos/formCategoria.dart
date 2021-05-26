@@ -12,6 +12,7 @@ class formCategoria extends StatelessWidget {
   final TextEditingController nombreController = TextEditingController();
   final TextEditingController descripcionController = TextEditingController();
   final TextEditingController emojiController = TextEditingController();
+  final TextEditingController logoController = TextEditingController();
   CollectionReference _categoria =
       FirebaseFirestore.instance.collection("Categoria");
 
@@ -56,6 +57,17 @@ class formCategoria extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(height: size.height * 0.05),
+            TextFieldContainer(
+              child: TextField(
+                controller: logoController,
+                cursorColor: kPrimaryColor,
+                decoration: InputDecoration(
+                  labelText: "Perfil",
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
             SizedBox(height: size.height * 0.01),
             RoundedButton(
               text: "Guardar",
@@ -63,11 +75,13 @@ class formCategoria extends StatelessWidget {
                 final String nombre = nombreController.text;
                 final String descripcion = descripcionController.text;
                 final String emoji = emojiController.text;
+                final String letralogo = logoController.text;
                 if (nombre != null && descripcion != null && emoji != null) {
                   await _categoria.add({
                     "Nombre": nombre,
                     "Descripcion": descripcion,
-                    "Emoji": emoji
+                    "Emoji": emoji,
+                    "letralogo": letralogo
                   });
                 }
                 Navigator.push(

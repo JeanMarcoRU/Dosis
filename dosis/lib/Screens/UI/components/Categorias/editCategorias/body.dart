@@ -232,22 +232,14 @@ class Body extends StatelessWidget {
                               if (nombre != null &&
                                   descripcion != null &&
                                   emoji != null) {
-                                //Arreglar lo del id
                                 await _categoria
-                                    .doc("F3NZNTdwcx3g0Ms1Me6k")
+                                    .doc(categoria.idCategoria)
                                     .update({
                                   "Nombre": nombre,
                                   "Descripcion": descripcion,
                                   "Emoji": emoji,
                                   "letralogo": letralogo
                                 });
-                                /*
-                                await _categoria.add({
-                                  "Nombre": nombre,
-                                  "Descripcion": descripcion,
-                                  "Emoji": emoji,
-                                  "letralogo": letralogo
-                                });*/
                               }
                               Navigator.push(
                                 context,
