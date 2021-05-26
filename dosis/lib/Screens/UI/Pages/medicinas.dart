@@ -54,10 +54,9 @@ class Medicinas extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    cargaCategoria();
-    //print(categorias);
+    //cargaCategoria();
+    //print(categorias.length);
     cargarDatosCategoria(catPrueb);
-    print(catPrueb[0]["Nombre"]);
     print(categorias);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -75,7 +74,15 @@ class Medicinas extends StatelessWidget {
                 ),
               ],
             ),
-            title: Text('Medicamentos'),
+            title: Text(
+              'Medicamentos',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            ),
+            backgroundColor: kPrimaryColor,
           ),
           body: TabBarView(
             children: [
@@ -96,24 +103,6 @@ class Medicinas extends StatelessWidget {
                               ))),
                 ),
               ),
-              /*
-              GridView.builder(
-                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 200,
-                      childAspectRatio: 3 / 2,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20),
-                  itemCount: categorias.length,
-                  itemBuilder: (BuildContext ctx, index) {
-                    return Container(
-                      alignment: Alignment.center,
-                      child: Text('$categorias[index]'),
-                      decoration: BoxDecoration(
-                          color: kgreyLColor,
-                          borderRadius: BorderRadius.circular(15)),
-                    );
-                  }),
-                  */
               BotonFlotante(),
             ],
           ),
@@ -172,66 +161,6 @@ class Medicinas extends StatelessWidget {
           hora: medicamentosList[i]["Hora"]));
     }
   }
-
-  //Funcion para leer una categoria
-  void leerCategoria(String idCategoria) async {
-    DocumentSnapshot documentSnapshot;
-    try {
-      documentSnapshot =
-          await db.collection("Categoria").doc(idCategoria).get();
-      print(documentSnapshot.data());
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  //Funcion para eliminar una categoria
-  void eliminarCategoria(String idCategoria) async {
-    try {
-      db.collection("Categoria").doc(idCategoria).delete();
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  //Funcion para actualizar una categoria
-  void updateCategoria(String idCategoria, data) async {
-    try {
-      db.collection("Categoria").doc(idCategoria).update(data);
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  //Funcion para leer un medicamento
-  void leerMedicamento(String idMedicamento) async {
-    DocumentSnapshot documentSnapshot;
-    try {
-      documentSnapshot =
-          await db.collection("Medicamento").doc(idMedicamento).get();
-      print(documentSnapshot.data());
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  //Funcion para eliminar un medicamento
-  void eliminarMedicamento(String idMedicamento) async {
-    try {
-      db.collection("Medicamento").doc(idMedicamento).delete();
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  //Funcion para actualizar un medicamento
-  void updateMedicamento(String idMedicamento, data) async {
-    try {
-      db.collection("Medicamento").doc(idMedicamento).update(data);
-    } catch (e) {
-      print(e);
-    }
-  }
 } //  Fin clase medicamentos
 
 class BotonFlotante extends StatelessWidget {
@@ -274,40 +203,6 @@ class BotonFlotante extends StatelessWidget {
               },
               icon: Icon(Icons.add),
               label: Text('Categoria'),
-              backgroundColor: kPrimaryColor,
-            ),
-            SizedBox(height: 8.0),
-            FloatingActionButton.extended(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return formCategoria();
-                    },
-                  ),
-                );
-                // Respond to button press
-              },
-              icon: Icon(Icons.add),
-              label: Text('Editar Categoria'),
-              backgroundColor: kPrimaryColor,
-            ),
-            SizedBox(height: 8.0),
-            FloatingActionButton.extended(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return formCategoria();
-                    },
-                  ),
-                );
-                // Respond to button press
-              },
-              icon: Icon(Icons.add),
-              label: Text('Eliminar Categoria'),
               backgroundColor: kPrimaryColor,
             ),
           ],

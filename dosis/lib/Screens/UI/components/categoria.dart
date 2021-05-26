@@ -1,6 +1,7 @@
 import 'package:dosis/Classes/categoria.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:dosis/constants.dart';
 
 class CategoriaObj extends StatelessWidget {
   final Categoria categoria;
@@ -19,22 +20,29 @@ class CategoriaObj extends StatelessWidget {
       onTap: press,
       child: Column(
         children: <Widget>[
+          /*
           Container(
-            padding: EdgeInsets.all(0),
+            ////padding: EdgeInsets.all(0),
             height: 110,
             width: 110,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.vertical(),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: Text(
-              categorias[i].nombre,
-              style: TextStyle(
-                fontSize: 16,
-              ),
-            ),
+          ),*/
+
+          Container(
+            alignment: Alignment.center,
+            height: 110,
+            child: Text(categorias[i].nombre +
+                " \n \n" +
+                "\t \t \t" +
+                "\t \t \t" +
+                "\t \t \t" +
+                "\t \t \t" +
+                "\t \t \t" +
+                categorias[i].emoji),
+            decoration: BoxDecoration(
+                color: kgreyLColor, borderRadius: BorderRadius.circular(15)),
           ),
         ],
       ),
