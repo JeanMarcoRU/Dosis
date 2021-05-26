@@ -11,6 +11,7 @@ class Perfiles extends StatelessWidget {
   Perfiles({Key key}) : super(key: key);
 
   final List perfileslist = [];
+  final List perfilesIDs = [];
 
   @override
   Widget build(BuildContext context) {
@@ -109,17 +110,19 @@ class Perfiles extends StatelessWidget {
     if (perfilesQS.docs.length != 0) {
       for (var doc in perfilesQS.docs) {
         //print(doc.data());
+        perfilesIDs.add(doc.id);
         perfileslist.add(doc.data());
       }
     }
     perfiles.clear();
     for (var i = 0; i < perfileslist.length; i++) {
       perfiles.add(Perfil(
+          idPerfil: perfilesIDs[i],
           letralogo: perfileslist[i]["letralogo"],
           avatar: perfileslist[i]["avatar"],
           nombre: perfileslist[i]["nombre"],
-          apellido1: perfileslist[i]["apellido1"],
-          apellido2: perfileslist[i]["apellido2"],
+          apellidos: perfileslist[i]["apellidos"],
+          numeroCedula: perfileslist[i]["cedula"],
           fechaNacimiento: DateTime.parse(
               perfileslist[i]["fechaNacimiento"].toDate().toString()),
           edad: perfileslist[i]["edad"],

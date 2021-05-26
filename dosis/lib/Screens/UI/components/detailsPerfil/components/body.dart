@@ -61,7 +61,7 @@ class Body extends StatelessWidget {
                       children: <Widget>[
                         Expanded(
                           child: Text(
-                            "Nombre completo",
+                            "Nombre",
                             style: TextStyle(
                               color: kgreyDColor,
                               fontSize: 14,
@@ -86,11 +86,46 @@ class Body extends StatelessWidget {
                               color: kgreyDColor,
                             ),
                             decoration: InputDecoration(
-                              hintText: perfil.nombre +
-                                  " " +
-                                  perfil.apellido1 +
-                                  " " +
-                                  perfil.apellido2,
+                              hintText: perfil.nombre,
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            "Apellidos",
+                            style: TextStyle(
+                              color: kgreyDColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 0),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          width: 200,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: TextField(
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              height: 0,
+                              color: kgreyDColor,
+                            ),
+                            decoration: InputDecoration(
+                              hintText: perfil.apellidos,
                               border: InputBorder.none,
                             ),
                           ),

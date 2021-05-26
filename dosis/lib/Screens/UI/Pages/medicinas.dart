@@ -13,6 +13,7 @@ class Medicinas extends StatelessWidget {
   Medicinas({Key key}) : super(key: key);
 
   final List categoriaslist = [];
+  final List categoriasIDs = [];
   final List medicamentosList = [];
   final FirebaseFirestore db = FirebaseFirestore.instance;
   final List catPrueba = [
@@ -39,6 +40,7 @@ class Medicinas extends StatelessWidget {
   Widget build(BuildContext context) {
     //cargaCategoria();
     cargarDatosCategoria(catPrueba);
+    categorias.removeLast();
     print(categorias);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -96,6 +98,7 @@ class Medicinas extends StatelessWidget {
   /* Funcion para cargar los datos de Categoria */
   void cargaCategoria() async {
     categoriaslist.clear();
+    categoriasIDs.clear();
     categorias.clear();
     CollectionReference collectionReference =
         FirebaseFirestore.instance.collection("Categoria");
@@ -104,12 +107,14 @@ class Medicinas extends StatelessWidget {
 
     if (categoriaQS.docs.length != 0) {
       for (var doc in categoriaQS.docs) {
+        categoriasIDs.add(doc.id);
         categoriaslist.add(doc.data());
       }
     }
     categorias.clear();
     for (var i = 0; i < categoriaslist.length; i++) {
       categorias.add(Categoria(
+          idCategoria: categoriasIDs[i],
           letralogo: categoriaslist[i]["letralogo"],
           nombre: categoriaslist[i]["Nombre"],
           descripcion: categoriaslist[i]["Descripcion"],

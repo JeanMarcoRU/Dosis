@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dosis/Classes/perfiles.dart';
 
 import 'package:dosis/Screens/UI/components/editPerfil/perfil_title_without_edit.dart';
@@ -10,8 +11,18 @@ import '../../../../constants.dart';
 
 class Body extends StatelessWidget {
   final Perfil perfil;
+  final TextEditingController nombreC = TextEditingController();
+  final TextEditingController apellidosC = TextEditingController();
+  final TextEditingController cedulaC = TextEditingController();
+  final TextEditingController fechaNacC = TextEditingController();
+  final TextEditingController edadC = TextEditingController();
+  final TextEditingController generoC = TextEditingController();
+  final TextEditingController tipoSangreC = TextEditingController();
+  final TextEditingController estadoCivilC = TextEditingController();
+  CollectionReference _perfil = FirebaseFirestore.instance.collection("Perfil");
 
-  const Body({Key key, this.perfil}) : super(key: key);
+  Body({Key key, this.perfil}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size * 0.9;
@@ -25,7 +36,7 @@ class Body extends StatelessWidget {
               Container(
                 margin: EdgeInsets.only(top: size.height * 0.3),
                 padding: EdgeInsets.only(
-                  top: 40,
+                  top: 20,
                   left: 15,
                   right: 15,
                 ),
@@ -58,7 +69,7 @@ class Body extends StatelessWidget {
                       children: <Widget>[
                         Expanded(
                           child: Text(
-                            "Nombre completo",
+                            "Nombre",
                             style: TextStyle(
                               color: kgreyDColor,
                               fontSize: 14,
@@ -77,17 +88,54 @@ class Body extends StatelessWidget {
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: TextField(
+                            controller: nombreC,
                             style: TextStyle(
                               fontSize: 14.0,
                               height: 0,
                               color: kgreyDColor,
                             ),
                             decoration: InputDecoration(
-                              hintText: perfil.nombre +
-                                  " " +
-                                  perfil.apellido1 +
-                                  " " +
-                                  perfil.apellido2,
+                              hintText: perfil.nombre,
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            "Apellidos",
+                            style: TextStyle(
+                              color: kgreyDColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 0),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          width: 200,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: TextField(
+                            controller: apellidosC,
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              height: 0,
+                              color: kgreyDColor,
+                            ),
+                            decoration: InputDecoration(
+                              hintText: perfil.apellidos,
                               border: InputBorder.none,
                             ),
                           ),
@@ -120,6 +168,7 @@ class Body extends StatelessWidget {
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: TextField(
+                            controller: cedulaC,
                             style: TextStyle(
                               fontSize: 14.0,
                               height: 0,
@@ -198,6 +247,7 @@ class Body extends StatelessWidget {
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: TextField(
+                            controller: edadC,
                             style: TextStyle(
                               fontSize: 14.0,
                               height: 0,
@@ -237,6 +287,7 @@ class Body extends StatelessWidget {
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: TextField(
+                            controller: generoC,
                             style: TextStyle(
                               fontSize: 14.0,
                               height: 0,
@@ -276,6 +327,7 @@ class Body extends StatelessWidget {
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: TextField(
+                            controller: tipoSangreC,
                             style: TextStyle(
                               fontSize: 14.0,
                               height: 0,
@@ -315,6 +367,7 @@ class Body extends StatelessWidget {
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: TextField(
+                            controller: estadoCivilC,
                             style: TextStyle(
                               fontSize: 14.0,
                               height: 0,
@@ -329,7 +382,7 @@ class Body extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 15,
+                      height: 5,
                     ),
                     Row(
                       children: <Widget>[
@@ -343,7 +396,8 @@ class Body extends StatelessWidget {
                             paddingH: 10,
                             ancho: 100,
                             largo: 50,
-                            press: () {
+                            press: () async {
+                              await _perfil.doc(perfil.idPerfil).delete();
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -368,7 +422,42 @@ class Body extends StatelessWidget {
                             paddingH: 10,
                             ancho: 100,
                             largo: 50,
-                            press: () {
+                            press: () async {
+                              if (nombreC.text.isNotEmpty) {
+                                perfil.nombre = nombreC.text;
+                              }
+                              if (apellidosC.text.isNotEmpty) {
+                                perfil.apellidos = apellidosC.toString();
+                              }
+                              if (cedulaC.text.isNotEmpty) {
+                                perfil.numeroCedula = cedulaC.toString();
+                              }
+                              if (edadC.text.isNotEmpty) {
+                                perfil.edad = int.parse(edadC.text);
+                              }
+                              if (generoC.text.isNotEmpty) {
+                                perfil.genero = generoC.toString();
+                              }
+                              if (tipoSangreC.text.isNotEmpty) {
+                                perfil.tipoSangre = tipoSangreC.toString();
+                              }
+                              if (estadoCivilC.text.isNotEmpty) {
+                                perfil.estadoCivil = estadoCivilC.toString();
+                              }
+
+                              await _perfil.doc(perfil.idPerfil).update({
+                                "nombre": perfil.nombre,
+                                "apellidos": perfil.apellidos,
+                                "avatar": perfil.avatar,
+                                "cedula": perfil.numeroCedula,
+                                "color": "userblueColor",
+                                "edad": perfil.edad,
+                                "estadoCivil": perfil.estadoCivil,
+                                "fechaNacimiento": perfil.fechaNacimiento,
+                                "genero": perfil.genero,
+                                "letralogo": perfil.letralogo,
+                                "tipoSangre": perfil.tipoSangre
+                              });
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

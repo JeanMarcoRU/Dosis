@@ -9,6 +9,7 @@ import '../../constants.dart';
 // ignore: camel_case_types
 class ui extends StatelessWidget {
   final List perfileslist = [];
+  final List perfilesIDs = [];
   final List categoriaslist = [];
   final List categoriaIDs = [];
   @override
@@ -22,6 +23,7 @@ class ui extends StatelessWidget {
 
   void cargaPerfiles() async {
     perfileslist.clear();
+    perfilesIDs.clear();
     perfiles.clear();
     CollectionReference collectionReference =
         FirebaseFirestore.instance.collection("Perfil");
@@ -31,17 +33,18 @@ class ui extends StatelessWidget {
     if (perfilesQS.docs.length != 0) {
       for (var doc in perfilesQS.docs) {
         //print(doc.data());
+        perfilesIDs.add(doc.id);
         perfileslist.add(doc.data());
       }
     }
     perfiles.clear();
     for (var i = 0; i < perfileslist.length; i++) {
       perfiles.add(Perfil(
+          idPerfil: perfilesIDs[i],
           letralogo: perfileslist[i]["letralogo"],
           avatar: perfileslist[i]["avatar"],
           nombre: perfileslist[i]["nombre"],
-          apellido1: perfileslist[i]["apellido1"],
-          apellido2: perfileslist[i]["apellido2"],
+          apellidos: perfileslist[i]["apellidos"],
           numeroCedula: perfileslist[i]["cedula"],
           fechaNacimiento: DateTime.parse(
               perfileslist[i]["fechaNacimiento"].toDate().toString()),
