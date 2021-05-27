@@ -34,8 +34,6 @@ class ui extends StatelessWidget {
     cargaPerfiles();
     cargaCategoria();
     cargaMedicamentos();
-    print("Medicamentos:");
-    print(medicamentos);
     return Scaffold(
       body: Body(),
     );
@@ -127,8 +125,8 @@ class ui extends StatelessWidget {
           idMedicamento: medicamentosIDs[i],
           nombre: medicamentosList[i]["Nombre"],
           dosis: medicamentosList[i]["Dosis"],
-          tomaDesde: medicamentosList[i]["Periodo de Toma Desde"],
-          tomaHasta: medicamentosList[i]["Periodo de Toma Hasta"],
+          tomaDesde: medicamentosList[i]["Período de Toma Desde"],
+          tomaHasta: medicamentosList[i]["Período de Toma Hasta"],
           dias: medicamentosList[i]["Días"],
           hora: medicamentosList[i]["Hora"]));
     }

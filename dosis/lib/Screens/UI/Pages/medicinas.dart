@@ -28,13 +28,13 @@ class Medicinas extends StatelessWidget {
       "letralogo": "S"
     }
   ];
-  final List medPrueba = [
+  final List medicPrueba = [
     {
       "Nombre": "tratamiento infantil",
       "Dosis": "1 vez por semana",
       "Días": "L, V, D",
-      "Periodo de Toma Desde": "L",
-      "Periodo de Toma Hasta": "J",
+      "Periodo de Toma Desde": "Lunes",
+      "Periodo de Toma Hasta": "Jueves",
       "Hora": "8:00 p.m"
     }
   ];
@@ -67,8 +67,8 @@ class Medicinas extends StatelessWidget {
     //cargaCategoria();
     cargarDatosCategoria(catPrueba);
     categorias.removeLast();
-    cargaDatosMedicamentos(medPrueba);
-    //medicamentos.removeLast();
+    cargaDatosMedicamentos(medicPrueba);
+    medicamentos.removeLast();
     //print(medicamentos);
     print(medicamentos.length);
     return MaterialApp(
@@ -120,6 +120,7 @@ class Medicinas extends StatelessWidget {
               ),
               //BotonFlotante(),
               ListView.builder(
+                padding: EdgeInsets.all(8.0),
                 itemCount: medicamentos.length,
                 itemBuilder: (context, index) => MedicamentoObj(
                   i: index,
