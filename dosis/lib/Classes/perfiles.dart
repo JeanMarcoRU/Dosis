@@ -31,3 +31,4 @@ class Perfil {
 }
 
 List<Perfil> perfiles = [];
+List<Perfil> perfilAux = [];

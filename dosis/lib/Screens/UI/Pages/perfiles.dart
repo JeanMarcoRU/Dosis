@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dosis/Classes/perfiles.dart';
 import 'package:dosis/Screens/Signup/components/social_icon.dart';
+import 'package:dosis/Screens/UI/components/addPerfil/add_screen.dart';
 import 'package:dosis/Screens/UI/components/detailsPerfil/details_screen.dart';
 import 'package:dosis/Screens/UI/components/perfil.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,20 @@ class Perfiles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    perfilAux.clear();
+    perfilAux.add(Perfil(
+        idPerfil: "",
+        letralogo: "X",
+        avatar: "assets/avatares/grey.png",
+        nombre: "nombre",
+        apellidos: "",
+        numeroCedula: "",
+        fechaNacimiento: DateTime.parse('1900-01-01'),
+        edad: 0,
+        genero: "",
+        tipoSangre: "",
+        estadoCivil: "",
+        color: usergreyColor));
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -99,7 +114,23 @@ class Perfiles extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        child: Icon(
+          Icons.add,
+          size: 50,
+        ),
+        backgroundColor: kjungleMistColor,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return AddScreen(
+                  perfil: perfilAux[0],
+                );
+              },
+            ),
+          );
+        },
       ),
     );
   }
@@ -167,6 +198,12 @@ class Perfiles extends StatelessWidget {
       case "userorangeColor":
         {
           return userorangeColor;
+        }
+        break;
+
+      case "usergreyColor":
+        {
+          return usergreyColor;
         }
         break;
 

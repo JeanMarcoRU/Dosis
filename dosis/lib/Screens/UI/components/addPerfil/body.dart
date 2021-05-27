@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dosis/Classes/perfiles.dart';
-
+import 'package:dosis/Screens/UI/components/addPerfil/perfil_title_add.dart';
 import 'package:dosis/Screens/UI/components/editPerfil/perfil_title_without_edit.dart';
 import 'package:dosis/Screens/UI/ui.dart';
 import 'package:dosis/components/rounded_button.dart';
@@ -21,7 +21,10 @@ class Body extends StatelessWidget {
   final TextEditingController estadoCivilC = TextEditingController();
   CollectionReference _perfil = FirebaseFirestore.instance.collection("Perfil");
 
-  Body({Key key, this.perfil}) : super(key: key);
+  Body({
+    Key key,
+    this.perfil,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +45,7 @@ class Body extends StatelessWidget {
                 ),
                 //height: 700,
                 decoration: BoxDecoration(
-                  color: perfil.color,
+                  color: kjungleMistColor,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(24),
                     topRight: Radius.circular(24),
@@ -95,7 +98,7 @@ class Body extends StatelessWidget {
                               color: kgreyDColor,
                             ),
                             decoration: InputDecoration(
-                              hintText: perfil.nombre,
+                              //hintText: perfil.nombre,
                               border: InputBorder.none,
                             ),
                           ),
@@ -135,7 +138,7 @@ class Body extends StatelessWidget {
                               color: kgreyDColor,
                             ),
                             decoration: InputDecoration(
-                              hintText: perfil.apellidos,
+                              //hintText: perfil.apellidos,
                               border: InputBorder.none,
                             ),
                           ),
@@ -175,7 +178,7 @@ class Body extends StatelessWidget {
                               color: kgreyDColor,
                             ),
                             decoration: InputDecoration(
-                              hintText: perfil.numeroCedula,
+                              hintText: "x-xxxx-xxxx", //perfil.numeroCedula,
                               border: InputBorder.none,
                             ),
                           ),
@@ -215,9 +218,7 @@ class Body extends StatelessWidget {
                               color: kgreyDColor,
                             ),
                             decoration: InputDecoration(
-                              hintText: perfil.fechaNacimiento
-                                  .toString()
-                                  .substring(0, 10),
+                              hintText: "aaaa-mm-dd",
                               border: InputBorder.none,
                             ),
                           ),
@@ -257,7 +258,7 @@ class Body extends StatelessWidget {
                               color: kgreyDColor,
                             ),
                             decoration: InputDecoration(
-                              hintText: perfil.edad.toString(),
+                              //hintText: perfil.edad.toString(),
                               border: InputBorder.none,
                             ),
                           ),
@@ -297,7 +298,7 @@ class Body extends StatelessWidget {
                               color: kgreyDColor,
                             ),
                             decoration: InputDecoration(
-                              hintText: perfil.genero,
+                              //hintText: perfil.genero,
                               border: InputBorder.none,
                             ),
                           ),
@@ -337,7 +338,7 @@ class Body extends StatelessWidget {
                               color: kgreyDColor,
                             ),
                             decoration: InputDecoration(
-                              hintText: perfil.tipoSangre,
+                              //hintText: perfil.tipoSangre,
                               border: InputBorder.none,
                             ),
                           ),
@@ -377,7 +378,7 @@ class Body extends StatelessWidget {
                               color: kgreyDColor,
                             ),
                             decoration: InputDecoration(
-                              hintText: perfil.estadoCivil,
+                              //hintText: perfil.estadoCivil,
                               border: InputBorder.none,
                             ),
                           ),
@@ -387,101 +388,55 @@ class Body extends StatelessWidget {
                     SizedBox(
                       height: 5,
                     ),
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: RoundedButton(
-                            text: "Eliminar",
-                            color: kgreyDColor,
-                            textColor: Colors.white,
-                            fontSize: 20,
-                            paddingV: 3,
-                            paddingH: 10,
-                            ancho: 100,
-                            largo: 50,
-                            press: () async {
-                              await _perfil.doc(perfil.idPerfil).delete();
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return ui();
-                                  },
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          width: 100,
-                        ),
-                        Expanded(
-                          child: RoundedButton(
-                            text: "Guardar",
-                            color: kPrimaryColor,
-                            textColor: Colors.white,
-                            fontSize: 20,
-                            paddingV: 3,
-                            paddingH: 10,
-                            ancho: 100,
-                            largo: 50,
-                            press: () async {
-                              if (nombreC.text.isNotEmpty) {
-                                perfil.nombre = nombreC.text;
-                              }
-                              if (apellidosC.text.isNotEmpty) {
-                                perfil.apellidos = apellidosC.text;
-                              }
-                              if (cedulaC.text.isNotEmpty) {
-                                perfil.numeroCedula = cedulaC.text;
-                              }
-                              if (fechaNacC.text.isNotEmpty) {
-                                perfil.fechaNacimiento =
-                                    DateTime.parse(fechaNacC.text);
-                              }
-                              if (edadC.text.isNotEmpty) {
-                                perfil.edad = int.parse(edadC.text);
-                              }
-                              if (generoC.text.isNotEmpty) {
-                                perfil.genero = generoC.text;
-                              }
-                              if (tipoSangreC.text.isNotEmpty) {
-                                perfil.tipoSangre = tipoSangreC.text;
-                              }
-                              if (estadoCivilC.text.isNotEmpty) {
-                                perfil.estadoCivil = estadoCivilC.text;
-                              }
+                    Center(
+                      child: RoundedButton(
+                        text: "Guardar",
+                        color: kPrimaryColor,
+                        textColor: Colors.white,
+                        fontSize: 20,
+                        paddingV: 3,
+                        paddingH: 10,
+                        ancho: 150,
+                        largo: 50,
+                        press: () async {
+                          perfil.nombre = nombreC.text;
+                          perfil.apellidos = apellidosC.text;
+                          perfil.numeroCedula = cedulaC.text;
+                          perfil.fechaNacimiento =
+                              DateTime.parse(fechaNacC.text);
+                          perfil.edad = int.parse(edadC.text);
+                          perfil.genero = generoC.text;
+                          perfil.tipoSangre = tipoSangreC.text;
+                          perfil.estadoCivil = estadoCivilC.text;
 
-                              await _perfil.doc(perfil.idPerfil).update({
-                                "nombre": perfil.nombre,
-                                "apellidos": perfil.apellidos,
-                                "avatar": perfil.avatar,
-                                "cedula": perfil.numeroCedula,
-                                "color": getColor(perfil.color),
-                                "edad": perfil.edad,
-                                "estadoCivil": perfil.estadoCivil,
-                                "fechaNacimiento": perfil.fechaNacimiento,
-                                "genero": perfil.genero,
-                                "letralogo": perfil.letralogo,
-                                "tipoSangre": perfil.tipoSangre
-                              });
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return ui();
-                                  },
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                      ],
+                          await _perfil.add({
+                            "nombre": perfil.nombre,
+                            "apellidos": perfil.apellidos,
+                            "avatar": perfil.avatar,
+                            "cedula": perfil.numeroCedula,
+                            "color": getColor(perfil.color),
+                            "edad": perfil.edad,
+                            "estadoCivil": perfil.estadoCivil,
+                            "fechaNacimiento": perfil.fechaNacimiento,
+                            "genero": perfil.genero,
+                            "letralogo": perfil.letralogo,
+                            "tipoSangre": perfil.tipoSangre
+                          });
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ui();
+                              },
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),
               ),
-              PerfilTittleWithoutEdit(perfil: perfil)
+              PerfilTittleAdd(perfil: perfil)
             ],
           ),
         )
