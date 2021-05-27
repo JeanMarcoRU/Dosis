@@ -49,6 +49,8 @@ class Medicinas extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             bottom: TabBar(
+              isScrollable: true,
+              labelColor: kPrimaryColor,
               tabs: [
                 Tab(
                   text: "Categorías",
@@ -61,12 +63,12 @@ class Medicinas extends StatelessWidget {
             title: Text(
               'Medicamentos',
               style: TextStyle(
-                color: Colors.white,
+                color: kPrimaryColor,
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),
             ),
-            backgroundColor: kPrimaryColor,
+            backgroundColor: Colors.white,
           ),
           body: TabBarView(
             children: [
@@ -89,6 +91,23 @@ class Medicinas extends StatelessWidget {
               ),
               BotonFlotante(),
             ],
+          ),
+          floatingActionButton: FloatingActionButton(
+            child: Icon(
+              Icons.add,
+              size: 50,
+            ),
+            backgroundColor: kPrimaryColor,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return formCategoria();
+                  },
+                ),
+              );
+            },
           ),
         ),
       ),

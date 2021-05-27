@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dosis/Screens/UI/Pages/medicinas.dart';
 
 class Categoria {
-  final String idCategoria, letralogo, nombre, descripcion, emoji;
+  String idCategoria, letralogo, nombre, descripcion, emoji;
 
   //void cargaPerfiles();
   Categoria(

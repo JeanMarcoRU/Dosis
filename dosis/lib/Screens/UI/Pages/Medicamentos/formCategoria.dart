@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dosis/Screens/Signup/components/backgroundWhite.dart';
 import 'package:dosis/Screens/UI/Pages/medicinas.dart';
+import 'package:dosis/Screens/UI/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/components/rounded_button.dart';
 import 'package:dosis/components/text_field_container.dart';
@@ -88,7 +89,7 @@ class formCategoria extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return Medicinas();
+                      return ui();
                     },
                   ),
                 );

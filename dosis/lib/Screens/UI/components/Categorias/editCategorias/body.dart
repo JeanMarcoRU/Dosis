@@ -224,23 +224,27 @@ class Body extends StatelessWidget {
                             ancho: 100,
                             largo: 50,
                             press: () async {
-                              final String nombre = nombreController.text;
-                              final String descripcion =
-                                  descripcionController.text;
-                              final String emoji = emojiController.text;
-                              final String letralogo = logoController.text;
-                              if (nombre != null &&
-                                  descripcion != null &&
-                                  emoji != null) {
-                                await _categoria
-                                    .doc(categoria.idCategoria)
-                                    .update({
-                                  "Nombre": nombre,
-                                  "Descripcion": descripcion,
-                                  "Emoji": emoji,
-                                  "letralogo": letralogo
-                                });
+                              if (nombreController.text.isNotEmpty) {
+                                categoria.nombre = nombreController.text;
                               }
+                              if (descripcionController.text.isNotEmpty) {
+                                categoria.descripcion =
+                                    descripcionController.text;
+                              }
+                              if (emojiController.text.isNotEmpty) {
+                                categoria.emoji = emojiController.text;
+                              }
+                              if (logoController.text.isNotEmpty) {
+                                categoria.letralogo = logoController.text;
+                              }
+                              await _categoria
+                                  .doc(categoria.idCategoria)
+                                  .update({
+                                "Nombre": categoria.nombre,
+                                "Descripcion": categoria.descripcion,
+                                "Emoji": categoria.emoji,
+                                "letralogo": categoria.letralogo
+                              });
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
