@@ -18,6 +18,14 @@ class ui extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     perfilAux.clear();
+    avatares = [
+      "assets/avatares/blue.png",
+      "assets/avatares/green.png",
+      "assets/avatares/grey.png",
+      "assets/avatares/orange.png",
+      "assets/avatares/pink.png",
+      "assets/avatares/purple.png"
+    ];
     perfilAux.add(Perfil(
         idPerfil: "",
         letralogo: "X",
