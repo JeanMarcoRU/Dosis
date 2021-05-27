@@ -1,7 +1,7 @@
 //import 'package:datetime_picker_formfield/time_picker_formfield.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dosis/Screens/Signup/components/backgroundWhite.dart';
-import 'package:dosis/Screens/UI/Pages/medicinas.dart';
+import 'package:dosis/Screens/UI/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/Screens/Signup/components/backgroundWhite.dart';
 import 'package:dosis/components/rounded_button.dart';
@@ -20,7 +20,7 @@ class formMedicamento extends StatelessWidget {
   final TextEditingController diasController = TextEditingController();
   final TextEditingController horaController = TextEditingController();
   CollectionReference _medicamento =
-      FirebaseFirestore.instance.collection("Medicamento");
+      FirebaseFirestore.instance.collection("Medicamentos");
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +118,7 @@ class formMedicamento extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return Medicinas();
+                      return ui();
                     },
                   ),
                 );

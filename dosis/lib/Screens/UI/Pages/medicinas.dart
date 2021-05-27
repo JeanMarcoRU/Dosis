@@ -1,12 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dosis/Screens/UI/components/Medicamentos/detailsMedicamentos/detailsMedicamentos.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:dosis/Classes/categoria.dart';
 import 'package:dosis/Classes/medicamento.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import '../../../constants.dart';
 import 'Medicamentos/formCategoria.dart';
 import 'Medicamentos/formMedicamentos.dart';
 import 'package:dosis/Screens/UI/components/categoria.dart';
+import 'package:dosis/Screens/UI/components/medicamento.dart';
 import 'package:dosis/Screens/UI/components/Categorias/detailsCategoria/detailsCategoria.dart';
 
 class Medicinas extends StatelessWidget {
@@ -15,6 +18,7 @@ class Medicinas extends StatelessWidget {
   final List categoriaslist = [];
   final List categoriasIDs = [];
   final List medicamentosList = [];
+  final List medicamentosIDs = [];
   final FirebaseFirestore db = FirebaseFirestore.instance;
   final List catPrueba = [
     {
@@ -24,7 +28,16 @@ class Medicinas extends StatelessWidget {
       "letralogo": "S"
     }
   ];
-
+  final List medPrueba = [
+    {
+      "Nombre": "tratamiento infantil",
+      "Dosis": "1 vez por semana",
+      "Días": "L, V, D",
+      "Periodo de Toma Desde": "L",
+      "Periodo de Toma Hasta": "J",
+      "Hora": "8:00 p.m"
+    }
+  ];
   void cargarDatosCategoria(List c) {
     for (var i = 0; i < c.length; i++) {
       categorias.add(Categoria(
@@ -36,12 +49,28 @@ class Medicinas extends StatelessWidget {
     }
   }
 
+  void cargaDatosMedicamentos(List m) {
+    for (var i = 0; i < m.length; i++) {
+      medicamentos.add(Medicamento(
+          idMedicamento: "0",
+          nombre: m[i]["Nombre"],
+          dosis: m[i]["Dosis"],
+          tomaDesde: m[i]["Periodo de Toma Desde"],
+          tomaHasta: m[i]["Periodo de Toma Hasta"],
+          dias: m[i]["Dias"],
+          hora: m[i]["Hora"]));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     //cargaCategoria();
     cargarDatosCategoria(catPrueba);
     categorias.removeLast();
-    print(categorias);
+    cargaDatosMedicamentos(medPrueba);
+    //medicamentos.removeLast();
+    //print(medicamentos);
+    print(medicamentos.length);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
@@ -89,25 +118,67 @@ class Medicinas extends StatelessWidget {
                               ))),
                 ),
               ),
-              BotonFlotante(),
+              //BotonFlotante(),
+              ListView.builder(
+                itemCount: medicamentos.length,
+                itemBuilder: (context, index) => MedicamentoObj(
+                  i: index,
+                  press: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => detailsMedicamento(
+                                medicamento: medicamentos[index],
+                              ))),
+                ),
+              ),
             ],
           ),
-          floatingActionButton: FloatingActionButton(
-            child: Icon(
-              Icons.add,
-              size: 50,
-            ),
+          floatingActionButton: SpeedDial(
+            marginBottom: 20,
+            animatedIcon: AnimatedIcons.add_event,
+            visible: true,
+            closeManually: false,
+            curve: Curves.bounceIn,
+            overlayColor: Colors.black,
+            overlayOpacity: 0.5,
+            onOpen: () => print('OPENING DIAL'),
+            onClose: () => print('DIAL CLOSED'),
+            tooltip: 'Speed Dial',
+            heroTag: 'speed-dial-hero-tag',
             backgroundColor: kPrimaryColor,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return formCategoria();
-                  },
+            foregroundColor: Colors.white,
+            elevation: 8.0,
+            shape: CircleBorder(),
+            children: [
+              SpeedDialChild(
+                child: Icon(Icons.add),
+                backgroundColor: kPrimaryColor,
+                label: 'Categoría',
+                labelStyle: TextStyle(fontSize: 18.0),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return formCategoria();
+                    },
+                  ),
                 ),
-              );
-            },
+              ),
+              SpeedDialChild(
+                child: Icon(Icons.add),
+                backgroundColor: kPrimaryColor,
+                label: 'Medicamento',
+                labelStyle: TextStyle(fontSize: 18.0),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return formMedicamento();
+                    },
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -145,19 +216,22 @@ class Medicinas extends StatelessWidget {
   void cargaMedicamentos() async {
     medicamentosList.clear();
     medicamentos.clear();
+    medicamentosIDs.clear();
     CollectionReference collectionReference =
-        FirebaseFirestore.instance.collection("Medicamento");
+        FirebaseFirestore.instance.collection("Medicamentos");
 
     QuerySnapshot medicamentosQS = await collectionReference.get();
 
     if (medicamentosQS.docs.length != 0) {
       for (var doc in medicamentosQS.docs) {
+        medicamentosIDs.add(doc.id);
         medicamentosList.add(doc.data());
       }
     }
     medicamentos.clear();
     for (var i = 0; i < categoriaslist.length; i++) {
       medicamentos.add(Medicamento(
+          idMedicamento: medicamentosIDs[i],
           letralogo: medicamentosList[i]["letralogo"],
           nombre: medicamentosList[i]["Nombre"],
           dosis: medicamentosList[i]["Dosis"],

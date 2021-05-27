@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dosis/Classes/perfiles.dart';
 import 'package:dosis/Classes/categoria.dart';
+import 'package:dosis/Classes/medicamento.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/Screens/UI/components/body.dart';
 
@@ -12,6 +13,8 @@ class ui extends StatelessWidget {
   final List perfilesIDs = [];
   final List categoriaslist = [];
   final List categoriaIDs = [];
+  final List medicamentosList = [];
+  final List medicamentosIDs = [];
   @override
   Widget build(BuildContext context) {
     perfilAux.clear();
@@ -30,6 +33,9 @@ class ui extends StatelessWidget {
         color: usergreyColor));
     cargaPerfiles();
     cargaCategoria();
+    cargaMedicamentos();
+    print("------------");
+    print(medicamentos);
     return Scaffold(
       body: Body(),
     );
@@ -95,6 +101,35 @@ class ui extends StatelessWidget {
           nombre: categoriaslist[i]["Nombre"],
           descripcion: categoriaslist[i]["Descripcion"],
           emoji: categoriaslist[i]["Emoji"]));
+    }
+  }
+
+  /* Funcion para cargar los datos de los medicamentos */
+  void cargaMedicamentos() async {
+    medicamentosList.clear();
+    medicamentos.clear();
+    medicamentosIDs.clear();
+    CollectionReference collectionReference =
+        FirebaseFirestore.instance.collection("Medicamentos");
+
+    QuerySnapshot medicamentosQS = await collectionReference.get();
+
+    if (medicamentosQS.docs.length != 0) {
+      for (var doc in medicamentosQS.docs) {
+        medicamentosIDs.add(doc.id);
+        medicamentosList.add(doc.data());
+      }
+    }
+    medicamentos.clear();
+    for (var i = 0; i < categoriaslist.length; i++) {
+      medicamentos.add(Medicamento(
+          idMedicamento: medicamentosIDs[i],
+          nombre: medicamentosList[i]["Nombre"],
+          dosis: medicamentosList[i]["Dosis"],
+          tomaDesde: medicamentosList[i]["Periodo de Toma Desde"],
+          tomaHasta: medicamentosList[i]["Periodo de Toma Hasta"],
+          dias: medicamentosList[i]["Días"],
+          hora: medicamentosList[i]["Hora"]));
     }
   }
 

@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 
 class Medicamento {
-  final String letralogo, nombre, dosis, tomaDesde, tomaHasta, dias, hora;
+  String idMedicamento,
+      letralogo,
+      nombre,
+      dosis,
+      tomaDesde,
+      tomaHasta,
+      dias,
+      hora;
 
   //void cargaPerfiles();
   Medicamento(
-      {this.letralogo,
+      {this.idMedicamento,
+      this.letralogo,
       this.nombre,
       this.dosis,
       this.tomaDesde,
