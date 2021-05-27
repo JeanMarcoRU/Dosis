@@ -69,32 +69,37 @@ class Perfiles extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 15,
-          vertical: 100,
+          vertical: 50,
         ),
-        child: Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-            child: GridView.builder(
-              itemCount: perfiles.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                //mainAxisSpacing: 20,
-                //crossAxisSpacing: 20,
-                childAspectRatio: 0.83,
-              ),
-              itemBuilder: (context, index) => PerfilObj(
-                i: index,
-                //perfil: perfiles[index],
-                press: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => DetailsScreen(
-                              perfil: perfiles[index],
-                            ))),
+        child: Stack(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+              child: GridView.builder(
+                itemCount: perfiles.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  //mainAxisSpacing: 20,
+                  //crossAxisSpacing: 20,
+                  childAspectRatio: 0.83,
+                ),
+                itemBuilder: (context, index) => PerfilObj(
+                  i: index,
+                  //perfil: perfiles[index],
+                  press: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailsScreen(
+                                perfil: perfiles[index],
+                              ))),
+                ),
               ),
             ),
-          ),
+          ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
       ),
     );
   }
