@@ -13,7 +13,6 @@ class Perfiles extends StatelessWidget {
 
   final List perfileslist = [];
   final List perfilesIDs = [];
-
   @override
   Widget build(BuildContext context) {
     perfilAux.clear();

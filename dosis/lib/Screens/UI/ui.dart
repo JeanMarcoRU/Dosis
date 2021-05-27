@@ -34,7 +34,7 @@ class ui extends StatelessWidget {
     cargaPerfiles();
     cargaCategoria();
     cargaMedicamentos();
-    print("------------");
+    print("Medicamentos:");
     print(medicamentos);
     return Scaffold(
       body: Body(),
@@ -120,8 +120,9 @@ class ui extends StatelessWidget {
         medicamentosList.add(doc.data());
       }
     }
+    print(medicamentosIDs);
     medicamentos.clear();
-    for (var i = 0; i < categoriaslist.length; i++) {
+    for (var i = 0; i < medicamentosList.length; i++) {
       medicamentos.add(Medicamento(
           idMedicamento: medicamentosIDs[i],
           nombre: medicamentosList[i]["Nombre"],

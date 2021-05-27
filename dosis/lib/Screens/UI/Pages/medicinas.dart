@@ -229,7 +229,7 @@ class Medicinas extends StatelessWidget {
       }
     }
     medicamentos.clear();
-    for (var i = 0; i < categoriaslist.length; i++) {
+    for (var i = 0; i < medicamentosList.length; i++) {
       medicamentos.add(Medicamento(
           idMedicamento: medicamentosIDs[i],
           letralogo: medicamentosList[i]["letralogo"],
