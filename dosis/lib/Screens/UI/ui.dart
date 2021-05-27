@@ -14,6 +14,20 @@ class ui extends StatelessWidget {
   final List categoriaIDs = [];
   @override
   Widget build(BuildContext context) {
+    perfilAux.clear();
+    perfilAux.add(Perfil(
+        idPerfil: "",
+        letralogo: "X",
+        avatar: "assets/avatares/grey.png",
+        nombre: "nombre",
+        apellidos: "",
+        numeroCedula: "",
+        fechaNacimiento: DateTime.parse('1900-01-01'),
+        edad: 0,
+        genero: "",
+        tipoSangre: "",
+        estadoCivil: "",
+        color: usergreyColor));
     cargaPerfiles();
     cargaCategoria();
     return Scaffold(
@@ -113,6 +127,12 @@ class ui extends StatelessWidget {
       case "userorangeColor":
         {
           return userorangeColor;
+        }
+        break;
+
+      case "usergreyColor":
+        {
+          return usergreyColor;
         }
         break;
 
