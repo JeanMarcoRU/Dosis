@@ -399,28 +399,31 @@ class Body extends StatelessWidget {
                         ancho: 150,
                         largo: 50,
                         press: () async {
-                          perfil.nombre = nombreC.text;
-                          perfil.apellidos = apellidosC.text;
-                          perfil.numeroCedula = cedulaC.text;
-                          perfil.fechaNacimiento =
+                          perfilAux[0].nombre = nombreC.text;
+                          perfilAux[0].apellidos = apellidosC.text;
+                          perfilAux[0].numeroCedula = cedulaC.text;
+                          perfilAux[0].fechaNacimiento =
                               DateTime.parse(fechaNacC.text);
-                          perfil.edad = int.parse(edadC.text);
-                          perfil.genero = generoC.text;
-                          perfil.tipoSangre = tipoSangreC.text;
-                          perfil.estadoCivil = estadoCivilC.text;
+                          perfilAux[0].edad = int.parse(edadC.text);
+                          perfilAux[0].genero = generoC.text;
+                          perfilAux[0].tipoSangre = tipoSangreC.text;
+                          perfilAux[0].estadoCivil = estadoCivilC.text;
 
                           await _perfil.add({
                             "nombre": perfil.nombre,
-                            "apellidos": perfil.apellidos,
-                            "avatar": perfil.avatar,
-                            "cedula": perfil.numeroCedula,
-                            "color": getColor(perfil.color),
-                            "edad": perfil.edad,
-                            "estadoCivil": perfil.estadoCivil,
-                            "fechaNacimiento": perfil.fechaNacimiento,
-                            "genero": perfil.genero,
-                            "letralogo": perfil.letralogo,
-                            "tipoSangre": perfil.tipoSangre
+                            "apellidos": perfilAux[0].apellidos,
+                            "avatar": perfilAux[0].avatar,
+                            "cedula": perfilAux[0].numeroCedula,
+                            "color": getColor(perfilAux[0].color),
+                            "edad": perfilAux[0].edad,
+                            "estadoCivil": perfilAux[0].estadoCivil,
+                            "fechaNacimiento": perfilAux[0].fechaNacimiento,
+                            "genero": perfilAux[0].genero,
+                            "letralogo": perfilAux[0]
+                                .nombre
+                                .substring(0, 1)
+                                .toUpperCase(),
+                            "tipoSangre": perfilAux[0].tipoSangre
                           });
                           Navigator.push(
                             context,
