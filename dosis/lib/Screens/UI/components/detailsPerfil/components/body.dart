@@ -203,7 +203,9 @@ class Body extends StatelessWidget {
                               color: kgreyDColor,
                             ),
                             decoration: InputDecoration(
-                              hintText: perfil.fechaNacimiento.toString(),
+                              hintText: perfil.fechaNacimiento
+                                  .toString()
+                                  .substring(0, 10),
                               border: InputBorder.none,
                             ),
                           ),

@@ -208,13 +208,16 @@ class Body extends StatelessWidget {
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: TextField(
+                            controller: fechaNacC,
                             style: TextStyle(
                               fontSize: 14.0,
                               height: 0,
                               color: kgreyDColor,
                             ),
                             decoration: InputDecoration(
-                              hintText: perfil.fechaNacimiento.toString(),
+                              hintText: perfil.fechaNacimiento
+                                  .toString()
+                                  .substring(0, 10),
                               border: InputBorder.none,
                             ),
                           ),
@@ -427,22 +430,26 @@ class Body extends StatelessWidget {
                                 perfil.nombre = nombreC.text;
                               }
                               if (apellidosC.text.isNotEmpty) {
-                                perfil.apellidos = apellidosC.toString();
+                                perfil.apellidos = apellidosC.text;
                               }
                               if (cedulaC.text.isNotEmpty) {
-                                perfil.numeroCedula = cedulaC.toString();
+                                perfil.numeroCedula = cedulaC.text;
+                              }
+                              if (fechaNacC.text.isNotEmpty) {
+                                perfil.fechaNacimiento =
+                                    DateTime.parse(fechaNacC.text);
                               }
                               if (edadC.text.isNotEmpty) {
                                 perfil.edad = int.parse(edadC.text);
                               }
                               if (generoC.text.isNotEmpty) {
-                                perfil.genero = generoC.toString();
+                                perfil.genero = generoC.text;
                               }
                               if (tipoSangreC.text.isNotEmpty) {
-                                perfil.tipoSangre = tipoSangreC.toString();
+                                perfil.tipoSangre = tipoSangreC.text;
                               }
                               if (estadoCivilC.text.isNotEmpty) {
-                                perfil.estadoCivil = estadoCivilC.toString();
+                                perfil.estadoCivil = estadoCivilC.text;
                               }
 
                               await _perfil.doc(perfil.idPerfil).update({
@@ -450,7 +457,7 @@ class Body extends StatelessWidget {
                                 "apellidos": perfil.apellidos,
                                 "avatar": perfil.avatar,
                                 "cedula": perfil.numeroCedula,
-                                "color": "userblueColor",
+                                "color": getColor(perfil.color),
                                 "edad": perfil.edad,
                                 "estadoCivil": perfil.estadoCivil,
                                 "fechaNacimiento": perfil.fechaNacimiento,
@@ -481,4 +488,20 @@ class Body extends StatelessWidget {
       ],
     ));
   }
+
+  String getColor(Color color) {
+    if (color == userpinkColor) {
+      return "userpinkColor";
+    } else if (color == userblueColor) {
+      return "userblueColor";
+    } else if (color == userpurpleColor) {
+      return "userpurpleColor";
+    } else if (color == usergreenColor) {
+      return "usergreenColor";
+    } else if (color == userorangeColor) {
+      return "userorangeColor";
+    } else {
+      return "userblueColor";
+    }
+  } //getcolor
 }
