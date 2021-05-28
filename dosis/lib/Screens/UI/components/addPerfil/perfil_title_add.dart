@@ -20,33 +20,37 @@ class PerfilTittleAdd extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Center(
-              child: IconButton(
-            icon: Image.asset(perfilAux[0].avatar),
-            iconSize: 130,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return AvatarScreen();
+            child: Container(
+              padding: EdgeInsets.all(0),
+              height: 129,
+              width: 125,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(
+                  color: kPrimaryColor,
+                  width: 1.5,
+                ),
+                //bord
+              ),
+              child: Center(
+                child: IconButton(
+                  icon: Image.asset(perfilAux[0].avatar),
+                  iconSize: 130,
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AvatarScreen()));
                   },
                 ),
-              );
-            },
-          )
-              //child: Image.asset(perfil.avatar),
-              ),
-
-          //Expanded(child: Image.asset(perfil.avatar)),
-          Center(
-            child: Text(
-              "cambiar avatar",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 15,
               ),
             ),
+            //child: Image.asset(perfil.avatar), return AvatarScreen();
           ),
+
+          //Expanded(child: Image.asset(perfil.avatar)),
         ],
       ),
     );

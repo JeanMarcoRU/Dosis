@@ -45,7 +45,7 @@ class Body extends StatelessWidget {
                 ),
                 //height: 700,
                 decoration: BoxDecoration(
-                  color: kjungleMistColor,
+                  color: perfilAux[0].color,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(24),
                     topRight: Radius.circular(24),
