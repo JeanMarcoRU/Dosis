@@ -32,3 +32,4 @@ class Perfil {
 
 List<Perfil> perfiles = [];
 List<Perfil> perfilAux = [];
+List<String> avatares = [];
