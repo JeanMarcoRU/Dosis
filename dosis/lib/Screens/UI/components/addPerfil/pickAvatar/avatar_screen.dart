@@ -46,14 +46,17 @@ class AvatarScreen extends StatelessWidget {
               ),
             ),
           ),
-          preferredSize: Size.fromHeight(50)),
+          preferredSize: Size.fromHeight(100)),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 25,
-          vertical: 30,
+          vertical: 50,
         ),
         child: Stack(
           children: <Widget>[
+            SizedBox(
+              height: 45,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
               child: GridView.builder(

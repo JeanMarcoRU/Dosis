@@ -23,6 +23,9 @@ class AvatarObj extends StatelessWidget {
       onTap: press,
       child: Column(
         children: <Widget>[
+          SizedBox(
+            height: 33,
+          ),
           Container(
             padding: EdgeInsets.all(0),
             height: 129,
