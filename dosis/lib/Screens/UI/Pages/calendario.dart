@@ -13,6 +13,26 @@ class Calendario extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      body: Column(
+        children: <Widget>[
+          _perfiles(),
+        ],
+      ),
+    );
+  }
+
+  Widget _perfiles() {
+    return Container(
+      height: 150,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        //borderRadius: BorderRadius.circular(15),
+        border: Border(
+          bottom: BorderSide(width: 1.0, color: kgreyLColor),
+        ),
+        //bord
+      ),
     );
   }
 }
