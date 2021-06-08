@@ -27,11 +27,9 @@ class Calendario extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
-        //borderRadius: BorderRadius.circular(15),
         border: Border(
           bottom: BorderSide(width: 1.0, color: kgreyLColor),
         ),
-        //bord
       ),
     );
   }
