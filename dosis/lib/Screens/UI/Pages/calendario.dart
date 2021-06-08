@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
 import '../../../constants.dart';
-import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart' show CalendarCarousel;
+import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
+    show CalendarCarousel;
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/classes/event_list.dart';
 import 'package:intl/intl.dart' show DateFormat;
 
 class Calendario extends StatelessWidget {
   const Calendario({Key key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'flutter calendar',
-      theme: new ThemeData(
-        primarySwatch: Colors.purple,
-      ),
-      home: new MyHomePage(title: 'Calendar'),
+    return Scaffold(
+      backgroundColor: Colors.white,
     );
   }
 }
@@ -94,9 +90,9 @@ class _MyHomePageState extends State<MyHomePage> {
     ]);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-
     _calendarCarouselNoHeader = CalendarCarousel<Event>(
       todayBorderColor: Colors.green,
       onDayPressed: (DateTime date, List<Event> events) {
@@ -162,18 +158,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: <Widget>[
                     Expanded(
                         child: Text(
-                          _currentMonth,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24.0,
-                          ),
-                        )),
+                      _currentMonth,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24.0,
+                      ),
+                    )),
                     FlatButton(
                       child: Text('PREV'),
                       onPressed: () {
                         setState(() {
-                          _targetDateTime = DateTime(_targetDateTime.year, _targetDateTime.month -1);
-                          _currentMonth = DateFormat.yMMM().format(_targetDateTime);
+                          _targetDateTime = DateTime(
+                              _targetDateTime.year, _targetDateTime.month - 1);
+                          _currentMonth =
+                              DateFormat.yMMM().format(_targetDateTime);
                         });
                       },
                     ),
@@ -181,8 +179,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Text('NEXT'),
                       onPressed: () {
                         setState(() {
-                          _targetDateTime = DateTime(_targetDateTime.year, _targetDateTime.month +1);
-                          _currentMonth = DateFormat.yMMM().format(_targetDateTime);
+                          _targetDateTime = DateTime(
+                              _targetDateTime.year, _targetDateTime.month + 1);
+                          _currentMonth =
+                              DateFormat.yMMM().format(_targetDateTime);
                         });
                       },
                     )
