@@ -20,21 +20,31 @@ class PerfilAppbar extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.all(0),
-            height: 110 / 2,
-            width: 110 / 2,
-            decoration: BoxDecoration(
-              color: perfiles[i].color,
-              borderRadius: BorderRadius.circular(100),
-            ),
-            child: Center(
-              child: Text(
-                perfiles[i].letralogo,
-                textAlign: TextAlign.center,
-                style: TextStyle(
+            padding: EdgeInsets.all(5),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(50),
+              child: Container(
+                padding: EdgeInsets.all(0),
+                height: 55,
+                width: 55,
+                decoration: BoxDecoration(
                   color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 35,
+                  borderRadius: BorderRadius.circular(100),
+                  border: Border.all(
+                    width: 1,
+                    color: perfil.color,
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    perfil.letralogo,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: perfil.color,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 35,
+                    ),
+                  ),
                 ),
               ),
             ),
