@@ -2,21 +2,33 @@ import 'package:dosis/Classes/perfiles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class PerfilAppbar extends StatelessWidget {
+// ignore: must_be_immutable
+class PerfilAppbar extends StatefulWidget {
   final Perfil perfil;
   final Function press;
   final int i;
-  const PerfilAppbar({
+  bool isPressed;
+  PerfilAppbar({
     Key key,
     this.perfil,
     this.press,
     this.i,
+    this.isPressed,
   }) : super(key: key);
 
   @override
+  _PerfilAppbarState createState() => _PerfilAppbarState();
+}
+
+class _PerfilAppbarState extends State<PerfilAppbar> {
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: press,
+      onTap: () {
+        setState(() {
+          widget.isPressed = !widget.isPressed;
+        });
+      },
       child: Column(
         children: <Widget>[
           Container(
@@ -28,19 +40,20 @@ class PerfilAppbar extends StatelessWidget {
                 height: 55,
                 width: 55,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: widget.isPressed ? widget.perfil.color : Colors.white,
                   borderRadius: BorderRadius.circular(100),
                   border: Border.all(
                     width: 1,
-                    color: perfil.color,
+                    color: widget.perfil.color,
                   ),
                 ),
                 child: Center(
                   child: Text(
-                    perfil.letralogo,
+                    widget.perfil.letralogo,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: perfil.color,
+                      color:
+                          widget.isPressed ? Colors.white : widget.perfil.color,
                       fontWeight: FontWeight.bold,
                       fontSize: 35,
                     ),
