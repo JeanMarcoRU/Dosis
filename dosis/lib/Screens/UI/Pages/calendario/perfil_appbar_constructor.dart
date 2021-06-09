@@ -21,8 +21,8 @@ class PerfilAppbar extends StatelessWidget {
         children: <Widget>[
           Container(
             padding: EdgeInsets.all(0),
-            height: 110,
-            width: 110,
+            height: 110 / 2,
+            width: 110 / 2,
             decoration: BoxDecoration(
               color: perfiles[i].color,
               borderRadius: BorderRadius.circular(100),
@@ -34,18 +34,8 @@ class PerfilAppbar extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 70,
+                  fontSize: 35,
                 ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: Text(
-              perfiles[i].nombre,
-              style: TextStyle(
-                color: perfiles[i].color,
-                fontSize: 20,
               ),
             ),
           ),

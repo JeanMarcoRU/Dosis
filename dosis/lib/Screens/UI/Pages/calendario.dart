@@ -1,3 +1,4 @@
+import 'package:dosis/Classes/perfiles.dart';
 import 'package:flutter/material.dart';
 import '../../../constants.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
@@ -6,9 +7,16 @@ import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/classes/event_list.dart';
 import 'package:intl/intl.dart' show DateFormat;
 
-class Calendario extends StatelessWidget {
+import 'calendario/perfil_appbar_constructor.dart';
+
+class Calendario extends StatefulWidget {
   const Calendario({Key key}) : super(key: key);
 
+  @override
+  _CalendarioState createState() => _CalendarioState();
+}
+
+class _CalendarioState extends State<Calendario> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,17 +31,62 @@ class Calendario extends StatelessWidget {
 
   Widget _perfiles() {
     return Container(
-      height: 150,
+      height: 90,
       width: double.infinity,
+      margin: EdgeInsets.only(top: 45),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border(
           bottom: BorderSide(width: 1.0, color: kgreyLColor),
         ),
       ),
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
+        children: perfiles.map((perfil) {
+          return _crearPerfilesAppBar(perfil);
+        }).toList(),
+      ),
     );
   }
-}
+
+  Widget _crearPerfilesAppBar(Perfil perfil) {
+    return Column(
+      children: <Widget>[
+        Container(
+          padding: EdgeInsets.all(5),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(50),
+            child: Container(
+              padding: EdgeInsets.all(0),
+              height: 55,
+              width: 55,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(100),
+                border: Border.all(
+                  width: 1,
+                  color: perfil.color,
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  perfil.letralogo,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: perfil.color,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 35,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+} //class Calendario
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
