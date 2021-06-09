@@ -1,26 +1,99 @@
+import 'package:dosis/Classes/perfiles.dart';
 import 'package:flutter/material.dart';
 import '../../../constants.dart';
-import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart' show CalendarCarousel;
-import 'package:flutter_calendar_carousel/classes/event.dart';
-import 'package:flutter_calendar_carousel/classes/event_list.dart';
-import 'package:intl/intl.dart' show DateFormat;
+import 'calendario/perfil_appbar_constructor.dart';
 
-class Calendario extends StatelessWidget {
+class Calendario extends StatefulWidget {
   const Calendario({Key key}) : super(key: key);
-  
+
   @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'flutter calendar',
-      theme: new ThemeData(
-        primarySwatch: Colors.purple,
-      ),
-      home: new MyHomePage(title: 'Calendar'),
-    );
-  }
+  _CalendarioState createState() => _CalendarioState();
 }
 
+class _CalendarioState extends State<Calendario> {
+  bool _isPressed = true;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Column(
+        children: <Widget>[
+          _perfiles(),
+        ],
+      ),
+    );
+  }
+
+  Widget _perfiles() {
+    return Container(
+      height: 90,
+      width: double.infinity,
+      margin: EdgeInsets.only(top: 45),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border(
+          bottom: BorderSide(width: 1.0, color: kgreyLColor),
+        ),
+      ),
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
+        children: perfiles.map((perfil) {
+          return PerfilAppbar(
+            perfil: perfil,
+            isPressed: true,
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  Widget _crearPerfilesAppBar(Perfil perfil) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _isPressed = !_isPressed;
+        });
+      },
+      child: Column(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.all(5),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(50),
+              child: Container(
+                padding: EdgeInsets.all(0),
+                height: 55,
+                width: 55,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(100),
+                  border: Border.all(
+                    width: 1,
+                    color: perfil.color,
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    perfil.letralogo,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: _isPressed ? perfil.color : Colors.amber,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 35,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+} //class Calendario
+
+/*
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
@@ -94,9 +167,9 @@ class _MyHomePageState extends State<MyHomePage> {
     ]);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-
     _calendarCarouselNoHeader = CalendarCarousel<Event>(
       todayBorderColor: Colors.green,
       onDayPressed: (DateTime date, List<Event> events) {
@@ -162,18 +235,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: <Widget>[
                     Expanded(
                         child: Text(
-                          _currentMonth,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24.0,
-                          ),
-                        )),
+                      _currentMonth,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24.0,
+                      ),
+                    )),
                     FlatButton(
                       child: Text('PREV'),
                       onPressed: () {
                         setState(() {
-                          _targetDateTime = DateTime(_targetDateTime.year, _targetDateTime.month -1);
-                          _currentMonth = DateFormat.yMMM().format(_targetDateTime);
+                          _targetDateTime = DateTime(
+                              _targetDateTime.year, _targetDateTime.month - 1);
+                          _currentMonth =
+                              DateFormat.yMMM().format(_targetDateTime);
                         });
                       },
                     ),
@@ -181,8 +256,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Text('NEXT'),
                       onPressed: () {
                         setState(() {
-                          _targetDateTime = DateTime(_targetDateTime.year, _targetDateTime.month +1);
-                          _currentMonth = DateFormat.yMMM().format(_targetDateTime);
+                          _targetDateTime = DateTime(
+                              _targetDateTime.year, _targetDateTime.month + 1);
+                          _currentMonth =
+                              DateFormat.yMMM().format(_targetDateTime);
                         });
                       },
                     )
@@ -197,4 +274,4 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ));
   }
-}
+}*/
