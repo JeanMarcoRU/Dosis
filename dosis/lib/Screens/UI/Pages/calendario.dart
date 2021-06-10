@@ -123,14 +123,14 @@ class _calendarioState extends State<calendario> {
                       ),
                       Column(
                         children: [
-                          dayTask("10:00", "vitamina A"),
-                          dayTask("11:00", "vitamina B"),
-                          dayTask("14:00", "vitamina C"),
-                          dayTask("15:00", "vitamina D"),
-                          dayTask("16:00", "vitamina E"),
-                          dayTask("17:00", "vitamina F"),
-                          dayTask("18:00", "vitamina G"),
-                          dayTask("19:00", "vitamina H"),
+                          dayMedicine("10:00", "vitamina A"),
+                          dayMedicine("11:00", "vitamina B"),
+                          dayMedicine("14:00", "vitamina C"),
+                          dayMedicine("15:00", "vitamina D"),
+                          dayMedicine("16:00", "vitamina E"),
+                          dayMedicine("17:00", "vitamina F"),
+                          dayMedicine("18:00", "vitamina G"),
+                          dayMedicine("19:00", "vitamina H"),
                         ],
                       )
                     ],
@@ -144,7 +144,7 @@ class _calendarioState extends State<calendario> {
     );
   }
 
-  Row dayTask(String time, String name) {
+  Row dayMedicine(String time, String name) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
