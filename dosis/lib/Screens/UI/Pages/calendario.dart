@@ -53,19 +53,19 @@ class _calendarioState extends State<calendario> {
             headerStyle: HeaderStyle(
               centerHeaderTitle: true,
               formatButtonVisible: false,
-              titleTextStyle: TextStyle(color: kPrimaryColor, fontSize: 16),
+              titleTextStyle: TextStyle(color: kPrimaryColor, fontSize: 20),
               leftChevronIcon: Icon(
                 Icons.arrow_back_ios,
                 color: kPrimaryColor,
-                size: 15,
+                size: 20,
               ),
               rightChevronIcon: Icon(
                 Icons.arrow_forward_ios,
                 color: kPrimaryColor,
-                size: 15,
+                size: 20,
               ),
-              leftChevronMargin: EdgeInsets.only(left: 70),
-              rightChevronMargin: EdgeInsets.only(right: 70),
+              leftChevronMargin: EdgeInsets.only(left: 80),
+              rightChevronMargin: EdgeInsets.only(right: 80),
             ),
             calendarStyle: CalendarStyle(
                 weekendStyle: TextStyle(color: kmelroseColor),
@@ -136,13 +136,11 @@ class _calendarioState extends State<calendario> {
       children: [
         Container(
           margin: EdgeInsets.only(left: 0, right: 20),
-          //padding: EdgeInsets.all(2),
           width: 40 /*MediaQuery.of(context).size.width * 0.1*/,
           child: Text(
             time,
             style: TextStyle(
               color: kgreyDColor,
-              //fontWeight: FontWeight.w700,
             ),
             textAlign: TextAlign.left,
           ),
@@ -151,101 +149,11 @@ class _calendarioState extends State<calendario> {
           child: Container(
             margin: EdgeInsets.only(bottom: 20),
             padding: EdgeInsets.all(20),
-            color: Color(0xffdfdeff),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name,
-                  style: TextStyle(
-                      color: Colors.purple,
-                      fontWeight: FontWeight.w700), //-------
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Upkeep Cleaning',
-                  style: TextStyle(
-                      color: Colors.grey, fontWeight: FontWeight.w500),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.timer,
-                      color: Colors.purple, //-----------
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      "$time - 5 pm",
-                      style: TextStyle(
-                          color: Colors.purple, //-----------
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children: [
-                    Text(
-                      "Client Rating",
-                      style: TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.w500),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Icon(Icons.star),
-                    Icon(Icons.star),
-                    Icon(Icons.star),
-                  ],
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Container(
-                  height: 0.5,
-                  color: Colors.grey,
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.call,
-                      color: Colors.purple, //--------
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Icon(
-                      Icons.mail_outline,
-                      color: Colors.purple, //--------------------------
-                    ),
-                    Expanded(
-                      child: Container(),
-                    ),
-                    Text(
-                      "\$50",
-                      style: TextStyle(
-                          color: Colors.purple, //-------------------
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600),
-                    )
-                  ],
-                )
-              ],
-            ),
+            height: 75,
+            width: 80,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                color: userblueColor),
           ),
         )
       ],
