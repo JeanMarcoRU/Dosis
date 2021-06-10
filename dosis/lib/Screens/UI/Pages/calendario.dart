@@ -110,7 +110,7 @@ class _calendarioState extends State<calendario> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 15,
+                        height: 0,
                       ),
                       Column(
                         children: [
@@ -135,15 +135,16 @@ class _calendarioState extends State<calendario> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding: EdgeInsets.all(2),
-          width: 70 /*MediaQuery.of(context).size.width * 0.1*/,
+          margin: EdgeInsets.only(left: 0, right: 20),
+          //padding: EdgeInsets.all(2),
+          width: 40 /*MediaQuery.of(context).size.width * 0.1*/,
           child: Text(
             time,
             style: TextStyle(
               color: kgreyDColor,
-              fontWeight: FontWeight.w700,
+              //fontWeight: FontWeight.w700,
             ),
-            textAlign: TextAlign.right,
+            textAlign: TextAlign.left,
           ),
         ),
         Expanded(
