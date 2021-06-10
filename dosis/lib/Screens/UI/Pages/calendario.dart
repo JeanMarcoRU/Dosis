@@ -34,7 +34,7 @@ class _CalendarioState extends State<Calendario> {
       body: Column(
         children: <Widget>[
           _perfiles(),
-          _dias(),
+          _meses(),
         ],
       ),
     );
@@ -64,7 +64,7 @@ class _CalendarioState extends State<Calendario> {
     );
   }
 
-  Widget _dias() {
+  Widget _meses() {
     return Container(
       height: 40,
       width: double.infinity,
