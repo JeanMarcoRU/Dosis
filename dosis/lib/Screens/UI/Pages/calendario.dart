@@ -7,12 +7,20 @@ import 'calendario/perfil_appbar_constructor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Calendario extends StatelessWidget {
+class Calendario extends StatefulWidget {
+  @override
+  _CalendarioState createState() => _CalendarioState();
+}
+
+class _CalendarioState extends State<Calendario> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: calendario(),
+      theme: ThemeData(
+        unselectedWidgetColor: kmelroseColor,
+      ),
     );
   }
 }
@@ -24,6 +32,7 @@ class calendario extends StatefulWidget {
 
 class _calendarioState extends State<calendario> {
   CalendarController _calendarController;
+  bool valuefirst = false;
   @override
   void initState() {
     // TODO: implement initState
@@ -114,9 +123,14 @@ class _calendarioState extends State<calendario> {
                       ),
                       Column(
                         children: [
-                          dayTask("10:00", "Michael Hamilton"),
-                          dayTask("11:00", "Alexandra Johnson"),
-                          dayTask("14:00", "Michael Hamilton"),
+                          dayTask("10:00", "vitamina A"),
+                          dayTask("11:00", "vitamina B"),
+                          dayTask("14:00", "vitamina C"),
+                          dayTask("15:00", "vitamina D"),
+                          dayTask("16:00", "vitamina E"),
+                          dayTask("17:00", "vitamina F"),
+                          dayTask("18:00", "vitamina G"),
+                          dayTask("19:00", "vitamina H"),
                         ],
                       )
                     ],
@@ -148,12 +162,108 @@ class _calendarioState extends State<calendario> {
         Expanded(
           child: Container(
             margin: EdgeInsets.only(bottom: 20),
-            padding: EdgeInsets.all(20),
-            height: 75,
-            width: 80,
+            padding: EdgeInsets.all(15),
+            height: 80,
+            //width: 300,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                color: userblueColor),
+              borderRadius: BorderRadius.all(
+                Radius.circular(20),
+              ),
+              color: userblueColor,
+            ),
+            child: Row(
+              children: <Widget>[
+                Container(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        /*image: const DecorationImage(
+                          image: NetworkImage(
+                              'https://ichef.bbci.co.uk/news/640/cpsprodpb/1DD7/production/_102793670_1.jpg'),
+                          fit: BoxFit.cover,
+                        ),*/
+                      ),
+                      /*child: Icon(
+                        Icons.beach_access,
+                        color: Colors.blue,
+                        size: 36.0,
+                      ),*/
+                      child: Center(
+                        child: Text(
+                          "⚕️",
+                          style: TextStyle(
+                            fontSize: 30,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 7,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      name,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                    Text(
+                      "1 pastilla",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w200,
+                        fontSize: 12,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                    Text(
+                      time,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w200,
+                        fontSize: 12,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: 60,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                    color: valuefirst ? kPrimaryColor : kmelroseColor,
+                  ),
+                  padding: EdgeInsets.only(right: 0),
+                  child: Transform.scale(
+                    scale: 2.0,
+                    child: Checkbox(
+                      activeColor: kPrimaryColor,
+                      value: valuefirst,
+                      onChanged: (bool value) {
+                        setState(() {
+                          valuefirst = value;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         )
       ],
