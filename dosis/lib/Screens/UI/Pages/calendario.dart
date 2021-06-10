@@ -41,17 +41,10 @@ class _calendarioState extends State<calendario> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple, //-------------------
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: Text(
-          "Select Date",
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
+      backgroundColor: Colors.white, //-------------------
       body: Column(
-        children: [
+        children: <Widget>[
+          _perfiles(),
           TableCalendar(
             calendarController: _calendarController,
             initialCalendarFormat: CalendarFormat.week,
@@ -60,26 +53,46 @@ class _calendarioState extends State<calendario> {
             headerStyle: HeaderStyle(
               centerHeaderTitle: true,
               formatButtonVisible: false,
-              titleTextStyle: TextStyle(color: Colors.white, fontSize: 16),
+              titleTextStyle: TextStyle(color: kPrimaryColor, fontSize: 16),
               leftChevronIcon: Icon(
                 Icons.arrow_back_ios,
-                color: Colors.white,
+                color: kPrimaryColor,
                 size: 15,
               ),
               rightChevronIcon: Icon(
                 Icons.arrow_forward_ios,
-                color: Colors.white,
+                color: kPrimaryColor,
                 size: 15,
               ),
               leftChevronMargin: EdgeInsets.only(left: 70),
               rightChevronMargin: EdgeInsets.only(right: 70),
             ),
             calendarStyle: CalendarStyle(
-                weekendStyle: TextStyle(color: Colors.white),
-                weekdayStyle: TextStyle(color: Colors.white)),
+                weekendStyle: TextStyle(color: kmelroseColor),
+                weekdayStyle: TextStyle(color: kmelroseColor)),
             daysOfWeekStyle: DaysOfWeekStyle(
-                weekendStyle: TextStyle(color: Colors.white),
-                weekdayStyle: TextStyle(color: Colors.white)),
+                weekendStyle: TextStyle(color: kmelroseColor),
+                weekdayStyle: TextStyle(color: kmelroseColor)),
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Row(
+            children: <Widget>[
+              SizedBox(
+                width: 35,
+              ),
+              Container(
+                child: Text(
+                  'horario',
+                  style: TextStyle(
+                    color: kPrimaryColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 35,
+                  ),
+                ),
+              ),
+            ],
           ),
           SizedBox(
             height: 5,
@@ -91,27 +104,19 @@ class _calendarioState extends State<calendario> {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(40),
                       topRight: Radius.circular(40)),
-                  color: Colors.white),
+                  color: kgreySLColor),
               child: Container(
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Row(
-                        children: [
-                          Text(
-                            "18 April 2020",
-                            style: TextStyle(color: Colors.grey),
-                          )
-                        ],
-                      ),
                       SizedBox(
                         height: 15,
                       ),
                       Column(
                         children: [
-                          dayTask("10 am", "Michael Hamilton"),
-                          dayTask("11 am", "Alexandra Johnson"),
-                          dayTask("2 pm", "Michael Hamilton"),
+                          dayTask("10:00", "Michael Hamilton"),
+                          dayTask("11:00", "Alexandra Johnson"),
+                          dayTask("14:00", "Michael Hamilton"),
                         ],
                       )
                     ],
@@ -130,12 +135,12 @@ class _calendarioState extends State<calendario> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding: EdgeInsets.all(20),
-          width: MediaQuery.of(context).size.width * 0.2,
+          padding: EdgeInsets.all(2),
+          width: 70 /*MediaQuery.of(context).size.width * 0.1*/,
           child: Text(
             time,
             style: TextStyle(
-              color: Colors.black,
+              color: kgreyDColor,
               fontWeight: FontWeight.w700,
             ),
             textAlign: TextAlign.right,
@@ -243,6 +248,30 @@ class _calendarioState extends State<calendario> {
           ),
         )
       ],
+    );
+  }
+
+  Widget _perfiles() {
+    return Container(
+      height: 85,
+      width: double.infinity,
+      margin: EdgeInsets.only(top: 45),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border(
+          bottom: BorderSide(width: 1.0, color: kgreyLColor),
+        ),
+      ),
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
+        children: perfiles.map((perfil) {
+          return PerfilAppbar(
+            perfil: perfil,
+            isPressed: true,
+          );
+        }).toList(),
+      ),
     );
   }
 }
