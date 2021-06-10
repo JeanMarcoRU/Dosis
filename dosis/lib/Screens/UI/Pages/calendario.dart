@@ -11,7 +11,21 @@ class Calendario extends StatefulWidget {
 }
 
 class _CalendarioState extends State<Calendario> {
-  bool _isPressed = true;
+  //bool _isPressed = true;
+  List<String> meses = [
+    "enero",
+    "febrero",
+    "marzo",
+    "abril",
+    "mayo",
+    "junio",
+    "julio",
+    "agosto",
+    "septiembre",
+    "octubre",
+    "noviembre",
+    "diciembre",
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +33,7 @@ class _CalendarioState extends State<Calendario> {
       body: Column(
         children: <Widget>[
           _perfiles(),
+          _dias(),
         ],
       ),
     );
@@ -48,6 +63,23 @@ class _CalendarioState extends State<Calendario> {
     );
   }
 
+  Widget _dias() {
+    return Container(
+      height: 30,
+      width: double.infinity,
+      color: Colors.blueAccent,
+      margin: EdgeInsets.only(top: 15),
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
+        children: meses.map((mes) {
+          return PerfilAppbar();
+        }).toList(),
+      ),
+    );
+  }
+
+  /*
   Widget _crearPerfilesAppBar(Perfil perfil) {
     return GestureDetector(
       onTap: () {
@@ -90,7 +122,7 @@ class _CalendarioState extends State<Calendario> {
         ],
       ),
     );
-  }
+  }*/
 } //class Calendario
 
 /*
