@@ -1,3 +1,4 @@
+import 'package:dosis/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -5,10 +6,12 @@ import 'package:flutter/material.dart';
 class MesAppbar extends StatefulWidget {
   final Function press;
   bool isPressed;
+  String mes;
   MesAppbar({
     Key key,
     this.press,
     this.isPressed,
+    this.mes,
   }) : super(key: key);
 
   @override
@@ -28,28 +31,14 @@ class _MesAppbarState extends State<MesAppbar> {
         children: <Widget>[
           Container(
             padding: EdgeInsets.all(5),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(50),
-              child: Container(
-                padding: EdgeInsets.all(0),
-                height: 55,
-                width: 55,
-                decoration: BoxDecoration(
-                  color: widget.isPressed ? Colors.greenAccent : Colors.white,
-                  borderRadius: BorderRadius.circular(100),
-                  border: Border.all(width: 1, color: Colors.greenAccent),
-                ),
-                child: Center(
-                  child: Text(
-                    "widget.perfil.letralogo",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color:
-                          widget.isPressed ? Colors.white : Colors.greenAccent,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 35,
-                    ),
-                  ),
+            child: Center(
+              child: Text(
+                widget.mes,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: widget.isPressed ? kPrimaryColor : kmelroseColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
                 ),
               ),
             ),

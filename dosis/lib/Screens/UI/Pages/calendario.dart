@@ -1,6 +1,7 @@
 import 'package:dosis/Classes/perfiles.dart';
 import 'package:flutter/material.dart';
 import '../../../constants.dart';
+import 'calendario/mes_appbar_constructor.dart';
 import 'calendario/perfil_appbar_constructor.dart';
 
 class Calendario extends StatefulWidget {
@@ -65,15 +66,17 @@ class _CalendarioState extends State<Calendario> {
 
   Widget _dias() {
     return Container(
-      height: 30,
+      height: 40,
       width: double.infinity,
-      color: Colors.blueAccent,
-      margin: EdgeInsets.only(top: 15),
+      margin: EdgeInsets.only(top: 10),
       child: ListView(
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
         children: meses.map((mes) {
-          return PerfilAppbar();
+          return MesAppbar(
+            mes: mes,
+            isPressed: false,
+          );
         }).toList(),
       ),
     );
