@@ -6,6 +6,7 @@ const kgreyLColor = const Color.fromRGBO(212, 212, 212, 1);
 const kgreyDColor = const Color.fromRGBO(137, 138, 141, 1);
 const kjungleMistColor = const Color.fromRGBO(191, 211, 217, 1);
 const kmelroseColor = const Color.fromRGBO(171, 197, 254, 1);
+const kgreySLColor = const Color.fromRGBO(212, 212, 212, 0.5);
 
 const userpinkColor = const Color.fromRGBO(255, 168, 208, 1);
 const userblueColor = const Color.fromRGBO(141, 188, 246, 1);
