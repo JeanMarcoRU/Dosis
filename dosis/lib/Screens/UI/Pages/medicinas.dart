@@ -68,11 +68,11 @@ class Medicinas extends StatelessWidget {
               ],
             ),
             title: Text(
-              'Medicamentos',
+              'medicamentos',
               style: TextStyle(
                 color: kPrimaryColor,
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
+                fontSize: 25,
               ),
             ),
             backgroundColor: Colors.white,

@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dosis/Classes/categoria.dart';
 import 'package:dosis/Classes/medicamento.dart';
+import 'package:dosis/Classes/perfiles.dart';
 import 'package:dosis/Screens/Signup/components/backgroundWhite.dart';
 import 'package:dosis/Screens/UI/ui.dart';
 import 'package:flutter/material.dart';
@@ -18,10 +19,12 @@ import 'package:dosis/constants.dart';
 
 class formMedicamentos extends StatefulWidget {
   final Categoria categoria;
+  final Perfil perfil;
   final int i;
   formMedicamentos({
     Key key,
     this.categoria,
+    this.perfil,
     this.i,
   }) : super(key: key);
 
@@ -39,7 +42,9 @@ class _formMedicamento_State extends State<formMedicamentos> {
   CollectionReference _medicamento =
       FirebaseFirestore.instance.collection("Medicamentos");
   String dropdownValue;
+  String color_elegido;
   List<String> opcionesCategoria = [];
+  List<String> opColores = [];
 
   void cargarOpciones() async {
     opcionesCategoria.clear();
@@ -49,12 +54,41 @@ class _formMedicamento_State extends State<formMedicamentos> {
     print(opcionesCategoria);
   }
 
+  void opcionesColores() async {
+    opColores.clear();
+    for (var i = 0; i < perfiles.length; i++) {
+      opColores.add(getColorString(perfiles[i].color));
+    }
+    print(opColores);
+  }
+
+  String getColorString(Color color) {
+    if (color == userpinkColor) {
+      return "Rosado";
+    }
+    if (color == userblueColor) {
+      return "Azul";
+    }
+    if (color == userpurpleColor) {
+      return "Morado";
+    }
+    if (color == usergreenColor) {
+      return "Verde";
+    }
+    if (color == usergreyColor) {
+      return "Gris";
+    }
+    if (color == userorangeColor) {
+      return "Anaranjado";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     print(categorias);
     cargarOpciones();
-    print(opcionesCategoria);
+    opcionesColores();
     return BackgroundWhite(
       child: SingleChildScrollView(
         child: Column(
@@ -124,6 +158,7 @@ class _formMedicamento_State extends State<formMedicamentos> {
                 cursorColor: kPrimaryColor,
                 decoration: InputDecoration(
                   labelText: "Hora",
+                  hintText: "HH:MM (format 24h)",
                   border: InputBorder.none,
                 ),
               ),
@@ -170,6 +205,41 @@ class _formMedicamento_State extends State<formMedicamentos> {
                     onChanged: (String newValue) {
                       setState(() {
                         dropdownValue = newValue;
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: size.height * 0.01),
+            Container(
+              margin: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(3.0),
+              width: size.width * 0.8,
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    "Elegir Perfil:",
+                    style: TextStyle(
+                      decoration: TextDecoration.none,
+                      fontSize: 14.0,
+                      height: 0,
+                      color: kgreyDColor,
+                    ),
+                  ),
+                  DropdownButtonFormField<String>(
+                    value: color_elegido,
+                    items:
+                        opColores.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child:
+                            Text(value, style: TextStyle(color: kPrimaryColor)),
+                      );
+                    }).toList(),
+                    onChanged: (String newValue) {
+                      setState(() {
+                        color_elegido = newValue;
                       });
                     },
                   ),
