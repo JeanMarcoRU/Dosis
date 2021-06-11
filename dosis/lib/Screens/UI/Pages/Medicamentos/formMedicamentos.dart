@@ -1,5 +1,7 @@
 //import 'package:datetime_picker_formfield/time_picker_formfield.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dosis/Classes/categoria.dart';
+import 'package:dosis/Classes/medicamento.dart';
 import 'package:dosis/Screens/Signup/components/backgroundWhite.dart';
 import 'package:dosis/Screens/UI/ui.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +16,20 @@ import 'package:dosis/constants.dart';
 //import 'package:intl/intl.dart';
 //import 'package:dropdown_formfield/dropdown_formfield.dart';
 
-class formMedicamento extends StatelessWidget {
-  formMedicamento({Key key}) : super(key: key);
+class formMedicamentos extends StatefulWidget {
+  final Categoria categoria;
+  final int i;
+  formMedicamentos({
+    Key key,
+    this.categoria,
+    this.i,
+  }) : super(key: key);
+
+  @override
+  _formMedicamento_State createState() => _formMedicamento_State();
+}
+
+class _formMedicamento_State extends State<formMedicamentos> {
   final TextEditingController nombreController = TextEditingController();
   final TextEditingController dosisController = TextEditingController();
   final TextEditingController tomaDesdeController = TextEditingController();
@@ -24,10 +38,23 @@ class formMedicamento extends StatelessWidget {
   final TextEditingController horaController = TextEditingController();
   CollectionReference _medicamento =
       FirebaseFirestore.instance.collection("Medicamentos");
+  String dropdownValue;
+  List<String> opcionesCategoria = [];
+
+  void cargarOpciones() async {
+    opcionesCategoria.clear();
+    for (var i = 0; i < categorias.length; i++) {
+      opcionesCategoria.add(categorias[i].nombre);
+    }
+    print(opcionesCategoria);
+  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    print(categorias);
+    cargarOpciones();
+    print(opcionesCategoria);
     return BackgroundWhite(
       child: SingleChildScrollView(
         child: Column(
@@ -114,6 +141,41 @@ class formMedicamento extends StatelessWidget {
                 }
             ),
             */
+            SizedBox(height: size.height * 0.01),
+            Container(
+              margin: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(3.0),
+              width: size.width * 0.8,
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    "Seleccionar Categoría:",
+                    style: TextStyle(
+                      decoration: TextDecoration.none,
+                      fontSize: 14.0,
+                      height: 0,
+                      color: kgreyDColor,
+                    ),
+                  ),
+                  DropdownButtonFormField<String>(
+                    value: dropdownValue,
+                    style: TextStyle(color: kgreyDColor),
+                    items: opcionesCategoria
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (String newValue) {
+                      setState(() {
+                        dropdownValue = newValue;
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
             SizedBox(height: size.height * 0.01),
             RoundedButton(
               text: "Guardar",
