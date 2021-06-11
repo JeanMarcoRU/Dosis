@@ -9,6 +9,7 @@ class Medicamento {
       tomaHasta,
       dias,
       hora;
+  Color color;
 
   //void cargaPerfiles();
   Medicamento(
@@ -19,7 +20,8 @@ class Medicamento {
       this.tomaDesde,
       this.tomaHasta,
       this.dias,
-      this.hora});
+      this.hora,
+      this.color});
 }
 
 List<Medicamento> medicamentos = [];

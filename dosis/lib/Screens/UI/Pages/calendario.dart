@@ -34,45 +34,6 @@ class calendario extends StatefulWidget {
 
 class _calendarioState extends State<calendario> {
   CalendarController _calendarController;
-
-  List<MedicamentoBox> medicamentos = [
-    MedicamentoBox(
-        userColor: userblueColor,
-        nombre: "vitamina A",
-        hora: "10:00",
-        dosis: "1 pastilla"),
-    MedicamentoBox(
-        userColor: usergreenColor,
-        nombre: "vitamina B",
-        hora: "11:00",
-        dosis: "2 pastilla"),
-    MedicamentoBox(
-        userColor: userorangeColor,
-        nombre: "vitamina C",
-        hora: "12:00",
-        dosis: "1 pastilla"),
-    MedicamentoBox(
-        userColor: userpurpleColor,
-        nombre: "vitamina D",
-        hora: "13:00",
-        dosis: "3 pastilla"),
-    MedicamentoBox(
-        userColor: userblueColor,
-        nombre: "vitamina E",
-        hora: "14:00",
-        dosis: "3 pastilla"),
-    MedicamentoBox(
-        userColor: userorangeColor,
-        nombre: "vitamina F",
-        hora: "15:00",
-        dosis: "1 pastilla"),
-    MedicamentoBox(
-        userColor: userpurpleColor,
-        nombre: "vitamina G",
-        hora: "16:00",
-        dosis: "2 pastilla"),
-  ];
-
   bool valuefirst = false;
   @override
   void initState() {
@@ -169,7 +130,7 @@ class _calendarioState extends State<calendario> {
                             //shrinkWrap: true,
                             children: medicamentos.map((medicamento) {
                               return MedicamentoBox(
-                                userColor: medicamento.userColor,
+                                userColor: medicamento.color,
                                 nombre: medicamento.nombre,
                                 hora: medicamento.hora,
                                 dosis: medicamento.dosis,
