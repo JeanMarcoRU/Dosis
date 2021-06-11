@@ -90,42 +90,47 @@ class _MedicamentoBoxState extends State<MedicamentoBox> {
                 SizedBox(
                   width: 7,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      widget.nombre,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                        color: Colors.white,
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
-                    Text(
-                      widget.dosis,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w200,
-                        fontSize: 12,
-                        color: Colors.white,
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
-                    Text(
-                      widget.hora,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w200,
-                        fontSize: 12,
-                        color: Colors.white,
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: 60,
-                ),
                 Container(
+                  width: 135,
+                  //color: Colors.black,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        widget.nombre,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                      Text(
+                        widget.dosis,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w200,
+                          fontSize: 12,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                      Text(
+                        widget.hora,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w200,
+                          fontSize: 12,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ],
+                  ),
+                ),
+                /*SizedBox(
+                  width: 40,
+                ),*/
+                Container(
+                  //padding: EdgeInsets.only(left: 0, right: 50),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(
                       Radius.circular(10),
@@ -134,7 +139,6 @@ class _MedicamentoBoxState extends State<MedicamentoBox> {
                         ? kPrimaryColor
                         : Colors.white.withOpacity(0.5),
                   ),
-                  padding: EdgeInsets.only(right: 0),
                   child: Transform.scale(
                     scale: 2.0,
                     child: Checkbox(
