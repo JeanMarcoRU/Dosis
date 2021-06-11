@@ -130,6 +130,7 @@ class ui extends StatelessWidget {
     medicamentos.clear();
     for (var i = 0; i < medicamentosList.length; i++) {
       medicamentos.add(Medicamento(
+          color: getColor(medicamentosList[i]["Color"]),
           idMedicamento: medicamentosIDs[i],
           nombre: medicamentosList[i]["Nombre"],
           dosis: medicamentosList[i]["Dosis"],
@@ -137,7 +138,10 @@ class ui extends StatelessWidget {
           tomaHasta: medicamentosList[i]["Período de Toma Hasta"],
           dias: medicamentosList[i]["Días"],
           hora: medicamentosList[i]["Hora"]));
-    }
+    } // for
+
+    medicamentos.sort((Medicamento a, Medicamento b) =>
+        a.hora.compareTo(b.hora)); //los ordena por hora
   }
 
   Color getColor(String color) {

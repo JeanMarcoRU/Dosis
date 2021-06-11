@@ -34,7 +34,6 @@ class calendario extends StatefulWidget {
 
 class _calendarioState extends State<calendario> {
   CalendarController _calendarController;
-
   bool valuefirst = false;
   @override
   void initState() {
@@ -131,7 +130,7 @@ class _calendarioState extends State<calendario> {
                             //shrinkWrap: true,
                             children: medicamentos.map((medicamento) {
                               return MedicamentoBox(
-                                userColor: usergreenColor,
+                                userColor: medicamento.color,
                                 nombre: medicamento.nombre,
                                 hora: medicamento.hora,
                                 dosis: medicamento.dosis,

@@ -18,7 +18,7 @@ class MedicamentoBox extends StatefulWidget {
     this.nombre,
     this.dosis,
     this.hora,
-    this.userColor = userblueColor,
+    this.userColor = usergreyColor,
     this.emoji = "⚕️",
   }) : super(key: key);
 
