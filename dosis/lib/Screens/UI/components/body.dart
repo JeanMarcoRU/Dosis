@@ -15,7 +15,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  int _currentPage = 2;
+  int _currentPage = 1;
 
   List<Widget> _pages = [Perfiles(), Calendario(), Medicinas()];
 
