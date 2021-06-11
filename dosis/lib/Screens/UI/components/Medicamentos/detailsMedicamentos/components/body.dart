@@ -165,7 +165,9 @@ class Body extends StatelessWidget {
                               color: kgreyDColor,
                             ),
                             decoration: InputDecoration(
-                              hintText: medicamento.tomaDesde,
+                              hintText: medicamento.tomaDesde
+                                  .toString()
+                                  .substring(0, 10),
                               border: InputBorder.none,
                             ),
                           ),
@@ -205,7 +207,9 @@ class Body extends StatelessWidget {
                               color: kgreyDColor,
                             ),
                             decoration: InputDecoration(
-                              hintText: medicamento.tomaHasta,
+                              hintText: medicamento.tomaHasta
+                                  .toString()
+                                  .substring(0, 10),
                               border: InputBorder.none,
                             ),
                           ),

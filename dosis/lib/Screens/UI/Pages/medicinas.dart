@@ -12,6 +12,8 @@ import 'package:dosis/Screens/UI/components/categoria.dart';
 import 'package:dosis/Screens/UI/components/medicamento.dart';
 import 'package:dosis/Screens/UI/components/Categorias/detailsCategoria/detailsCategoria.dart';
 
+import 'calendario/perfil_appbar_constructor.dart';
+
 class Medicinas extends StatelessWidget {
   Medicinas({Key key}) : super(key: key);
 
@@ -28,16 +30,7 @@ class Medicinas extends StatelessWidget {
       "letralogo": "S"
     }
   ];
-  final List medicPrueba = [
-    {
-      "Nombre": "tratamiento infantil",
-      "Dosis": "1 vez por semana",
-      "Días": "L, V, D",
-      "Periodo de Toma Desde": "Lunes",
-      "Periodo de Toma Hasta": "Jueves",
-      "Hora": "8:00 p.m"
-    }
-  ];
+
   void cargarDatosCategoria(List c) {
     for (var i = 0; i < c.length; i++) {
       categorias.add(Categoria(
@@ -49,27 +42,11 @@ class Medicinas extends StatelessWidget {
     }
   }
 
-  void cargaDatosMedicamentos(List m) {
-    for (var i = 0; i < m.length; i++) {
-      medicamentos.add(Medicamento(
-          idMedicamento: "0",
-          nombre: m[i]["Nombre"],
-          dosis: m[i]["Dosis"],
-          tomaDesde: m[i]["Periodo de Toma Desde"],
-          tomaHasta: m[i]["Periodo de Toma Hasta"],
-          dias: m[i]["Dias"],
-          hora: m[i]["Hora"]));
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     //cargaCategoria();
     cargarDatosCategoria(catPrueba);
     categorias.removeLast();
-    cargaDatosMedicamentos(medicPrueba);
-    medicamentos.removeLast();
-    //print(medicamentos);
     print(medicamentos.length);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -210,36 +187,6 @@ class Medicinas extends StatelessWidget {
           nombre: categoriaslist[i]["Nombre"],
           descripcion: categoriaslist[i]["Descripcion"],
           emoji: categoriaslist[i]["Emoji"]));
-    }
-  }
-
-  /* Funcion para cargar los datos de los medicamentos */
-  void cargaMedicamentos() async {
-    medicamentosList.clear();
-    medicamentos.clear();
-    medicamentosIDs.clear();
-    CollectionReference collectionReference =
-        FirebaseFirestore.instance.collection("Medicamentos");
-
-    QuerySnapshot medicamentosQS = await collectionReference.get();
-
-    if (medicamentosQS.docs.length != 0) {
-      for (var doc in medicamentosQS.docs) {
-        medicamentosIDs.add(doc.id);
-        medicamentosList.add(doc.data());
-      }
-    }
-    medicamentos.clear();
-    for (var i = 0; i < medicamentosList.length; i++) {
-      medicamentos.add(Medicamento(
-          idMedicamento: medicamentosIDs[i],
-          letralogo: medicamentosList[i]["letralogo"],
-          nombre: medicamentosList[i]["Nombre"],
-          dosis: medicamentosList[i]["Dosis"],
-          tomaDesde: medicamentosList[i]["Periodo de Toma Desde"],
-          tomaHasta: medicamentosList[i]["Periodo de Toma Hasta"],
-          dias: medicamentosList[i]["Dias"],
-          hora: medicamentosList[i]["Hora"]));
     }
   }
 } //  Fin clase medicamentos

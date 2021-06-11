@@ -160,7 +160,9 @@ class Body extends StatelessWidget {
                               color: kgreyDColor,
                             ),
                             decoration: InputDecoration(
-                              hintText: medicamento.tomaDesde,
+                              hintText: medicamento.tomaDesde
+                                  .toString()
+                                  .substring(0, 10),
                               border: InputBorder.none,
                             ),
                           ),
@@ -200,7 +202,9 @@ class Body extends StatelessWidget {
                               color: kgreyDColor,
                             ),
                             decoration: InputDecoration(
-                              hintText: medicamento.tomaHasta,
+                              hintText: medicamento.tomaHasta
+                                  .toString()
+                                  .substring(0, 10),
                               border: InputBorder.none,
                             ),
                           ),
@@ -314,11 +318,11 @@ class Body extends StatelessWidget {
                               }
                               if (tomaDesdeController.text.isNotEmpty) {
                                 medicamento.tomaDesde =
-                                    tomaDesdeController.text;
+                                    DateTime.parse(tomaDesdeController.text);
                               }
                               if (tomaHastaController.text.isNotEmpty) {
                                 medicamento.tomaHasta =
-                                    tomaHastaController.text;
+                                    DateTime.parse(tomaHastaController.text);
                               }
                               if (diasController.text.isNotEmpty) {
                                 medicamento.dias = diasController.text;

@@ -3,7 +3,7 @@ import 'package:dosis/Screens/Signup/components/backgroundWhite.dart';
 import 'package:dosis/Screens/UI/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/components/rounded_button.dart';
-import 'package:dosis/components/text_field_container.dart';
+import 'package:dosis/components/text_field_C.dart';
 import 'package:dosis/constants.dart';
 
 class formCategoria extends StatelessWidget {
@@ -25,7 +25,7 @@ class formCategoria extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: size.height * 0.05),
-            TextFieldContainer(
+            TextFieldC(
               child: TextField(
                 controller: nombreController,
                 cursorColor: kPrimaryColor,
@@ -36,7 +36,7 @@ class formCategoria extends StatelessWidget {
               ),
             ),
             SizedBox(height: size.height * 0.05),
-            TextFieldContainer(
+            TextFieldC(
               child: TextField(
                 controller: descripcionController,
                 cursorColor: kPrimaryColor,
@@ -47,7 +47,7 @@ class formCategoria extends StatelessWidget {
               ),
             ),
             SizedBox(height: size.height * 0.05),
-            TextFieldContainer(
+            TextFieldC(
               child: TextField(
                 controller: emojiController,
                 cursorColor: kPrimaryColor,
@@ -58,7 +58,7 @@ class formCategoria extends StatelessWidget {
               ),
             ),
             SizedBox(height: size.height * 0.05),
-            TextFieldContainer(
+            TextFieldC(
               child: TextField(
                 controller: logoController,
                 cursorColor: kPrimaryColor,

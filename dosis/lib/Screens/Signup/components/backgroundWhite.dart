@@ -13,7 +13,7 @@ class BackgroundWhite extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      decoration: new BoxDecoration(color: kgreyLColor),
+      decoration: new BoxDecoration(color: Colors.white),
       height: size.height,
       width: double.infinity,
       // Here i can use size.width but use double.infinity because both work as a same

@@ -37,6 +37,7 @@ dependencies:
   flutter_switch: ^0.0.2
   flutter_calendar_carousel: ^2.0.1
   table_calendar: ^2.2.3
+  dropdownfield: ^1.0.0
 
 
 

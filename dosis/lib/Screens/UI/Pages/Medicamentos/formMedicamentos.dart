@@ -5,11 +5,14 @@ import 'package:dosis/Screens/UI/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/Screens/Signup/components/backgroundWhite.dart';
 import 'package:dosis/components/rounded_button.dart';
-import 'package:dosis/components/text_field_container.dart';
+import 'package:dosis/components/text_field_C.dart';
 import 'package:dosis/constants.dart';
+
+//import 'package:dropdownfield/dropdownfield.dart';
 
 //import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 //import 'package:intl/intl.dart';
+//import 'package:dropdown_formfield/dropdown_formfield.dart';
 
 class formMedicamento extends StatelessWidget {
   formMedicamento({Key key}) : super(key: key);
@@ -31,7 +34,7 @@ class formMedicamento extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: size.height * 0.05),
-            TextFieldContainer(
+            TextFieldC(
               child: TextField(
                 controller: nombreController,
                 cursorColor: kPrimaryColor,
@@ -42,7 +45,7 @@ class formMedicamento extends StatelessWidget {
               ),
             ),
             SizedBox(height: size.height * 0.05),
-            TextFieldContainer(
+            TextFieldC(
               child: TextField(
                 controller: dosisController,
                 cursorColor: kPrimaryColor,
@@ -53,29 +56,31 @@ class formMedicamento extends StatelessWidget {
               ),
             ),
             SizedBox(height: size.height * 0.05),
-            TextFieldContainer(
+            TextFieldC(
               child: TextField(
                 controller: tomaDesdeController,
                 cursorColor: kPrimaryColor,
                 decoration: InputDecoration(
                   labelText: "Período de Toma Desde",
+                  hintText: "aaaa-mm-dd",
                   border: InputBorder.none,
                 ),
               ),
             ),
             SizedBox(height: size.height * 0.05),
-            TextFieldContainer(
+            TextFieldC(
               child: TextField(
                 controller: tomaHastaController,
                 cursorColor: kPrimaryColor,
                 decoration: InputDecoration(
                   labelText: "Período de Toma Hasta",
+                  hintText: "aaaa-mm-dd",
                   border: InputBorder.none,
                 ),
               ),
             ),
             SizedBox(height: size.height * 0.05),
-            TextFieldContainer(
+            TextFieldC(
               child: TextField(
                 controller: diasController,
                 cursorColor: kPrimaryColor,
@@ -86,7 +91,7 @@ class formMedicamento extends StatelessWidget {
               ),
             ),
             SizedBox(height: size.height * 0.05),
-            TextFieldContainer(
+            TextFieldC(
               child: TextField(
                 controller: horaController,
                 cursorColor: kPrimaryColor,
@@ -96,14 +101,29 @@ class formMedicamento extends StatelessWidget {
                 ),
               ),
             ),
+            /*
+            DropDownField(
+                value: accountname,
+                required: true,
+                strict: true,
+                labelText: 'Account Name *',
+                icon: Icon(Icons.account_balance),
+                items: accountNames,
+                setter: (dynamic newValue) {
+                    accountname = newValue;
+                }
+            ),
+            */
             SizedBox(height: size.height * 0.01),
             RoundedButton(
               text: "Guardar",
               press: () async {
                 final String nombre = nombreController.text;
                 final String dosis = dosisController.text;
-                final String tomaDesde = tomaDesdeController.text;
-                final String tomaHasta = tomaHastaController.text;
+                final DateTime tomaDesde =
+                    DateTime.parse(tomaDesdeController.text);
+                final DateTime tomaHasta =
+                    DateTime.parse(tomaHastaController.text);
                 final String dias = diasController.text;
                 final String hora = horaController.text;
                 await _medicamento.add({

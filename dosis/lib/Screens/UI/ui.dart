@@ -134,8 +134,10 @@ class ui extends StatelessWidget {
           idMedicamento: medicamentosIDs[i],
           nombre: medicamentosList[i]["Nombre"],
           dosis: medicamentosList[i]["Dosis"],
-          tomaDesde: medicamentosList[i]["Período de Toma Desde"],
-          tomaHasta: medicamentosList[i]["Período de Toma Hasta"],
+          tomaDesde: DateTime.parse(
+              medicamentosList[i]["Período de Toma Desde"].toDate().toString()),
+          tomaHasta: DateTime.parse(
+              medicamentosList[i]["Período de Toma Hasta"].toDate().toString()),
           dias: medicamentosList[i]["Días"],
           hora: medicamentosList[i]["Hora"]));
     } // for
