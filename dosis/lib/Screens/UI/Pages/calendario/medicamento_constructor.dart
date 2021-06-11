@@ -130,7 +130,9 @@ class _MedicamentoBoxState extends State<MedicamentoBox> {
                     borderRadius: BorderRadius.all(
                       Radius.circular(10),
                     ),
-                    color: widget.isPressed ? kPrimaryColor : kmelroseColor,
+                    color: widget.isPressed
+                        ? kPrimaryColor
+                        : Colors.white.withOpacity(0.5),
                   ),
                   padding: EdgeInsets.only(right: 0),
                   child: Transform.scale(

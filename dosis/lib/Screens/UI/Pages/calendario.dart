@@ -1,4 +1,6 @@
+import 'package:dosis/Classes/medicamento.dart';
 import 'package:dosis/Classes/perfiles.dart';
+import 'package:dosis/Screens/UI/Pages/calendario/medicamento_constructor.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../../../constants.dart';
 import 'calendario/mes_appbar_constructor.dart';
@@ -19,7 +21,7 @@ class _CalendarioState extends State<Calendario> {
       debugShowCheckedModeBanner: false,
       home: calendario(),
       theme: ThemeData(
-        unselectedWidgetColor: kmelroseColor,
+        unselectedWidgetColor: Colors.white.withOpacity(0),
       ),
     );
   }
@@ -32,6 +34,45 @@ class calendario extends StatefulWidget {
 
 class _calendarioState extends State<calendario> {
   CalendarController _calendarController;
+
+  List<MedicamentoBox> medicamentos = [
+    MedicamentoBox(
+        userColor: userblueColor,
+        nombre: "vitamina A",
+        hora: "10:00",
+        dosis: "1 pastilla"),
+    MedicamentoBox(
+        userColor: usergreenColor,
+        nombre: "vitamina B",
+        hora: "11:00",
+        dosis: "2 pastilla"),
+    MedicamentoBox(
+        userColor: userorangeColor,
+        nombre: "vitamina C",
+        hora: "12:00",
+        dosis: "1 pastilla"),
+    MedicamentoBox(
+        userColor: userpurpleColor,
+        nombre: "vitamina D",
+        hora: "13:00",
+        dosis: "3 pastilla"),
+    MedicamentoBox(
+        userColor: userblueColor,
+        nombre: "vitamina E",
+        hora: "14:00",
+        dosis: "3 pastilla"),
+    MedicamentoBox(
+        userColor: userorangeColor,
+        nombre: "vitamina F",
+        hora: "15:00",
+        dosis: "1 pastilla"),
+    MedicamentoBox(
+        userColor: userpurpleColor,
+        nombre: "vitamina G",
+        hora: "16:00",
+        dosis: "2 pastilla"),
+  ];
+
   bool valuefirst = false;
   @override
   void initState() {
@@ -123,14 +164,18 @@ class _calendarioState extends State<calendario> {
                       ),
                       Column(
                         children: [
-                          dayMedicine("10:00", "vitamina A"),
-                          dayMedicine("11:00", "vitamina B"),
-                          dayMedicine("14:00", "vitamina C"),
-                          dayMedicine("15:00", "vitamina D"),
-                          dayMedicine("16:00", "vitamina E"),
-                          dayMedicine("17:00", "vitamina F"),
-                          dayMedicine("18:00", "vitamina G"),
-                          dayMedicine("19:00", "vitamina H"),
+                          Column(
+                            //scrollDirection: Axis.vertical,
+                            //shrinkWrap: true,
+                            children: medicamentos.map((medicamento) {
+                              return MedicamentoBox(
+                                userColor: medicamento.userColor,
+                                nombre: medicamento.nombre,
+                                hora: medicamento.hora,
+                                dosis: medicamento.dosis,
+                              );
+                            }).toList(),
+                          ),
                         ],
                       )
                     ],
