@@ -4,10 +4,16 @@ import 'package:dosis/constants.dart';
 import 'package:flutter/material.dart';
 import 'formMedicamentos.dart';
 
-class FormularioM extends StatelessWidget {
+class FormularioM extends StatefulWidget {
   final Medicamento medicamento;
 
   const FormularioM({Key key, this.medicamento}) : super(key: key);
+
+  @override
+  _FormularioMState createState() => _FormularioMState();
+}
+
+class _FormularioMState extends State<FormularioM> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
