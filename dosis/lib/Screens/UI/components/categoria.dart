@@ -70,15 +70,15 @@ class CategoriaObj extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         Container(
-                          padding: EdgeInsets.only(left: 10),
+                          //padding: EdgeInsets.only(right: 10),
                           width: 95,
                           //height: 30,
                           //color: Colors.black,
                         ),
                         Container(
                           //padding: EdgeInsets.all(10),
-                          height: 35,
-                          width: 35,
+                          height: 40,
+                          width: 40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(
                               Radius.circular(10),
