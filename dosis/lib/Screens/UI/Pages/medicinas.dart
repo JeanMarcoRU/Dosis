@@ -83,11 +83,13 @@ class _MedicinasState extends State<Medicinas> {
                     isScrollable: true,
                     labelColor: Colors.white,
                     unselectedLabelColor: kgreyDColor,
-                    //labelPadding: EdgeInsets.only(top: 0),
-                    //indicatorPadding: EdgeInsets.only(bottom: 30),
                     indicator: BoxDecoration(
                       borderRadius: BorderRadius.circular(0), // Creates border
                       color: kPrimaryColor,
+                    ),
+                    unselectedLabelStyle: TextStyle(
+                      height: 1.5,
+                      //backgroundColor: kmelroseColor,
                     ),
                     tabs: [
                       Tab(
@@ -103,23 +105,6 @@ class _MedicinasState extends State<Medicinas> {
                             ),
                           ),
                         ),
-                        /*child: Container(
-                          height: 20,
-                          width: (MediaQuery.of(context).size.width * 0.8) / 2,
-                          //color: kmelroseColor,
-                          child: Row(
-                            children: <Widget>[
-                              Tab(
-                                child: Center(
-                                  child: Text(
-                                    "categorías",
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),*/
                       ),
                       Tab(
                         child: Container(
