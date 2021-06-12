@@ -67,7 +67,7 @@ class _MedicinasState extends State<Medicinas> {
         length: 2,
         child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(210.0),
+            preferredSize: Size.fromHeight(2000),
             child: AppBar(
               automaticallyImplyLeading: false,
               flexibleSpace: _topAppBar(),
@@ -214,15 +214,13 @@ class _MedicinasState extends State<Medicinas> {
           ),
           Row(
             children: <Widget>[
-              SizedBox(
-                width: 30,
-              ),
+              SizedBox(width: 26),
               Text(
                 'medicamentos',
                 style: TextStyle(
                   color: kPrimaryColor,
                   fontWeight: FontWeight.bold,
-                  fontSize: 35,
+                  fontSize: 30,
                 ),
               ),
             ],

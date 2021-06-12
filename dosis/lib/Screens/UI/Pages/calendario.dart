@@ -91,7 +91,7 @@ class _calendarioState extends State<calendario> {
           Row(
             children: <Widget>[
               SizedBox(
-                width: 30,
+                width: 26,
               ),
               Container(
                 child: Text(
