@@ -67,7 +67,7 @@ class _MedicinasState extends State<Medicinas> {
         length: 2,
         child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(2000),
+            preferredSize: Size.fromHeight(200),
             child: AppBar(
               automaticallyImplyLeading: false,
               flexibleSpace: _topAppBar(),
