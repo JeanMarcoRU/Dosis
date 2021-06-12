@@ -67,7 +67,7 @@ class _MedicinasState extends State<Medicinas> {
         length: 2,
         child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(200),
+            preferredSize: Size.fromHeight(190),
             child: AppBar(
               automaticallyImplyLeading: false,
               flexibleSpace: _topAppBar(),
@@ -75,17 +75,68 @@ class _MedicinasState extends State<Medicinas> {
                 preferredSize: Size.fromHeight(200.0),
                 //child: _topAppBar(),
               ),*/
-              bottom: TabBar(
-                isScrollable: true,
-                labelColor: kPrimaryColor,
-                tabs: [
-                  Tab(
-                    text: "Categorías",
+              bottom: new PreferredSize(
+                preferredSize: new Size(MediaQuery.of(context).size.width, 26),
+                child: Container(
+                  height: 26,
+                  child: TabBar(
+                    isScrollable: true,
+                    labelColor: Colors.white,
+                    unselectedLabelColor: kgreyDColor,
+                    //labelPadding: EdgeInsets.only(top: 0),
+                    //indicatorPadding: EdgeInsets.only(bottom: 30),
+                    indicator: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0), // Creates border
+                      color: kPrimaryColor,
+                    ),
+                    tabs: [
+                      Tab(
+                        //text: "categorías",
+                        child: Container(
+                          width: (MediaQuery.of(context).size.width * 0.85) / 2,
+                          child: Tab(
+                            child: Center(
+                              child: Text(
+                                "categorías",
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                        /*child: Container(
+                          height: 20,
+                          width: (MediaQuery.of(context).size.width * 0.8) / 2,
+                          //color: kmelroseColor,
+                          child: Row(
+                            children: <Widget>[
+                              Tab(
+                                child: Center(
+                                  child: Text(
+                                    "categorías",
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),*/
+                      ),
+                      Tab(
+                        child: Container(
+                          width: (MediaQuery.of(context).size.width * 0.85) / 2,
+                          child: Tab(
+                            child: Center(
+                              child: Text(
+                                "medicamentos",
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  Tab(
-                    text: "Medicamentos",
-                  ),
-                ],
+                ),
               ),
               backgroundColor: Colors.white,
             ),
