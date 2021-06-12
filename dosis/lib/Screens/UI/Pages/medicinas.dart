@@ -82,7 +82,7 @@ class _MedicinasState extends State<Medicinas> {
                   child: TabBar(
                     isScrollable: true,
                     labelColor: Colors.white,
-                    unselectedLabelColor: kgreyDColor,
+                    unselectedLabelColor: kPrimaryColor,
                     indicator: BoxDecoration(
                       borderRadius: BorderRadius.circular(0), // Creates border
                       color: kPrimaryColor,
