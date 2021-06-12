@@ -126,40 +126,49 @@ class _MedicinasState extends State<Medicinas> {
               backgroundColor: Colors.white,
             ),
           ),
-          body: TabBarView(
-            children: [
-              GridView.builder(
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200,
-                    childAspectRatio: 3 / 2,
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 20),
-                itemCount: categorias.length,
-                itemBuilder: (context, index) => CategoriaObj(
-                  i: index,
-                  press: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => detailsCategoria(
-                                categoria: categorias[index],
-                              ))),
+          body: Padding(
+            padding: const EdgeInsets.only(top: 30),
+            child: TabBarView(
+              children: <Widget>[
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                  //const EdgeInsets.fromLTRB(30, 15.0, 90.0, 30),
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      //mainAxisSpacing: 20,
+                      //crossAxisSpacing: 20,
+                      childAspectRatio: 1.1,
+                    ),
+                    itemCount: categorias.length,
+                    itemBuilder: (context, index) => CategoriaObj(
+                      i: index,
+                      press: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => detailsCategoria(
+                                    categoria: categorias[index],
+                                  ))),
+                    ),
+                  ),
                 ),
-              ),
-              //BotonFlotante(),
-              ListView.builder(
-                padding: EdgeInsets.all(8.0),
-                itemCount: medicamentos.length,
-                itemBuilder: (context, index) => MedicamentoObj(
-                  i: index,
-                  press: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => detailsMedicamento(
-                                medicamento: medicamentos[index],
-                              ))),
+                //BotonFlotante(),
+                ListView.builder(
+                  padding: EdgeInsets.all(8.0),
+                  itemCount: medicamentos.length,
+                  itemBuilder: (context, index) => MedicamentoObj(
+                    i: index,
+                    press: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => detailsMedicamento(
+                                  medicamento: medicamentos[index],
+                                ))),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           floatingActionButton: SpeedDial(
             marginBottom: 20,
