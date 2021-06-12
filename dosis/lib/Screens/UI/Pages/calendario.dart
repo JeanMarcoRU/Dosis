@@ -110,6 +110,7 @@ class _calendarioState extends State<calendario> {
           ),
           Expanded(
             child: Container(
+              width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
