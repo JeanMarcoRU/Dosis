@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dosis/Classes/perfiles.dart';
 import 'package:dosis/Screens/UI/components/Medicamentos/detailsMedicamentos/detailsMedicamentos.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:dosis/Classes/categoria.dart';
@@ -16,14 +17,24 @@ import 'package:dosis/Screens/UI/components/Categorias/detailsCategoria/detailsC
 
 import 'calendario/perfil_appbar_constructor.dart';
 
-class Medicinas extends StatelessWidget {
+class Medicinas extends StatefulWidget {
   Medicinas({Key key}) : super(key: key);
 
+  @override
+  _MedicinasState createState() => _MedicinasState();
+}
+
+class _MedicinasState extends State<Medicinas> {
   final List categoriaslist = [];
+
   final List categoriasIDs = [];
+
   final List medicamentosList = [];
+
   final List medicamentosIDs = [];
+
   final FirebaseFirestore db = FirebaseFirestore.instance;
+
   final List catPrueba = [
     {
       "Nombre": "tratamiento infantil",
@@ -49,68 +60,115 @@ class Medicinas extends StatelessWidget {
     //cargaCategoria();
     cargarDatosCategoria(catPrueba);
     categorias.removeLast();
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
-          appBar: AppBar(
-            bottom: TabBar(
-              isScrollable: true,
-              labelColor: kPrimaryColor,
-              tabs: [
-                Tab(
-                  text: "Categorías",
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(190),
+            child: AppBar(
+              automaticallyImplyLeading: false,
+              flexibleSpace: _topAppBar(),
+              /*title: PreferredSize(
+                preferredSize: Size.fromHeight(200.0),
+                //child: _topAppBar(),
+              ),*/
+              bottom: new PreferredSize(
+                preferredSize: new Size(MediaQuery.of(context).size.width, 26),
+                child: Container(
+                  height: 26,
+                  child: TabBar(
+                    isScrollable: true,
+                    labelColor: Colors.white,
+                    unselectedLabelColor: kPrimaryColor,
+                    indicator: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0), // Creates border
+                      color: kPrimaryColor,
+                    ),
+                    unselectedLabelStyle: TextStyle(
+                      height: 1.5,
+                      //backgroundColor: kmelroseColor,
+                    ),
+                    tabs: [
+                      Tab(
+                        //text: "categorías",
+                        child: Container(
+                          width: (MediaQuery.of(context).size.width * 0.85) / 2,
+                          child: Tab(
+                            child: Center(
+                              child: Text(
+                                "categorías",
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Tab(
+                        child: Container(
+                          width: (MediaQuery.of(context).size.width * 0.85) / 2,
+                          child: Tab(
+                            child: Center(
+                              child: Text(
+                                "medicamentos",
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                Tab(
-                  text: "Todos los medicamentos",
+              ),
+              backgroundColor: Colors.white,
+            ),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.only(top: 30),
+            child: TabBarView(
+              children: <Widget>[
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                  //const EdgeInsets.fromLTRB(30, 15.0, 90.0, 30),
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      //mainAxisSpacing: 20,
+                      //crossAxisSpacing: 20,
+                      childAspectRatio: 1.1,
+                    ),
+                    itemCount: categorias.length,
+                    itemBuilder: (context, index) => CategoriaObj(
+                      i: index,
+                      press: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => detailsCategoria(
+                                    categoria: categorias[index],
+                                  ))),
+                    ),
+                  ),
+                ),
+                //BotonFlotante(),
+                ListView.builder(
+                  padding: EdgeInsets.all(8.0),
+                  itemCount: medicamentos.length,
+                  itemBuilder: (context, index) => MedicamentoObj(
+                    i: index,
+                    press: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => detailsMedicamento(
+                                  medicamento: medicamentos[index],
+                                ))),
+                  ),
                 ),
               ],
             ),
-            title: Text(
-              'medicamentos',
-              style: TextStyle(
-                color: kPrimaryColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 25,
-              ),
-            ),
-            backgroundColor: Colors.white,
-          ),
-          body: TabBarView(
-            children: [
-              GridView.builder(
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200,
-                    childAspectRatio: 3 / 2,
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 20),
-                itemCount: categorias.length,
-                itemBuilder: (context, index) => CategoriaObj(
-                  i: index,
-                  press: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => detailsCategoria(
-                                categoria: categorias[index],
-                              ))),
-                ),
-              ),
-              //BotonFlotante(),
-              ListView.builder(
-                padding: EdgeInsets.all(8.0),
-                itemCount: medicamentos.length,
-                itemBuilder: (context, index) => MedicamentoObj(
-                  i: index,
-                  press: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => detailsMedicamento(
-                                medicamento: medicamentos[index],
-                              ))),
-                ),
-              ),
-            ],
           ),
           floatingActionButton: SpeedDial(
             marginBottom: 20,
@@ -164,7 +222,59 @@ class Medicinas extends StatelessWidget {
     );
   }
 
-  /* Funcion para cargar los datos de Categoria */
+  Widget _perfiles() {
+    return Container(
+      height: 85,
+      width: double.infinity,
+      margin: EdgeInsets.only(top: 45),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border(
+          bottom: BorderSide(
+            width: 1.0,
+            color: kmelroseColor,
+          ),
+        ),
+      ),
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
+        children: perfiles.map((perfil) {
+          return PerfilAppbar(
+            perfil: perfil,
+            isPressed: true,
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  Widget _topAppBar() {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          _perfiles(),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: <Widget>[
+              SizedBox(width: 26),
+              Text(
+                'medicamentos',
+                style: TextStyle(
+                  color: kPrimaryColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
   void cargaCategoria() async {
     categoriaslist.clear();
     categoriasIDs.clear();
@@ -190,4 +300,51 @@ class Medicinas extends StatelessWidget {
           emoji: categoriaslist[i]["Emoji"]));
     }
   }
-} //  Fin clase medicamentos
+}
+
+
+
+  /*
+
+return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        backgroundColor: Colors.white, //-------------------
+        body: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            _perfiles(),
+            Container(
+              //color: Colors.pink,
+              height: 80,
+              child: Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: 30,
+                  ),
+                  Container(
+                    //color: Colors.white,
+                    width: 250,
+                    child: Text(
+                      'medicamentos',
+                      style: TextStyle(
+                        color: kPrimaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                      ),
+                    ),
+                  ), // aqui va el icono de busqueda--------
+                ],
+              ),
+            ),
+            
+          ],
+        ),
+      ),
+    );
+
+
+  
+  */
+
+ //  Fin clase medicamentos

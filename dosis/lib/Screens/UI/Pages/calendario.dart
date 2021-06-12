@@ -91,7 +91,7 @@ class _calendarioState extends State<calendario> {
           Row(
             children: <Widget>[
               SizedBox(
-                width: 35,
+                width: 26,
               ),
               Container(
                 child: Text(
@@ -284,7 +284,10 @@ class _calendarioState extends State<calendario> {
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border(
-          bottom: BorderSide(width: 1.0, color: kgreyLColor),
+          bottom: BorderSide(
+            width: 1.0,
+            color: kmelroseColor,
+          ),
         ),
       ),
       child: ListView(
