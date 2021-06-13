@@ -6,6 +6,7 @@ import 'package:dosis/Screens/UI/components/detailsPerfil/details_screen.dart';
 import 'package:dosis/Screens/UI/components/perfil.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/Screens/UI/Pages/configurations.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import '../../../constants.dart';
 
 class Perfiles extends StatelessWidget {
@@ -112,13 +113,15 @@ class Perfiles extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: SpeedDial(
+        //elevation: 20,
+        marginBottom: 20,
         child: Icon(
           Icons.add,
           size: 50,
         ),
         backgroundColor: kjungleMistColor,
-        onPressed: () {
+        onPress: () {
           Navigator.push(
             context,
             MaterialPageRoute(

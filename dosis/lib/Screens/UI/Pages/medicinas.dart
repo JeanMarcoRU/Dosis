@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dosis/Classes/perfiles.dart';
+import 'package:dosis/Screens/Signup/components/social_icon.dart';
 import 'package:dosis/Screens/UI/components/Medicamentos/detailsMedicamentos/detailsMedicamentos.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:dosis/Classes/categoria.dart';
@@ -171,24 +172,36 @@ class _MedicinasState extends State<Medicinas> {
             ),
           ),
           floatingActionButton: SpeedDial(
+            //elevation: 20,
             marginBottom: 20,
-            animatedIcon: AnimatedIcons.add_event,
+            child: Icon(
+              Icons.add,
+              size: 50,
+            ),
+            //animatedIcon: AnimatedIcons.menu_arrow,
             visible: true,
             closeManually: false,
             curve: Curves.bounceIn,
             overlayColor: Colors.black,
-            overlayOpacity: 0.5,
+            overlayOpacity: 0.4,
             onOpen: () => print('OPENING DIAL'),
             onClose: () => print('DIAL CLOSED'),
             tooltip: 'Speed Dial',
             heroTag: 'speed-dial-hero-tag',
             backgroundColor: kPrimaryColor,
             foregroundColor: Colors.white,
-            elevation: 8.0,
+            //elevation: 8.0,
             shape: CircleBorder(),
             children: [
               SpeedDialChild(
-                child: Icon(Icons.add),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: SocalIcon(
+                    iconSrc: "assets/icons/recetasDosis.svg",
+                    size: 15,
+                    color: Colors.white,
+                  ),
+                ),
                 backgroundColor: kPrimaryColor,
                 label: 'Categoría',
                 labelStyle: TextStyle(fontSize: 18.0),
@@ -202,7 +215,14 @@ class _MedicinasState extends State<Medicinas> {
                 ),
               ),
               SpeedDialChild(
-                child: Icon(Icons.add),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SocalIcon(
+                    iconSrc: "assets/icons/pastillaDosis.svg",
+                    size: 15,
+                    color: Colors.white,
+                  ),
+                ),
                 backgroundColor: kPrimaryColor,
                 label: 'Medicamento',
                 labelStyle: TextStyle(fontSize: 18.0),
