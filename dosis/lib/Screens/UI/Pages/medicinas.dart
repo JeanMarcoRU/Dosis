@@ -204,7 +204,15 @@ class _MedicinasState extends State<Medicinas> {
                 ),
                 backgroundColor: kPrimaryColor,
                 label: 'Categoría',
-                labelStyle: TextStyle(fontSize: 18.0),
+                labelStyle: TextStyle(
+                  fontSize: 18.0,
+                  color: kPrimaryColor,
+                  background: Paint()
+                    ..color = kmelroseColor
+                    ..strokeWidth = 22.0
+                    ..style = PaintingStyle.stroke
+                    ..strokeJoin = StrokeJoin.round,
+                ),
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -225,7 +233,15 @@ class _MedicinasState extends State<Medicinas> {
                 ),
                 backgroundColor: kPrimaryColor,
                 label: 'Medicamento',
-                labelStyle: TextStyle(fontSize: 18.0),
+                labelStyle: TextStyle(
+                  fontSize: 18.0,
+                  color: kPrimaryColor,
+                  background: Paint()
+                    ..color = kmelroseColor
+                    ..strokeWidth = 22.0
+                    ..style = PaintingStyle.stroke
+                    ..strokeJoin = StrokeJoin.round,
+                ),
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
