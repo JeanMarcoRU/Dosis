@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/constants.dart';
 
-class CategoriaObj extends StatelessWidget {
+class CategoriaObj extends StatefulWidget {
   final Categoria categoria;
   final Function press;
   final int i;
@@ -15,9 +15,14 @@ class CategoriaObj extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _CategoriaObjState createState() => _CategoriaObjState();
+}
+
+class _CategoriaObjState extends State<CategoriaObj> {
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: press,
+      onTap: widget.press,
       child: Padding(
         padding: const EdgeInsets.only(top: 10, bottom: 0, left: 10, right: 10),
         child: Column(
@@ -26,7 +31,7 @@ class CategoriaObj extends StatelessWidget {
               height: 120,
               width: 142,
               decoration: BoxDecoration(
-                color: userblueColor,
+                color: categorias[widget.i].color,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Column(
@@ -35,7 +40,7 @@ class CategoriaObj extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(left: 10, bottom: 5, top: 10),
                     child: Text(
-                      categorias[i].nombre,
+                      categorias[widget.i].nombre,
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -47,7 +52,7 @@ class CategoriaObj extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(left: 10, bottom: 5),
                     child: Text(
-                      categorias[i].descripcion,
+                      categorias[widget.i].descripcion,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 12,
@@ -58,7 +63,7 @@ class CategoriaObj extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(left: 10),
                     child: Text(
-                      categorias[i].letralogo,
+                      categorias[widget.i].letralogo,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 12,
@@ -87,7 +92,7 @@ class CategoriaObj extends StatelessWidget {
                           ),
                           child: Center(
                             child: Text(
-                              categorias[i].emoji,
+                              categorias[widget.i].emoji,
                               style: TextStyle(
                                 fontSize: 20,
                               ),

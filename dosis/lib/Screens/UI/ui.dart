@@ -102,6 +102,7 @@ class ui extends StatelessWidget {
     categorias.clear();
     for (var i = 0; i < categoriaslist.length; i++) {
       categorias.add(Categoria(
+          color: getColor(categoriaslist[i]["Color"]),
           idCategoria: categoriaIDs[i],
           letralogo: categoriaslist[i]["letralogo"],
           nombre: categoriaslist[i]["Nombre"],
