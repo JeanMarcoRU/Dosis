@@ -15,10 +15,14 @@ class CategoriaObj extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _CategoriaObjState createState() => _CategoriaObjState();
+  _CategoriaObjState createState() => _CategoriaObjState(this.categoria);
 }
 
 class _CategoriaObjState extends State<CategoriaObj> {
+  final Categoria categoria;
+
+  _CategoriaObjState(this.categoria);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -31,7 +35,7 @@ class _CategoriaObjState extends State<CategoriaObj> {
               height: 120,
               width: 142,
               decoration: BoxDecoration(
-                color: categorias[widget.i].color,
+                color: categoria.color,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Column(
@@ -40,7 +44,7 @@ class _CategoriaObjState extends State<CategoriaObj> {
                   Container(
                     margin: EdgeInsets.only(left: 10, bottom: 5, top: 10),
                     child: Text(
-                      categorias[widget.i].nombre,
+                      categoria.nombre,
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -52,7 +56,7 @@ class _CategoriaObjState extends State<CategoriaObj> {
                   Container(
                     margin: EdgeInsets.only(left: 10, bottom: 5),
                     child: Text(
-                      categorias[widget.i].descripcion,
+                      categoria.descripcion,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 12,
@@ -63,7 +67,7 @@ class _CategoriaObjState extends State<CategoriaObj> {
                   Container(
                     margin: EdgeInsets.only(left: 10),
                     child: Text(
-                      categorias[widget.i].letralogo,
+                      categoria.letralogo,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 12,
@@ -92,7 +96,7 @@ class _CategoriaObjState extends State<CategoriaObj> {
                           ),
                           child: Center(
                             child: Text(
-                              categorias[widget.i].emoji,
+                              categoria.emoji,
                               style: TextStyle(
                                 fontSize: 20,
                               ),

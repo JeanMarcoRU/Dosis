@@ -30,7 +30,7 @@ class _MedicinasState extends State<Medicinas> {
 
   final List medicamentosFiltro = [];
 
-  final List medicamentosIDs = [];
+  final List categoriasFiltro = [];
 
   final FirebaseFirestore db = FirebaseFirestore.instance;
 
@@ -43,54 +43,13 @@ class _MedicinasState extends State<Medicinas> {
     }
   ];
 
-  void cargarDatosCategoria(List c) {
-    for (var i = 0; i < c.length; i++) {
-      categorias.add(Categoria(
-          idCategoria: "0",
-          letralogo: c[i]["letralogo"],
-          nombre: c[i]["Nombre"],
-          descripcion: c[i]["Descripcion"],
-          emoji: c[i]["Emoji"]));
-    }
-  }
-
-  void queryMedicamentos() async {
-    medicamentosFiltro.clear();
-
-    for (var i = 0; i < medicamentos.length; i++) {
-      if (buscarPerfil(medicamentos[i].color)) {
-        medicamentosFiltro.add(Medicamento(
-            color: medicamentos[i].color,
-            categoriaP: medicamentos[i].categoriaP,
-            idMedicamento: medicamentos[i].idMedicamento,
-            nombre: medicamentos[i].nombre,
-            dosis: medicamentos[i].dosis,
-            tomaDesde: medicamentos[i].tomaDesde,
-            tomaHasta: medicamentos[i].tomaHasta,
-            dias: medicamentos[i].dias,
-            hora: medicamentos[i].hora));
-      }
-    }
-  }
-
-  //Busca el nombre perfil por color
-  bool buscarPerfil(Color color) {
-    bool resultado;
-    for (var i = 0; i < perfiles.length; i++) {
-      if (perfiles[i].color == color) {
-        resultado = perfiles[i].visibilidad;
-        break;
-      }
-    }
-    return resultado;
-  }
-
   @override
   Widget build(BuildContext context) {
     //cargaCategoria();
     cargarDatosCategoria(catPrueba);
     categorias.removeLast();
     queryMedicamentos();
+    queryCategoria();
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -172,14 +131,15 @@ class _MedicinasState extends State<Medicinas> {
                       //crossAxisSpacing: 20,
                       childAspectRatio: 1.1,
                     ),
-                    itemCount: categorias.length,
+                    itemCount: categoriasFiltro.length,
                     itemBuilder: (context, index) => CategoriaObj(
                       i: index,
+                      categoria: categoriasFiltro[index],
                       press: () => Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => detailsCategoria(
-                                    categoria: categorias[index],
+                                    categoria: categoriasFiltro[index],
                                   ))),
                     ),
                   ),
@@ -307,8 +267,6 @@ class _MedicinasState extends State<Medicinas> {
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
         children: perfiles.map((perfil) {
-          print("asi esta la visibilad");
-          print(perfil.visibilidad);
           return PerfilAppbar(
             perfil: perfil,
             isPressed: perfil.visibilidad,
@@ -368,6 +326,63 @@ class _MedicinasState extends State<Medicinas> {
           descripcion: categoriaslist[i]["Descripcion"],
           emoji: categoriaslist[i]["Emoji"]));
     }
+  }
+
+  void cargarDatosCategoria(List c) {
+    for (var i = 0; i < c.length; i++) {
+      categorias.add(Categoria(
+          idCategoria: "0",
+          letralogo: c[i]["letralogo"],
+          nombre: c[i]["Nombre"],
+          descripcion: c[i]["Descripcion"],
+          emoji: c[i]["Emoji"]));
+    }
+  }
+
+  void queryMedicamentos() async {
+    medicamentosFiltro.clear();
+
+    for (var i = 0; i < medicamentos.length; i++) {
+      if (buscarPerfil(medicamentos[i].color)) {
+        medicamentosFiltro.add(Medicamento(
+            color: medicamentos[i].color,
+            categoriaP: medicamentos[i].categoriaP,
+            idMedicamento: medicamentos[i].idMedicamento,
+            nombre: medicamentos[i].nombre,
+            dosis: medicamentos[i].dosis,
+            tomaDesde: medicamentos[i].tomaDesde,
+            tomaHasta: medicamentos[i].tomaHasta,
+            dias: medicamentos[i].dias,
+            hora: medicamentos[i].hora));
+      }
+    }
+  }
+
+  void queryCategoria() async {
+    categoriasFiltro.clear();
+
+    for (var i = 0; i < categorias.length; i++) {
+      if (buscarPerfil(categorias[i].color)) {
+        categoriasFiltro.add(Categoria(
+            color: categorias[i].color,
+            nombre: categorias[i].nombre,
+            descripcion: categorias[i].descripcion,
+            emoji: categorias[i].emoji,
+            letralogo: categorias[i].letralogo));
+      }
+    }
+  }
+
+  //Busca el nombre perfil por color
+  bool buscarPerfil(Color color) {
+    bool resultado;
+    for (var i = 0; i < perfiles.length; i++) {
+      if (perfiles[i].color == color) {
+        resultado = perfiles[i].visibilidad;
+        break;
+      }
+    }
+    return resultado;
   }
 }
 
