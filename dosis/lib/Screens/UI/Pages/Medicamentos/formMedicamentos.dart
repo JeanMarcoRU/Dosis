@@ -41,10 +41,13 @@ class _formMedicamento_State extends State<formMedicamentos> {
   final TextEditingController horaController = TextEditingController();
   CollectionReference _medicamento =
       FirebaseFirestore.instance.collection("Medicamentos");
-  String dropdownValue;
+  String categValue;
+  String perfil_elegido;
   String color_elegido;
   List<String> opcionesCategoria = [];
   List<String> opColores = [];
+  List<String> opPerfiles = [];
+  List opciones = [];
 
   void cargarOpciones() async {
     opcionesCategoria.clear();
@@ -60,6 +63,25 @@ class _formMedicamento_State extends State<formMedicamentos> {
       opColores.add(getColorString(perfiles[i].color));
     }
     print(opColores);
+  }
+
+  void elegirPerfiles() async {
+    opPerfiles.clear();
+    for (var i = 0; i < perfiles.length; i++) {
+      opPerfiles.add(perfiles[i].nombre);
+    }
+    print(opPerfiles);
+  }
+
+  String buscarPerfil(Color color) {
+    String resultado = "";
+    for (var i = 0; i < perfiles.length; i++) {
+      if (perfiles[i].color == color) {
+        resultado = perfiles[i].nombre;
+        break;
+      }
+    }
+    return resultado;
   }
 
   String getColorString(Color color) {
@@ -83,12 +105,59 @@ class _formMedicamento_State extends State<formMedicamentos> {
     }
   }
 
+  Color getColor(String color) {
+    switch (color) {
+      case "Rosado":
+        {
+          return userpinkColor;
+        }
+        break;
+
+      case "Azul":
+        {
+          return userblueColor;
+        }
+        break;
+
+      case "Morado":
+        {
+          return userpurpleColor;
+        }
+        break;
+
+      case "Verde":
+        {
+          return usergreenColor;
+        }
+        break;
+
+      case "Anaranjado":
+        {
+          return userorangeColor;
+        }
+        break;
+
+      case "Gris":
+        {
+          return usergreyColor;
+        }
+        break;
+
+      default:
+        {
+          return userblueColor;
+        }
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     print(categorias);
     cargarOpciones();
     opcionesColores();
+    elegirPerfiles();
     return BackgroundWhite(
       child: SingleChildScrollView(
         child: Column(
@@ -193,7 +262,7 @@ class _formMedicamento_State extends State<formMedicamentos> {
                     ),
                   ),
                   DropdownButtonFormField<String>(
-                    value: dropdownValue,
+                    value: categValue,
                     style: TextStyle(color: kgreyDColor),
                     items: opcionesCategoria
                         .map<DropdownMenuItem<String>>((String value) {
@@ -204,7 +273,7 @@ class _formMedicamento_State extends State<formMedicamentos> {
                     }).toList(),
                     onChanged: (String newValue) {
                       setState(() {
-                        dropdownValue = newValue;
+                        categValue = newValue;
                       });
                     },
                   ),
@@ -232,9 +301,9 @@ class _formMedicamento_State extends State<formMedicamentos> {
                     items:
                         opColores.map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
-                        value: value,
-                        child:
-                            Text(value, style: TextStyle(color: kPrimaryColor)),
+                        value: buscarPerfil(getColor(value)),
+                        child: Text(buscarPerfil(getColor(value)),
+                            style: TextStyle(color: getColor(value))),
                       );
                     }).toList(),
                     onChanged: (String newValue) {
@@ -258,13 +327,16 @@ class _formMedicamento_State extends State<formMedicamentos> {
                     DateTime.parse(tomaHastaController.text);
                 final String dias = diasController.text;
                 final String hora = horaController.text;
+                final String colorM = getColorObj(getColor(color_elegido));
                 await _medicamento.add({
                   "Nombre": nombre,
                   "Dosis": dosis,
                   "Período de Toma Desde": tomaDesde,
                   "Período de Toma Hasta": tomaHasta,
                   "Días": dias,
-                  "Hora": hora
+                  "Hora": hora,
+                  "CategoriaP": categValue,
+                  "Color": colorM
                 });
                 Navigator.push(
                   context,
@@ -280,5 +352,23 @@ class _formMedicamento_State extends State<formMedicamentos> {
         ),
       ),
     );
+  }
+
+  String getColorObj(Color color) {
+    if (color == userpinkColor) {
+      return "userpinkColor";
+    } else if (color == userblueColor) {
+      return "userblueColor";
+    } else if (color == userpurpleColor) {
+      return "userpurpleColor";
+    } else if (color == usergreenColor) {
+      return "usergreenColor";
+    } else if (color == userorangeColor) {
+      return "userorangeColor";
+    } else if (color == usergreyColor) {
+      return "usergreyColor";
+    } else {
+      return "userblueColor";
+    }
   }
 }
