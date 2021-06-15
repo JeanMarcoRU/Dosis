@@ -14,6 +14,7 @@ class Body extends StatelessWidget {
   final TextEditingController tomaHastaController = TextEditingController();
   final TextEditingController diasController = TextEditingController();
   final TextEditingController horaController = TextEditingController();
+  final TextEditingController categoriaC = TextEditingController();
   CollectionReference _medicamento =
       FirebaseFirestore.instance.collection("Medicamentos");
 
@@ -296,6 +297,46 @@ class Body extends StatelessWidget {
                     ),
                     Row(
                       children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            "Categoria",
+                            style: TextStyle(
+                              color: kgreyDColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 0),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          width: 200,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: TextField(
+                            controller: categoriaC,
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              height: 0,
+                              color: kgreyDColor,
+                            ),
+                            decoration: InputDecoration(
+                              hintText: medicamento.categoriaP,
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      children: <Widget>[
                         SizedBox(
                           width: 100,
                         ),
@@ -338,7 +379,8 @@ class Body extends StatelessWidget {
                                 "Período de Toma Desde": medicamento.tomaDesde,
                                 "Período de Toma Hasta": medicamento.tomaHasta,
                                 "Días": medicamento.dias,
-                                "Hora": medicamento.hora
+                                "Hora": medicamento.hora,
+                                "CategoriaP": medicamento.categoriaP
                               });
                               Navigator.push(
                                 context,

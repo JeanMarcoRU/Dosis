@@ -20,6 +20,7 @@ class Body extends StatelessWidget {
   final TextEditingController tomaHastaController = TextEditingController();
   final TextEditingController diasController = TextEditingController();
   final TextEditingController horaController = TextEditingController();
+  final TextEditingController categoriaC = TextEditingController();
   CollectionReference _medicamento =
       FirebaseFirestore.instance.collection("Medicamentos");
 
@@ -290,6 +291,46 @@ class Body extends StatelessWidget {
                             ),
                             decoration: InputDecoration(
                               hintText: medicamento.hora,
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            "Categoria",
+                            style: TextStyle(
+                              color: kgreyDColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 0),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          width: 200,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: TextField(
+                            controller: categoriaC,
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              height: 0,
+                              color: kgreyDColor,
+                            ),
+                            decoration: InputDecoration(
+                              hintText: medicamento.categoriaP,
                               border: InputBorder.none,
                             ),
                           ),
