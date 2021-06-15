@@ -297,7 +297,7 @@ class _calendarioState extends State<calendario> {
         children: perfiles.map((perfil) {
           return PerfilAppbar(
             perfil: perfil,
-            isPressed: true,
+            isPressed: perfil.visibilidad,
           );
         }).toList(),
       ),

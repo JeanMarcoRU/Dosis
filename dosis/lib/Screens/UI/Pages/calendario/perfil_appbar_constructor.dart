@@ -27,6 +27,9 @@ class _PerfilAppbarState extends State<PerfilAppbar> {
       onTap: () {
         setState(() {
           widget.isPressed = !widget.isPressed;
+          widget.perfil.visibilidad = widget.isPressed;
+          print("Ahora estoy acá");
+          print(widget.perfil.visibilidad);
         });
       },
       child: Column(

@@ -156,6 +156,7 @@ class Perfiles extends StatelessWidget {
     for (var i = 0; i < perfileslist.length; i++) {
       perfiles.add(Perfil(
           idPerfil: perfilesIDs[i],
+          visibilidad: true, //POR DEFECTO
           letralogo: perfileslist[i]["letralogo"],
           avatar: perfileslist[i]["avatar"],
           nombre: perfileslist[i]["nombre"],

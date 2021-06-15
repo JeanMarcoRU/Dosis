@@ -7,6 +7,7 @@ import 'package:dosis/Screens/UI/ui.dart';
 import 'package:provider/provider.dart';
 import 'Screens/Login/login_screen.dart';
 import 'authentication_service.dart';
+import 'Classes/Usuario.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,8 +47,13 @@ class AuthenticationWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User>();
+    //Usuario usuario;
 
     if (firebaseUser != null) {
+      //usuario.idUser = firebaseUser.uid.toString();
+      print("Usuario Id");
+      print(firebaseUser.uid);
+      //print(usuario.idUser);
       return ui();
     }
     return LoginScreen();

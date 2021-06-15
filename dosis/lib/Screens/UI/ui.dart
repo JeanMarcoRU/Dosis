@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dosis/Classes/perfiles.dart';
 import 'package:dosis/Classes/categoria.dart';
 import 'package:dosis/Classes/medicamento.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/Screens/UI/components/body.dart';
 
@@ -67,6 +68,7 @@ class ui extends StatelessWidget {
     for (var i = 0; i < perfileslist.length; i++) {
       perfiles.add(Perfil(
           idPerfil: perfilesIDs[i],
+          visibilidad: true, //POR DEFECTO
           letralogo: perfileslist[i]["letralogo"],
           avatar: perfileslist[i]["avatar"],
           nombre: perfileslist[i]["nombre"],

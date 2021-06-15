@@ -8,8 +8,6 @@ import 'package:dosis/Classes/medicamento.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import '../../../constants.dart';
-import 'Medicamentos/formCategoria.dart';
-import 'Medicamentos/formMedicamentos.dart';
 import 'Medicamentos/FormularioM.dart';
 import 'Medicamentos/FormularioC.dart';
 import 'package:dosis/Screens/UI/components/categoria.dart';
@@ -276,9 +274,11 @@ class _MedicinasState extends State<Medicinas> {
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
         children: perfiles.map((perfil) {
+          print("asi esta la visibilad");
+          print(perfil.visibilidad);
           return PerfilAppbar(
             perfil: perfil,
-            isPressed: true,
+            isPressed: perfil.visibilidad,
           );
         }).toList(),
       ),
@@ -338,9 +338,7 @@ class _MedicinasState extends State<Medicinas> {
   }
 }
 
-
-
-  /*
+/*
 
 return DefaultTabController(
       length: 2,
@@ -383,4 +381,4 @@ return DefaultTabController(
   
   */
 
- //  Fin clase medicamentos
+//  Fin clase medicamentos

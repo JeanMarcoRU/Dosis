@@ -13,8 +13,10 @@ class Perfil {
   int edad;
   Color color;
   DateTime fechaNacimiento;
+  bool visibilidad;
   //void cargaPerfiles();
   Perfil({
+    this.visibilidad,
     this.idPerfil,
     this.letralogo,
     this.avatar,
