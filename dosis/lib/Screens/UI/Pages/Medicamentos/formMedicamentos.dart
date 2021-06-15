@@ -49,121 +49,6 @@ class _formMedicamento_State extends State<formMedicamentos> {
   List<String> opPerfiles = [];
   List opciones = [];
 
-  void cargarOpciones() async {
-    opcionesCategoria.clear();
-    for (var i = 0; i < categorias.length; i++) {
-      opcionesCategoria.add(categorias[i].nombre);
-    }
-    print(opcionesCategoria);
-  }
-
-  void opcionesColores() async {
-    opColores.clear();
-    for (var i = 0; i < perfiles.length; i++) {
-      opColores.add(getColorString(perfiles[i].color));
-    }
-    print(opColores);
-  }
-
-  void elegirPerfiles() async {
-    opPerfiles.clear();
-    for (var i = 0; i < perfiles.length; i++) {
-      opPerfiles.add(perfiles[i].nombre);
-    }
-    print(opPerfiles);
-  }
-
-  //Busca el nombre perfil por color
-  String buscarPerfil(Color color) {
-    String resultado = "";
-    for (var i = 0; i < perfiles.length; i++) {
-      if (perfiles[i].color == color) {
-        resultado = perfiles[i].nombre;
-        break;
-      }
-    }
-    return resultado;
-  }
-
-  // Busca el color de perfil por nombre de perfil
-  Color buscarColor(String perfil) {
-    Color resultado;
-    for (var i = 0; i < perfiles.length; i++) {
-      if (perfiles[i].nombre == perfil) {
-        resultado = perfiles[i].color;
-        break;
-      }
-    }
-    return resultado;
-  }
-
-  String getColorString(Color color) {
-    if (color == userpinkColor) {
-      return "Rosado";
-    }
-    if (color == userblueColor) {
-      return "Azul";
-    }
-    if (color == userpurpleColor) {
-      return "Morado";
-    }
-    if (color == usergreenColor) {
-      return "Verde";
-    }
-    if (color == usergreyColor) {
-      return "Gris";
-    }
-    if (color == userorangeColor) {
-      return "Anaranjado";
-    }
-  }
-
-  Color getColor(String color) {
-    switch (color) {
-      case "Rosado":
-        {
-          return userpinkColor;
-        }
-        break;
-
-      case "Azul":
-        {
-          return userblueColor;
-        }
-        break;
-
-      case "Morado":
-        {
-          return userpurpleColor;
-        }
-        break;
-
-      case "Verde":
-        {
-          return usergreenColor;
-        }
-        break;
-
-      case "Anaranjado":
-        {
-          return userorangeColor;
-        }
-        break;
-
-      case "Gris":
-        {
-          return usergreyColor;
-        }
-        break;
-
-      default:
-        {
-          return userblueColor;
-        }
-        break;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -332,7 +217,6 @@ class _formMedicamento_State extends State<formMedicamentos> {
             RoundedButton(
               text: "Guardar",
               press: () async {
-                print(color_elegido);
                 final String nombre = nombreController.text;
                 final String dosis = dosisController.text;
                 final DateTime tomaDesde =
@@ -366,6 +250,121 @@ class _formMedicamento_State extends State<formMedicamentos> {
         ),
       ),
     );
+  }
+
+  void cargarOpciones() async {
+    opcionesCategoria.clear();
+    for (var i = 0; i < categorias.length; i++) {
+      opcionesCategoria.add(categorias[i].nombre);
+    }
+    print(opcionesCategoria);
+  }
+
+  void opcionesColores() async {
+    opColores.clear();
+    for (var i = 0; i < perfiles.length; i++) {
+      opColores.add(getColorString(perfiles[i].color));
+    }
+    print(opColores);
+  }
+
+  void elegirPerfiles() async {
+    opPerfiles.clear();
+    for (var i = 0; i < perfiles.length; i++) {
+      opPerfiles.add(perfiles[i].nombre);
+    }
+    print(opPerfiles);
+  }
+
+  //Busca el nombre perfil por color
+  String buscarPerfil(Color color) {
+    String resultado = "";
+    for (var i = 0; i < perfiles.length; i++) {
+      if (perfiles[i].color == color) {
+        resultado = perfiles[i].nombre;
+        break;
+      }
+    }
+    return resultado;
+  }
+
+  // Busca el color de perfil por nombre de perfil
+  Color buscarColor(String perfil) {
+    Color resultado;
+    for (var i = 0; i < perfiles.length; i++) {
+      if (perfiles[i].nombre == perfil) {
+        resultado = perfiles[i].color;
+        break;
+      }
+    }
+    return resultado;
+  }
+
+  String getColorString(Color color) {
+    if (color == userpinkColor) {
+      return "Rosado";
+    }
+    if (color == userblueColor) {
+      return "Azul";
+    }
+    if (color == userpurpleColor) {
+      return "Morado";
+    }
+    if (color == usergreenColor) {
+      return "Verde";
+    }
+    if (color == usergreyColor) {
+      return "Gris";
+    }
+    if (color == userorangeColor) {
+      return "Anaranjado";
+    }
+  }
+
+  Color getColor(String color) {
+    switch (color) {
+      case "Rosado":
+        {
+          return userpinkColor;
+        }
+        break;
+
+      case "Azul":
+        {
+          return userblueColor;
+        }
+        break;
+
+      case "Morado":
+        {
+          return userpurpleColor;
+        }
+        break;
+
+      case "Verde":
+        {
+          return usergreenColor;
+        }
+        break;
+
+      case "Anaranjado":
+        {
+          return userorangeColor;
+        }
+        break;
+
+      case "Gris":
+        {
+          return usergreyColor;
+        }
+        break;
+
+      default:
+        {
+          return userblueColor;
+        }
+        break;
+    }
   }
 
   String getColorObj(Color color) {
