@@ -73,11 +73,24 @@ class _formMedicamento_State extends State<formMedicamentos> {
     print(opPerfiles);
   }
 
+  //Busca el nombre perfil por color
   String buscarPerfil(Color color) {
     String resultado = "";
     for (var i = 0; i < perfiles.length; i++) {
       if (perfiles[i].color == color) {
         resultado = perfiles[i].nombre;
+        break;
+      }
+    }
+    return resultado;
+  }
+
+  // Busca el color de perfil por nombre de perfil
+  Color buscarColor(String perfil) {
+    Color resultado;
+    for (var i = 0; i < perfiles.length; i++) {
+      if (perfiles[i].nombre == perfil) {
+        resultado = perfiles[i].color;
         break;
       }
     }
@@ -319,6 +332,7 @@ class _formMedicamento_State extends State<formMedicamentos> {
             RoundedButton(
               text: "Guardar",
               press: () async {
+                print(color_elegido);
                 final String nombre = nombreController.text;
                 final String dosis = dosisController.text;
                 final DateTime tomaDesde =
@@ -327,7 +341,7 @@ class _formMedicamento_State extends State<formMedicamentos> {
                     DateTime.parse(tomaHastaController.text);
                 final String dias = diasController.text;
                 final String hora = horaController.text;
-                final String colorM = getColorObj(getColor(color_elegido));
+                final String colorM = getColorObj(buscarColor(color_elegido));
                 await _medicamento.add({
                   "Nombre": nombre,
                   "Dosis": dosis,
