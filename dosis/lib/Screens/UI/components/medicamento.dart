@@ -21,10 +21,13 @@ class MedicamentoObj extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _MedicamentoObjState createState() => _MedicamentoObjState();
+  _MedicamentoObjState createState() => _MedicamentoObjState(this.medicamento);
 }
 
 class _MedicamentoObjState extends State<MedicamentoObj> {
+  final Medicamento medicamento;
+
+  _MedicamentoObjState(this.medicamento);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -44,7 +47,7 @@ class _MedicamentoObjState extends State<MedicamentoObj> {
                   borderRadius: BorderRadius.all(
                     Radius.circular(20),
                   ),
-                  color: medicamentos[widget.i].color,
+                  color: medicamento.color,
                 ),
                 child: Row(
                   children: <Widget>[
@@ -88,7 +91,7 @@ class _MedicamentoObjState extends State<MedicamentoObj> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            medicamentos[widget.i].nombre,
+                            medicamento.nombre,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 15,
@@ -97,7 +100,7 @@ class _MedicamentoObjState extends State<MedicamentoObj> {
                             textAlign: TextAlign.left,
                           ),
                           Text(
-                            medicamentos[widget.i].dosis,
+                            medicamento.dosis,
                             style: TextStyle(
                               fontWeight: FontWeight.w200,
                               fontSize: 12,
@@ -106,7 +109,7 @@ class _MedicamentoObjState extends State<MedicamentoObj> {
                             textAlign: TextAlign.left,
                           ),
                           Text(
-                            medicamentos[widget.i].hora,
+                            medicamento.hora,
                             style: TextStyle(
                               fontWeight: FontWeight.w200,
                               fontSize: 12,

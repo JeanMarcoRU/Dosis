@@ -28,7 +28,7 @@ class _MedicinasState extends State<Medicinas> {
 
   final List categoriasIDs = [];
 
-  final List medicamentosList = [];
+  final List medicamentosFiltro = [];
 
   final List medicamentosIDs = [];
 
@@ -54,11 +54,43 @@ class _MedicinasState extends State<Medicinas> {
     }
   }
 
+  void queryMedicamentos() async {
+    medicamentosFiltro.clear();
+
+    for (var i = 0; i < medicamentos.length; i++) {
+      if (buscarPerfil(medicamentos[i].color)) {
+        medicamentosFiltro.add(Medicamento(
+            color: medicamentos[i].color,
+            categoriaP: medicamentos[i].categoriaP,
+            idMedicamento: medicamentos[i].idMedicamento,
+            nombre: medicamentos[i].nombre,
+            dosis: medicamentos[i].dosis,
+            tomaDesde: medicamentos[i].tomaDesde,
+            tomaHasta: medicamentos[i].tomaHasta,
+            dias: medicamentos[i].dias,
+            hora: medicamentos[i].hora));
+      }
+    }
+  }
+
+  //Busca el nombre perfil por color
+  bool buscarPerfil(Color color) {
+    bool resultado;
+    for (var i = 0; i < perfiles.length; i++) {
+      if (perfiles[i].color == color) {
+        resultado = perfiles[i].visibilidad;
+        break;
+      }
+    }
+    return resultado;
+  }
+
   @override
   Widget build(BuildContext context) {
     //cargaCategoria();
     cargarDatosCategoria(catPrueba);
     categorias.removeLast();
+    queryMedicamentos();
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -155,14 +187,15 @@ class _MedicinasState extends State<Medicinas> {
                 //BotonFlotante(),
                 ListView.builder(
                   padding: EdgeInsets.all(8.0),
-                  itemCount: medicamentos.length,
+                  itemCount: medicamentosFiltro.length,
                   itemBuilder: (context, index) => MedicamentoObj(
                     i: index,
+                    medicamento: medicamentosFiltro[index],
                     press: () => Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => detailsMedicamento(
-                                  medicamento: medicamentos[index],
+                                  medicamento: medicamentosFiltro[index],
                                 ))),
                   ),
                 ),
