@@ -15,11 +15,44 @@ class Calendario extends StatefulWidget {
 }
 
 class _CalendarioState extends State<Calendario> {
+  List medicamentosFiltros = [];
+  void queryMedicamentos() async {
+    medicamentosFiltros.clear();
+
+    for (var i = 0; i < medicamentos.length; i++) {
+      if (buscarPerfil(medicamentos[i].color)) {
+        medicamentosFiltros.add(Medicamento(
+            color: medicamentos[i].color,
+            categoriaP: medicamentos[i].categoriaP,
+            idMedicamento: medicamentos[i].idMedicamento,
+            nombre: medicamentos[i].nombre,
+            dosis: medicamentos[i].dosis,
+            tomaDesde: medicamentos[i].tomaDesde,
+            tomaHasta: medicamentos[i].tomaHasta,
+            dias: medicamentos[i].dias,
+            hora: medicamentos[i].hora));
+      }
+    }
+  }
+
+  //Busca el nombre perfil por color
+  bool buscarPerfil(Color color) {
+    bool resultado;
+    for (var i = 0; i < perfiles.length; i++) {
+      if (perfiles[i].color == color) {
+        resultado = perfiles[i].visibilidad;
+        break;
+      }
+    }
+    return resultado;
+  }
+
   @override
   Widget build(BuildContext context) {
+    queryMedicamentos();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: calendario(),
+      home: calendario(this.medicamentosFiltros),
       theme: ThemeData(
         unselectedWidgetColor: Colors.white.withOpacity(0),
       ),
@@ -28,6 +61,8 @@ class _CalendarioState extends State<Calendario> {
 }
 
 class calendario extends StatefulWidget {
+  calendario(List medicamentosFiltros);
+
   @override
   _calendarioState createState() => _calendarioState();
 }
@@ -35,6 +70,7 @@ class calendario extends StatefulWidget {
 class _calendarioState extends State<calendario> {
   CalendarController _calendarController;
   bool valuefirst = false;
+  List medicamentosFiltros = [];
   @override
   void initState() {
     // TODO: implement initState
@@ -51,6 +87,7 @@ class _calendarioState extends State<calendario> {
 
   @override
   Widget build(BuildContext context) {
+    queryMedicamentos();
     return Scaffold(
       backgroundColor: Colors.white, //-------------------
       body: Column(
@@ -129,7 +166,7 @@ class _calendarioState extends State<calendario> {
                           Column(
                             //scrollDirection: Axis.vertical,
                             //shrinkWrap: true,
-                            children: medicamentos.map((medicamento) {
+                            children: medicamentosFiltros.map((medicamento) {
                               return MedicamentoBox(
                                 userColor: medicamento.color,
                                 nombre: medicamento.nombre,
@@ -149,6 +186,37 @@ class _calendarioState extends State<calendario> {
         ],
       ),
     );
+  }
+
+  void queryMedicamentos() async {
+    medicamentosFiltros.clear();
+
+    for (var i = 0; i < medicamentos.length; i++) {
+      if (buscarPerfil(medicamentos[i].color)) {
+        medicamentosFiltros.add(Medicamento(
+            color: medicamentos[i].color,
+            categoriaP: medicamentos[i].categoriaP,
+            idMedicamento: medicamentos[i].idMedicamento,
+            nombre: medicamentos[i].nombre,
+            dosis: medicamentos[i].dosis,
+            tomaDesde: medicamentos[i].tomaDesde,
+            tomaHasta: medicamentos[i].tomaHasta,
+            dias: medicamentos[i].dias,
+            hora: medicamentos[i].hora));
+      }
+    }
+  }
+
+  //Busca el nombre perfil por color
+  bool buscarPerfil(Color color) {
+    bool resultado;
+    for (var i = 0; i < perfiles.length; i++) {
+      if (perfiles[i].color == color) {
+        resultado = perfiles[i].visibilidad;
+        break;
+      }
+    }
+    return resultado;
   }
 
   Row dayMedicine(String time, String name) {
