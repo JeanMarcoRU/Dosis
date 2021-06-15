@@ -28,9 +28,9 @@ class _MedicinasState extends State<Medicinas> {
 
   final List categoriasIDs = [];
 
-  final List medicamentosFiltro = [];
+  List medicamentosFiltro = [];
 
-  final List categoriasFiltro = [];
+  List categoriasFiltro = [];
 
   final FirebaseFirestore db = FirebaseFirestore.instance;
 
@@ -42,6 +42,8 @@ class _MedicinasState extends State<Medicinas> {
       "letralogo": "S"
     }
   ];
+
+  //_MedicinasState();
 
   @override
   Widget build(BuildContext context) {
@@ -124,27 +126,16 @@ class _MedicinasState extends State<Medicinas> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                   //const EdgeInsets.fromLTRB(30, 15.0, 90.0, 30),
-                  child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      //mainAxisSpacing: 20,
-                      //crossAxisSpacing: 20,
-                      childAspectRatio: 1.1,
-                    ),
-                    itemCount: categoriasFiltro.length,
-                    itemBuilder: (context, index) => CategoriaObj(
-                      i: index,
-                      categoria: categoriasFiltro[index],
-                      press: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => detailsCategoria(
-                                    categoria: categoriasFiltro[index],
-                                  ))),
-                    ),
-                  ),
+                  child: _categorias(),
+                  /*StatefulBuilder(
+                    builder: (BuildContext context, setState) {
+                      return _categorias();
+                    },
+                  ),*/
                 ),
                 //BotonFlotante(),
+                _medicamentos(),
+                /*
                 ListView.builder(
                   padding: EdgeInsets.all(8.0),
                   itemCount: medicamentosFiltro.length,
@@ -158,7 +149,7 @@ class _MedicinasState extends State<Medicinas> {
                                   medicamento: medicamentosFiltro[index],
                                 ))),
                   ),
-                ),
+                ),*/
               ],
             ),
           ),
@@ -249,6 +240,47 @@ class _MedicinasState extends State<Medicinas> {
     );
   }
 
+  Widget _medicamentos() {
+    queryMedicamentos();
+    return ListView.builder(
+      padding: EdgeInsets.all(8.0),
+      itemCount: medicamentosFiltro.length,
+      itemBuilder: (context, index) => MedicamentoObj(
+        i: index,
+        medicamento: medicamentosFiltro[index],
+        press: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => detailsMedicamento(
+                      medicamento: medicamentosFiltro[index],
+                    ))),
+      ),
+    );
+  }
+
+  Widget _categorias() {
+    queryCategoria();
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        //mainAxisSpacing: 20,
+        //crossAxisSpacing: 20,
+        childAspectRatio: 1.1,
+      ),
+      itemCount: categoriasFiltro.length,
+      itemBuilder: (context, index) => CategoriaObj(
+        i: index,
+        categoria: categoriasFiltro[index],
+        press: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => detailsCategoria(
+                      categoria: categoriasFiltro[index],
+                    ))),
+      ),
+    );
+  }
+
   Widget _perfiles() {
     return Container(
       height: 85,
@@ -267,6 +299,8 @@ class _MedicinasState extends State<Medicinas> {
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
         children: perfiles.map((perfil) {
+          queryCategoria();
+          queryMedicamentos();
           return PerfilAppbar(
             perfil: perfil,
             isPressed: perfil.visibilidad,
@@ -277,6 +311,8 @@ class _MedicinasState extends State<Medicinas> {
   }
 
   Widget _topAppBar() {
+    queryCategoria();
+    queryMedicamentos();
     return Container(
       child: Column(
         children: <Widget>[
