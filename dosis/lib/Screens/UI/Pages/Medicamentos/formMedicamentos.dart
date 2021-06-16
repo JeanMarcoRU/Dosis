@@ -66,53 +66,179 @@ class _formMedicamento_State extends State<formMedicamentos> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            SizedBox(height: size.height * 0.01),
+            Container(
+              margin: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(3.0),
+              width: size.width * 0.8,
+              child: Column(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "elegir perfil:",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.none,
+                        fontSize: 16.0,
+                        height: 0,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  DropdownButtonFormField<String>(
+                    value: color_elegido,
+                    items:
+                        opColores.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: buscarPerfil(getColor(value)),
+                        child: Text(buscarPerfil(getColor(value)),
+                            style: TextStyle(color: getColor(value))),
+                      );
+                    }).toList(),
+                    onChanged: (String newValue) {
+                      setState(() {
+                        color_elegido = newValue;
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
             SizedBox(height: size.height * 0.05),
+            Container(
+              margin: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(3.0),
+              width: size.width * 0.8,
+              child: Column(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "nombre del medicamento",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.none,
+                        fontSize: 16.0,
+                        height: 0,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             TextFieldC(
               child: TextField(
                 controller: nombreController,
                 cursorColor: kPrimaryColor,
                 decoration: InputDecoration(
-                  labelText: "Nombre",
+                  //labelText: "Nombre",
                   border: InputBorder.none,
                 ),
               ),
             ),
             SizedBox(height: size.height * 0.05),
+            Container(
+              margin: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(3.0),
+              width: size.width * 0.8,
+              child: Column(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "dosis",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.none,
+                        fontSize: 16.0,
+                        height: 0,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             TextFieldC(
               child: TextField(
                 controller: dosisController,
                 cursorColor: kPrimaryColor,
                 decoration: InputDecoration(
-                  labelText: "Dosis",
+                  //labelText: "Dosis",
                   border: InputBorder.none,
                 ),
               ),
             ),
             SizedBox(height: size.height * 0.05),
+            Container(
+              margin: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(3.0),
+              width: size.width * 0.8,
+              child: Column(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "período de toma",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.none,
+                        fontSize: 16.0,
+                        height: 0,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             TextFieldC(
               child: TextField(
                 controller: tomaDesdeController,
                 cursorColor: kPrimaryColor,
                 decoration: InputDecoration(
-                  labelText: "Período de Toma Desde",
+                  labelText: "Desde",
                   hintText: "aaaa-mm-dd",
                   border: InputBorder.none,
                 ),
               ),
             ),
-            SizedBox(height: size.height * 0.05),
             TextFieldC(
               child: TextField(
                 controller: tomaHastaController,
                 cursorColor: kPrimaryColor,
                 decoration: InputDecoration(
-                  labelText: "Período de Toma Hasta",
+                  labelText: "Hasta",
                   hintText: "aaaa-mm-dd",
                   border: InputBorder.none,
                 ),
               ),
             ),
             SizedBox(height: size.height * 0.05),
+            Container(
+              margin: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(3.0),
+              width: size.width * 0.8,
+              child: Column(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "horario",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.none,
+                        fontSize: 16.0,
+                        height: 0,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Container(
               margin: const EdgeInsets.all(15.0),
               padding: const EdgeInsets.all(3.0),
@@ -133,15 +259,14 @@ class _formMedicamento_State extends State<formMedicamentos> {
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.white, width: 0)),
                 headerColor: Colors.white,
+                showHeader: false,
                 selectedChipColor: kPrimaryColor,
                 selectedTextStyle: TextStyle(color: Colors.white),
                 onTap: (values) {
                   _selecteds = values;
-                  print(_selecteds);
                 },
               ),
             ),
-            SizedBox(height: size.height * 0.05),
             TextFieldC(
               child: TextField(
                 controller: horaController,
@@ -166,20 +291,24 @@ class _formMedicamento_State extends State<formMedicamentos> {
                 }
             ),
             */
-            SizedBox(height: size.height * 0.01),
+            SizedBox(height: size.height * 0.05),
             Container(
               margin: const EdgeInsets.all(15.0),
               padding: const EdgeInsets.all(3.0),
               width: size.width * 0.8,
               child: Column(
                 children: <Widget>[
-                  Text(
-                    "Seleccionar Categoría:",
-                    style: TextStyle(
-                      decoration: TextDecoration.none,
-                      fontSize: 14.0,
-                      height: 0,
-                      color: kgreyDColor,
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "seleccionar categoría:",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.none,
+                        fontSize: 16.0,
+                        height: 0,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                   DropdownButtonFormField<String>(
@@ -202,47 +331,9 @@ class _formMedicamento_State extends State<formMedicamentos> {
               ),
             ),
             SizedBox(height: size.height * 0.01),
-            Container(
-              margin: const EdgeInsets.all(15.0),
-              padding: const EdgeInsets.all(3.0),
-              width: size.width * 0.8,
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    "Elegir Perfil:",
-                    style: TextStyle(
-                      decoration: TextDecoration.none,
-                      fontSize: 14.0,
-                      height: 0,
-                      color: kgreyDColor,
-                    ),
-                  ),
-                  DropdownButtonFormField<String>(
-                    value: color_elegido,
-                    items:
-                        opColores.map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: buscarPerfil(getColor(value)),
-                        child: Text(buscarPerfil(getColor(value)),
-                            style: TextStyle(color: getColor(value))),
-                      );
-                    }).toList(),
-                    onChanged: (String newValue) {
-                      setState(() {
-                        color_elegido = newValue;
-                      });
-                    },
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: size.height * 0.01),
             RoundedButton(
               text: "Guardar",
               press: () async {
-                print("que pasa?");
-                print(_selecteds);
-                print(filtrarDias(_selecteds));
                 final String nombre = nombreController.text;
                 final String dosis = dosisController.text;
                 final DateTime tomaDesde =
