@@ -8,6 +8,7 @@ import 'calendario/perfil_appbar_constructor.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class Calendario extends StatefulWidget {
   @override
@@ -71,6 +72,8 @@ class _calendarioState extends State<calendario> {
   CalendarController _calendarController;
   bool valuefirst = false;
   List medicamentosFiltros = [];
+  var fechaSeleccionada = DateTime.now();
+  var fechaFormat = DateFormat('MM/dd/yyyy');
   @override
   void initState() {
     // TODO: implement initState
@@ -98,6 +101,12 @@ class _calendarioState extends State<calendario> {
             initialCalendarFormat: CalendarFormat.week,
             startingDayOfWeek: StartingDayOfWeek.monday,
             formatAnimation: FormatAnimation.slide,
+            initialSelectedDay: fechaSeleccionada,
+            onDaySelected: (day, events, holidays) {
+              setState(() {
+                fechaSeleccionada = day;
+              });
+            },
             headerStyle: HeaderStyle(
               centerHeaderTitle: true,
               formatButtonVisible: false,
@@ -193,16 +202,45 @@ class _calendarioState extends State<calendario> {
 
     for (var i = 0; i < medicamentos.length; i++) {
       if (buscarPerfil(medicamentos[i].color)) {
-        medicamentosFiltros.add(Medicamento(
-            color: medicamentos[i].color,
-            categoriaP: medicamentos[i].categoriaP,
-            idMedicamento: medicamentos[i].idMedicamento,
-            nombre: medicamentos[i].nombre,
-            dosis: medicamentos[i].dosis,
-            tomaDesde: medicamentos[i].tomaDesde,
-            tomaHasta: medicamentos[i].tomaHasta,
-            dias: medicamentos[i].dias,
-            hora: medicamentos[i].hora));
+        if (medicamentos[i].tomaDesde.isBefore(fechaSeleccionada) &&
+            !medicamentos[i].tomaHasta.isBefore(fechaSeleccionada)) {
+          medicamentosFiltros.add(Medicamento(
+              color: medicamentos[i].color,
+              categoriaP: medicamentos[i].categoriaP,
+              idMedicamento: medicamentos[i].idMedicamento,
+              nombre: medicamentos[i].nombre,
+              dosis: medicamentos[i].dosis,
+              tomaDesde: medicamentos[i].tomaDesde,
+              tomaHasta: medicamentos[i].tomaHasta,
+              dias: medicamentos[i].dias,
+              hora: medicamentos[i].hora));
+        }
+        if (fechaFormat.format(medicamentos[i].tomaDesde) ==
+            fechaFormat.format(fechaSeleccionada)) {
+          medicamentosFiltros.add(Medicamento(
+              color: medicamentos[i].color,
+              categoriaP: medicamentos[i].categoriaP,
+              idMedicamento: medicamentos[i].idMedicamento,
+              nombre: medicamentos[i].nombre,
+              dosis: medicamentos[i].dosis,
+              tomaDesde: medicamentos[i].tomaDesde,
+              tomaHasta: medicamentos[i].tomaHasta,
+              dias: medicamentos[i].dias,
+              hora: medicamentos[i].hora));
+        }
+        if (fechaFormat.format(medicamentos[i].tomaHasta) ==
+            fechaFormat.format(fechaSeleccionada)) {
+          medicamentosFiltros.add(Medicamento(
+              color: medicamentos[i].color,
+              categoriaP: medicamentos[i].categoriaP,
+              idMedicamento: medicamentos[i].idMedicamento,
+              nombre: medicamentos[i].nombre,
+              dosis: medicamentos[i].dosis,
+              tomaDesde: medicamentos[i].tomaDesde,
+              tomaHasta: medicamentos[i].tomaHasta,
+              dias: medicamentos[i].dias,
+              hora: medicamentos[i].hora));
+        }
       }
     }
   }
