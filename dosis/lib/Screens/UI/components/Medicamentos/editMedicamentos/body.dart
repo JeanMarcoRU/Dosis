@@ -5,6 +5,7 @@ import 'package:dosis/components/rounded_button.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/constants.dart';
+import 'package:multi_select_flutter/multi_select_flutter.dart';
 
 class Body extends StatelessWidget {
   final Medicamento medicamento;
@@ -17,6 +18,10 @@ class Body extends StatelessWidget {
   final TextEditingController categoriaC = TextEditingController();
   CollectionReference _medicamento =
       FirebaseFirestore.instance.collection("Medicamentos");
+
+  static List<String> diasS = ["lun", "mar", "mie", "jue", "vie", "sáb", "dom"];
+  final _items = diasS.map((e) => MultiSelectItem<String>(e, e)).toList();
+  List<String> _selecteds = [];
 
   Body({Key key, this.medicamento}) : super(key: key);
   @override
@@ -237,20 +242,23 @@ class Body extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(5),
                           ),
-                          child: TextField(
-                            controller: diasController,
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              height: 0,
-                              color: kgreyDColor,
-                            ),
-                            decoration: InputDecoration(
-                              hintText: "cualquier cosa", //medicamento.dias,
-                              border: InputBorder.none,
-                            ),
-                          ),
                         ),
                       ],
+                    ),
+                    MultiSelectChipField<String>(
+                      items: _items,
+                      chipColor: userblueColor,
+                      textStyle: TextStyle(color: Colors.white),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white, width: 0)),
+                      headerColor: Colors.white,
+                      initialValue: getDias(medicamento.dias),
+                      showHeader: false,
+                      selectedChipColor: kPrimaryColor,
+                      selectedTextStyle: TextStyle(color: Colors.white),
+                      onTap: (values) {
+                        _selecteds = values;
+                      },
                     ),
                     SizedBox(
                       height: 15,
@@ -365,9 +373,9 @@ class Body extends StatelessWidget {
                                 medicamento.tomaHasta =
                                     DateTime.parse(tomaHastaController.text);
                               }
-                              //if (diasController.text.isNotEmpty) {
-                              //medicamento.dias = diasController.text;
-                              //}
+                              if (_selecteds.isNotEmpty) {
+                                medicamento.dias = filtrarDias(_selecteds);
+                              }
                               if (horaController.text.isNotEmpty) {
                                 medicamento.hora = horaController.text;
                               }
@@ -403,5 +411,60 @@ class Body extends StatelessWidget {
         )
       ],
     ));
+  }
+
+  //Funciones
+  List<dynamic> filtrarDias(List<String> dias) {
+    List resultado = [false, false, false, false, false, false, false];
+    for (var i = 0; i < dias.length; i++) {
+      if (dias[i] == "lun") {
+        resultado[0] = true;
+      }
+      if (dias[i] == "mar") {
+        resultado[1] = true;
+      }
+      if (dias[i] == "mie") {
+        resultado[2] = true;
+      }
+      if (dias[i] == "jue") {
+        resultado[3] = true;
+      }
+      if (dias[i] == "vie") {
+        resultado[4] = true;
+      }
+      if (dias[i] == "sáb") {
+        resultado[5] = true;
+      }
+      if (dias[i] == "dom") {
+        resultado[6] = true;
+      }
+    }
+    return resultado;
+  }
+
+  List<String> getDias(List<dynamic> dias) {
+    List<String> resultado = [];
+    if (dias[0]) {
+      resultado.add("lun");
+    }
+    if (dias[1]) {
+      resultado.add("mar");
+    }
+    if (dias[2]) {
+      resultado.add("mie");
+    }
+    if (dias[3]) {
+      resultado.add("jue");
+    }
+    if (dias[4]) {
+      resultado.add("vie");
+    }
+    if (dias[5]) {
+      resultado.add("sáb");
+    }
+    if (dias[6]) {
+      resultado.add("dom");
+    }
+    return resultado;
   }
 }

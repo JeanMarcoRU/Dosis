@@ -28,8 +28,6 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size * 0.9;
-    print("que hay aca???");
-    print(toStringDias(medicamento.dias));
     return SingleChildScrollView(
         child: Column(
       children: <Widget>[
@@ -389,10 +387,10 @@ class Body extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return ui();
-                                    //return EditScreenMedicamento(
-                                    //medicamento: medicamento,
-                                    //);
+                                    //return ui();
+                                    return EditScreenMedicamento(
+                                      medicamento: medicamento,
+                                    );
                                   },
                                 ),
                               );
