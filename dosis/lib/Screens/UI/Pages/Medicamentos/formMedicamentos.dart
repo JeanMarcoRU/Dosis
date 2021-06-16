@@ -11,6 +11,8 @@ import 'package:dosis/components/rounded_button.dart';
 import 'package:dosis/components/text_field_C.dart';
 import 'package:dosis/constants.dart';
 
+import 'package:multi_select_flutter/multi_select_flutter.dart';
+
 //import 'package:dropdownfield/dropdownfield.dart';
 
 //import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
@@ -48,6 +50,9 @@ class _formMedicamento_State extends State<formMedicamentos> {
   List<String> opColores = [];
   List<String> opPerfiles = [];
   List opciones = [];
+  static List<String> diasS = ["lun", "mar", "mie", "jue", "vie", "sáb", "dom"];
+  final _items = diasS.map((e) => MultiSelectItem<String>(e, e)).toList();
+  List<String> _selecteds = [];
 
   @override
   Widget build(BuildContext context) {
@@ -108,14 +113,32 @@ class _formMedicamento_State extends State<formMedicamentos> {
               ),
             ),
             SizedBox(height: size.height * 0.05),
-            TextFieldC(
-              child: TextField(
-                controller: diasController,
-                cursorColor: kPrimaryColor,
-                decoration: InputDecoration(
-                  labelText: "Días",
-                  border: InputBorder.none,
+            Container(
+              margin: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(3.0),
+              width: size.width * 0.8,
+              decoration: BoxDecoration(
+                  color: Colors.white, border: Border.all(color: Colors.white)),
+              child: MultiSelectChipField<String>(
+                title: Text(
+                  "Días",
+                  style: TextStyle(
+                    color: kgreyDColor,
+                    fontSize: 16,
+                  ),
                 ),
+                items: _items,
+                chipColor: userblueColor,
+                textStyle: TextStyle(color: Colors.white),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white, width: 0)),
+                headerColor: Colors.white,
+                selectedChipColor: kPrimaryColor,
+                selectedTextStyle: TextStyle(color: Colors.white),
+                onTap: (values) {
+                  _selecteds = values;
+                  print(_selecteds);
+                },
               ),
             ),
             SizedBox(height: size.height * 0.05),
@@ -217,13 +240,16 @@ class _formMedicamento_State extends State<formMedicamentos> {
             RoundedButton(
               text: "Guardar",
               press: () async {
+                print("que pasa?");
+                print(_selecteds);
+                print(filtrarDias(_selecteds));
                 final String nombre = nombreController.text;
                 final String dosis = dosisController.text;
                 final DateTime tomaDesde =
                     DateTime.parse(tomaDesdeController.text);
                 final DateTime tomaHasta =
                     DateTime.parse(tomaHastaController.text);
-                final String dias = diasController.text;
+                List diasC = filtrarDias(_selecteds);
                 final String hora = horaController.text;
                 final String colorM = getColorObj(buscarColor(color_elegido));
                 await _medicamento.add({
@@ -231,7 +257,7 @@ class _formMedicamento_State extends State<formMedicamentos> {
                   "Dosis": dosis,
                   "Período de Toma Desde": tomaDesde,
                   "Período de Toma Hasta": tomaHasta,
-                  "Días": dias,
+                  "Días": diasC,
                   "Hora": hora,
                   "CategoriaP": categValue,
                   "Color": colorM
@@ -250,6 +276,34 @@ class _formMedicamento_State extends State<formMedicamentos> {
         ),
       ),
     );
+  }
+
+  List<dynamic> filtrarDias(List<String> dias) {
+    List resultado = [false, false, false, false, false, false, false];
+    for (var i = 0; i < dias.length; i++) {
+      if (dias[i] == "lun") {
+        resultado[0] = true;
+      }
+      if (dias[i] == "mar") {
+        resultado[1] = true;
+      }
+      if (dias[i] == "mie") {
+        resultado[2] = true;
+      }
+      if (dias[i] == "jue") {
+        resultado[3] = true;
+      }
+      if (dias[i] == "vie") {
+        resultado[4] = true;
+      }
+      if (dias[i] == "sáb") {
+        resultado[5] = true;
+      }
+      if (dias[i] == "dom") {
+        resultado[6] = true;
+      }
+    }
+    return resultado;
   }
 
   void cargarOpciones() async {

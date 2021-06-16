@@ -1,8 +1,11 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class Medicamento {
-  String idMedicamento, letralogo, nombre, dosis, dias, hora, categoriaP;
+  String idMedicamento, letralogo, nombre, dosis, hora, categoriaP;
   DateTime tomaDesde, tomaHasta;
+  List dias;
   Color color;
 
   //void cargaPerfiles();

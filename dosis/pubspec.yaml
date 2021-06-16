@@ -39,6 +39,7 @@ dependencies:
   table_calendar: ^2.2.3
   dropdownfield: ^1.0.0
   firebase_messaging: ^5.1.2
+  multi_select_flutter: ^4.0.0
 
 
 

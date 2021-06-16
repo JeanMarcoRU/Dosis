@@ -28,6 +28,8 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size * 0.9;
+    print("que hay aca???");
+    print(toStringDias(medicamento.dias));
     return SingleChildScrollView(
         child: Column(
       children: <Widget>[
@@ -250,7 +252,7 @@ class Body extends StatelessWidget {
                               color: kgreyDColor,
                             ),
                             decoration: InputDecoration(
-                              hintText: medicamento.dias,
+                              hintText: toStringDias(medicamento.dias),
                               border: InputBorder.none,
                             ),
                           ),
@@ -387,9 +389,10 @@ class Body extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return EditScreenMedicamento(
-                                      medicamento: medicamento,
-                                    );
+                                    return ui();
+                                    //return EditScreenMedicamento(
+                                    //medicamento: medicamento,
+                                    //);
                                   },
                                 ),
                               );
@@ -406,5 +409,32 @@ class Body extends StatelessWidget {
         )
       ],
     ));
+  }
+
+  String toStringDias(List dias) {
+    print(dias);
+    String resultado = "";
+    if (dias[0]) {
+      resultado = resultado + "lun";
+    }
+    if (dias[1]) {
+      resultado = resultado + "-mar";
+    }
+    if (dias[2]) {
+      resultado = resultado + "-mie";
+    }
+    if (dias[3]) {
+      resultado += "-jue";
+    }
+    if (dias[4]) {
+      resultado += "-vie";
+    }
+    if (dias[5]) {
+      resultado += "-sáb";
+    }
+    if (dias[6]) {
+      resultado += "-dom";
+    }
+    return resultado;
   }
 }

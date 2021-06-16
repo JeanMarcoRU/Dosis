@@ -245,7 +245,7 @@ class Body extends StatelessWidget {
                               color: kgreyDColor,
                             ),
                             decoration: InputDecoration(
-                              hintText: medicamento.dias,
+                              hintText: "cualquier cosa", //medicamento.dias,
                               border: InputBorder.none,
                             ),
                           ),
@@ -365,9 +365,9 @@ class Body extends StatelessWidget {
                                 medicamento.tomaHasta =
                                     DateTime.parse(tomaHastaController.text);
                               }
-                              if (diasController.text.isNotEmpty) {
-                                medicamento.dias = diasController.text;
-                              }
+                              //if (diasController.text.isNotEmpty) {
+                              //medicamento.dias = diasController.text;
+                              //}
                               if (horaController.text.isNotEmpty) {
                                 medicamento.hora = horaController.text;
                               }
