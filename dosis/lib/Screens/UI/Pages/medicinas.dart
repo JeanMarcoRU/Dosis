@@ -127,29 +127,9 @@ class _MedicinasState extends State<Medicinas> {
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                   //const EdgeInsets.fromLTRB(30, 15.0, 90.0, 30),
                   child: _categorias(),
-                  /*StatefulBuilder(
-                    builder: (BuildContext context, setState) {
-                      return _categorias();
-                    },
-                  ),*/
                 ),
                 //BotonFlotante(),
                 _medicamentos(),
-                /*
-                ListView.builder(
-                  padding: EdgeInsets.all(8.0),
-                  itemCount: medicamentosFiltro.length,
-                  itemBuilder: (context, index) => MedicamentoObj(
-                    i: index,
-                    medicamento: medicamentosFiltro[index],
-                    press: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => detailsMedicamento(
-                                  medicamento: medicamentosFiltro[index],
-                                ))),
-                  ),
-                ),*/
               ],
             ),
           ),
@@ -241,19 +221,122 @@ class _MedicinasState extends State<Medicinas> {
   }
 
   Widget _medicamentos() {
+    String emoji = "⚕️";
     queryMedicamentos();
     return ListView.builder(
       padding: EdgeInsets.all(8.0),
       itemCount: medicamentosFiltro.length,
-      itemBuilder: (context, index) => MedicamentoObj(
-        i: index,
-        medicamento: medicamentosFiltro[index],
-        press: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => detailsMedicamento(
-                      medicamento: medicamentosFiltro[index],
-                    ))),
+      itemBuilder: (context, index) => GestureDetector(
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => detailsMedicamento(
+              medicamento: medicamentosFiltro[index],
+            ),
+          ),
+        ),
+        child: Padding(
+          padding:
+              const EdgeInsets.only(top: 10, bottom: 0, left: 10, right: 10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Container(
+                  margin: EdgeInsets.only(bottom: 20),
+                  padding: EdgeInsets.all(15),
+                  height: 80,
+                  //width: 300,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20),
+                    ),
+                    color: medicamentosFiltro[index].color,
+                  ),
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              /*image: const DecorationImage(
+                          image: NetworkImage(
+                              'https://ichef.bbci.co.uk/news/640/cpsprodpb/1DD7/production/_102793670_1.jpg'),
+                          fit: BoxFit.cover,
+                        ),*/
+                            ),
+                            /*child: Icon(
+                        Icons.beach_access,
+                        color: Colors.blue,
+                        size: 36.0,
+                      ),*/
+                            child: Center(
+                              child: Text(
+                                emoji,
+                                style: TextStyle(
+                                  fontSize: 30,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 7,
+                      ),
+                      Container(
+                        width: 200,
+                        //color: Colors.black,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              medicamentosFiltro[index].nombre,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                color: Colors.white,
+                              ),
+                              textAlign: TextAlign.left,
+                            ),
+                            Text(
+                              medicamentosFiltro[index].dosis,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w200,
+                                fontSize: 12,
+                                color: Colors.white,
+                              ),
+                              textAlign: TextAlign.left,
+                            ),
+                            Text(
+                              medicamentosFiltro[index].hora,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w200,
+                                fontSize: 12,
+                                color: Colors.white,
+                              ),
+                              textAlign: TextAlign.left,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios_sharp,
+                        color: Colors.white,
+                        size: 45,
+                        //semanticLabel: 'Text to announce in accessibility modes',
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -268,15 +351,114 @@ class _MedicinasState extends State<Medicinas> {
         childAspectRatio: 1.1,
       ),
       itemCount: categoriasFiltro.length,
-      itemBuilder: (context, index) => CategoriaObj(
-        i: index,
+      itemBuilder: (context, index) => GestureDetector(
+        //int i = index,
+        //categoria = categoriasFiltro[index],
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => detailsCategoria(
+              categoria: categoriasFiltro[index],
+            ),
+          ),
+        ),
+        child: Padding(
+          padding:
+              const EdgeInsets.only(top: 10, bottom: 0, left: 10, right: 10),
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: 120,
+                width: 142,
+                decoration: BoxDecoration(
+                  color: categoriasFiltro[index].color,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.only(left: 10, bottom: 5, top: 10),
+                      child: Text(
+                        categoriasFiltro[index].nombre,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 10, bottom: 5),
+                      child: Text(
+                        categoriasFiltro[index].descripcion,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 10),
+                      child: Text(
+                        categoriasFiltro[index].letralogo,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                    Expanded(
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            //padding: EdgeInsets.only(right: 10),
+                            width: 95,
+                            //height: 30,
+                            //color: Colors.black,
+                          ),
+                          Container(
+                            //padding: EdgeInsets.all(10),
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                              color: Colors.white.withOpacity(0.5),
+                            ),
+                            child: Center(
+                              child: Text(
+                                categoriasFiltro[index].emoji,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        /*i: index,
         categoria: categoriasFiltro[index],
         press: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => detailsCategoria(
-                      categoria: categoriasFiltro[index],
-                    ))),
+          context,
+          MaterialPageRoute(
+            builder: (context) => detailsCategoria(
+              categoria: categoriasFiltro[index],
+            ),
+          ),
+        ),*/
       ),
     );
   }
@@ -301,9 +483,51 @@ class _MedicinasState extends State<Medicinas> {
         children: perfiles.map((perfil) {
           queryCategoria();
           queryMedicamentos();
-          return PerfilAppbar(
-            perfil: perfil,
-            isPressed: perfil.visibilidad,
+          Perfil perfilAux;
+          bool isPressed;
+          perfilAux = perfil;
+          isPressed = perfilAux.visibilidad;
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                isPressed = !isPressed;
+                perfilAux.visibilidad = isPressed;
+              });
+            },
+            child: Column(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.all(5),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: Container(
+                      padding: EdgeInsets.all(0),
+                      height: 55,
+                      width: 55,
+                      decoration: BoxDecoration(
+                        color: isPressed ? perfilAux.color : Colors.white,
+                        borderRadius: BorderRadius.circular(100),
+                        border: Border.all(
+                          width: 1,
+                          color: perfilAux.color,
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          perfilAux.letralogo,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: isPressed ? Colors.white : perfilAux.color,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 35,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           );
         }).toList(),
       ),
@@ -421,48 +645,3 @@ class _MedicinasState extends State<Medicinas> {
     return resultado;
   }
 }
-
-/*
-
-return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        backgroundColor: Colors.white, //-------------------
-        body: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            _perfiles(),
-            Container(
-              //color: Colors.pink,
-              height: 80,
-              child: Row(
-                children: <Widget>[
-                  SizedBox(
-                    width: 30,
-                  ),
-                  Container(
-                    //color: Colors.white,
-                    width: 250,
-                    child: Text(
-                      'medicamentos',
-                      style: TextStyle(
-                        color: kPrimaryColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                      ),
-                    ),
-                  ), // aqui va el icono de busqueda--------
-                ],
-              ),
-            ),
-            
-          ],
-        ),
-      ),
-    );
-
-
-  
-  */
-
-//  Fin clase medicamentos
