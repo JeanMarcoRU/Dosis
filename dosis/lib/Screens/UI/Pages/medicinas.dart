@@ -624,6 +624,7 @@ class _MedicinasState extends State<Medicinas> {
     for (var i = 0; i < categorias.length; i++) {
       if (buscarPerfil(categorias[i].color)) {
         categoriasFiltro.add(Categoria(
+            idCategoria: categorias[i].idCategoria,
             color: categorias[i].color,
             nombre: categorias[i].nombre,
             descripcion: categorias[i].descripcion,

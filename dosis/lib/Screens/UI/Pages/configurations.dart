@@ -33,7 +33,7 @@ class Config extends StatelessWidget {
                         iconSrc: "assets/icons/cuack.svg",
                         //color: Colors.white,
                       ),
-                     onPressed: () => Navigator.pop(context),
+                      onPressed: () => Navigator.pop(context),
                     ),
                     Text(
                       'Configuraciones',
@@ -66,57 +66,66 @@ class Config extends StatelessWidget {
               Divider(
                 color: kgreyLColor,
               ),
-              SizedBox(height: size.height * 0.05),
-              TextButton(
-                child: Text(
-                  'Cambiar Contraseña',
-                  textDirection: TextDirection.rtl,
-                  style: TextStyle(
-                    color: Colors.black54,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return passwordScreen();
-                      },
+              SizedBox(height: size.height * 0.01),
+              Align(
+                alignment: Alignment.topLeft,
+                child: TextButton(
+                  child: Text(
+                    '    Cambiar Contraseña',
+                    textDirection: TextDirection.rtl,
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
                     ),
-                  );
-                },
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return passwordScreen();
+                        },
+                      ),
+                    );
+                  },
+                ),
               ),
               SizedBox(height: size.height * 0.01),
-              TextButton(
-                child: Text(
-                  'Eliminar Cuenta',
-                  textDirection: TextDirection.rtl,
-                  style: TextStyle(
-                    color: Colors.black54,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
+              Align(
+                alignment: Alignment.topLeft,
+                child: TextButton(
+                  child: Text(
+                    '    Eliminar Cuenta',
+                    textDirection: TextDirection.rtl,
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                    ),
                   ),
+                  onPressed: () {
+                    context.read<AuthenticationService>().deleteUser();
+                  },
                 ),
-                onPressed: () {
-                  context.read<AuthenticationService>().deleteUser();
-                },
               ),
               SizedBox(height: size.height * 0.01),
-              TextButton(
-                child: Text(
-                  'Términos de Uso',
-                  textDirection: TextDirection.rtl,
-                  style: TextStyle(
-                    color: Colors.black54,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
+              Align(
+                alignment: Alignment.topLeft,
+                child: TextButton(
+                  child: Text(
+                    '    Términos de Uso',
+                    textDirection: TextDirection.rtl,
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                    ),
                   ),
+                  onPressed: () {
+                    /* pendiente */
+                  },
                 ),
-                onPressed: () {
-                  /* pendiente */
-                },
               ),
               SizedBox(height: size.height * 0.01),
               RoundedButton(

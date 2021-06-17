@@ -19,6 +19,8 @@ class detailsCategoria extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(categoria.idCategoria);
+    print("ayuffa");
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -71,6 +73,8 @@ class detailsCategoria extends StatelessWidget {
                             ancho: 90,
                             largo: 30,
                             press: () {
+                              print(categoria.idCategoria);
+                              print(categoria.nombre);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

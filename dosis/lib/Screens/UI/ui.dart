@@ -110,6 +110,7 @@ class ui extends StatelessWidget {
           nombre: categoriaslist[i]["Nombre"],
           descripcion: categoriaslist[i]["Descripcion"],
           emoji: categoriaslist[i]["Emoji"]));
+      //print(categorias[i].idCategoria);
     }
   }
 

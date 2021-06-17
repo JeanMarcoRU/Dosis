@@ -221,10 +221,12 @@ class Body extends StatelessWidget {
                             ancho: 100,
                             largo: 50,
                             press: () async {
-                              //Arreglar lo del id
+                              print(categoria.idCategoria);
                               await _categoria
                                   .doc(categoria.idCategoria)
                                   .delete();
+                              print("eliminado");
+                              print(categoria.idCategoria);
 
                               Navigator.push(
                                 context,
@@ -264,14 +266,17 @@ class Body extends StatelessWidget {
                               if (logoController.text.isNotEmpty) {
                                 categoria.letralogo = logoController.text;
                               }
+
                               await _categoria
                                   .doc(categoria.idCategoria)
                                   .update({
                                 "Nombre": categoria.nombre,
                                 "Descripcion": categoria.descripcion,
                                 "Emoji": categoria.emoji,
-                                "letralogo": categoria.letralogo
+                                "letralogo": categoria.letralogo,
+                                "Color": getColor(categoria.color)
                               });
+
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -344,5 +349,23 @@ class Body extends StatelessWidget {
         )
       ],
     ));
+  }
+
+  String getColor(Color color) {
+    if (color == userpinkColor) {
+      return "userpinkColor";
+    } else if (color == userblueColor) {
+      return "userblueColor";
+    } else if (color == userpurpleColor) {
+      return "userpurpleColor";
+    } else if (color == usergreenColor) {
+      return "usergreenColor";
+    } else if (color == userorangeColor) {
+      return "userorangeColor";
+    } else if (color == usergreyColor) {
+      return "usergreyColor";
+    } else {
+      return "userblueColor";
+    }
   }
 }
