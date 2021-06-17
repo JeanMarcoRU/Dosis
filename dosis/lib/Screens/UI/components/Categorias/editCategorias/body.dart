@@ -210,6 +210,84 @@ class Body extends StatelessWidget {
                     ),
                     Row(
                       children: <Widget>[
+                        Expanded(
+                          child: RoundedButton(
+                            text: "eliminar",
+                            color: kgreyDColor,
+                            textColor: Colors.white,
+                            fontSize: 18,
+                            paddingV: 3,
+                            paddingH: 10,
+                            ancho: 100,
+                            largo: 50,
+                            press: () async {
+                              //Arreglar lo del id
+                              await _categoria
+                                  .doc(categoria.idCategoria)
+                                  .delete();
+
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return ui();
+                                  },
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          width: 100,
+                        ),
+                        Expanded(
+                          child: RoundedButton(
+                            text: "guardar",
+                            color: kPrimaryColor,
+                            textColor: Colors.white,
+                            fontSize: 20,
+                            paddingV: 3,
+                            paddingH: 10,
+                            ancho: 100,
+                            largo: 50,
+                            press: () async {
+                              if (nombreController.text.isNotEmpty) {
+                                categoria.nombre = nombreController.text;
+                              }
+                              if (descripcionController.text.isNotEmpty) {
+                                categoria.descripcion =
+                                    descripcionController.text;
+                              }
+                              if (emojiController.text.isNotEmpty) {
+                                categoria.emoji = emojiController.text;
+                              }
+                              if (logoController.text.isNotEmpty) {
+                                categoria.letralogo = logoController.text;
+                              }
+                              await _categoria
+                                  .doc(categoria.idCategoria)
+                                  .update({
+                                "Nombre": categoria.nombre,
+                                "Descripcion": categoria.descripcion,
+                                "Emoji": categoria.emoji,
+                                "letralogo": categoria.letralogo
+                              });
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return ui();
+                                  },
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    /*
+                    Row(
+                      children: <Widget>[
                         SizedBox(
                           width: 100,
                         ),
@@ -257,7 +335,7 @@ class Body extends StatelessWidget {
                           ),
                         ),
                       ],
-                    ),
+                    ),*/
                   ],
                 ),
               ),
