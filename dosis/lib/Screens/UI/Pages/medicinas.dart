@@ -127,29 +127,9 @@ class _MedicinasState extends State<Medicinas> {
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                   //const EdgeInsets.fromLTRB(30, 15.0, 90.0, 30),
                   child: _categorias(),
-                  /*StatefulBuilder(
-                    builder: (BuildContext context, setState) {
-                      return _categorias();
-                    },
-                  ),*/
                 ),
                 //BotonFlotante(),
                 _medicamentos(),
-                /*
-                ListView.builder(
-                  padding: EdgeInsets.all(8.0),
-                  itemCount: medicamentosFiltro.length,
-                  itemBuilder: (context, index) => MedicamentoObj(
-                    i: index,
-                    medicamento: medicamentosFiltro[index],
-                    press: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => detailsMedicamento(
-                                  medicamento: medicamentosFiltro[index],
-                                ))),
-                  ),
-                ),*/
               ],
             ),
           ),
