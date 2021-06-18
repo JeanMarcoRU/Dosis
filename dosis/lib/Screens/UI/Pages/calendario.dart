@@ -26,6 +26,7 @@ class _CalendarioState extends State<Calendario> {
       if (buscarPerfil(medicamentos[i].color)) {
         medicamentosFiltros.add(Medicamento(
             color: medicamentos[i].color,
+            fueTomado: medicamentos[i].fueTomado,
             categoriaP: medicamentos[i].categoriaP,
             idMedicamento: medicamentos[i].idMedicamento,
             nombre: medicamentos[i].nombre,
@@ -52,7 +53,7 @@ class _CalendarioState extends State<Calendario> {
 
   @override
   Widget build(BuildContext context) {
-    queryMedicamentos();
+    //queryMedicamentos();
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -100,7 +101,9 @@ class _calendarioState extends State<calendario> {
     muestraMediBoxes = Column(
       children: medicamentosFiltros.map((medicamento) {
         return MedicamentoBox(
+          medicamento: medicamento,
           userColor: medicamento.color,
+          isPressed: medicamento.fueTomado,
           nombre: medicamento.nombre,
           hora: medicamento.hora,
           dosis: medicamento.dosis,
@@ -212,6 +215,7 @@ class _calendarioState extends State<calendario> {
           medicamentosFiltros.add(Medicamento(
               color: medicamentos[i].color,
               categoriaP: medicamentos[i].categoriaP,
+              fueTomado: medicamentos[i].fueTomado,
               idMedicamento: medicamentos[i].idMedicamento,
               nombre: medicamentos[i].nombre,
               dosis: medicamentos[i].dosis,
@@ -219,12 +223,12 @@ class _calendarioState extends State<calendario> {
               tomaHasta: medicamentos[i].tomaHasta,
               dias: medicamentos[i].dias,
               hora: medicamentos[i].hora));
-        }
-        if (fechaFormat.format(medicamentos[i].tomaDesde) ==
+        } else if (fechaFormat.format(medicamentos[i].tomaDesde) ==
             fechaFormat.format(fechaSeleccionada)) {
           medicamentosFiltros.add(Medicamento(
               color: medicamentos[i].color,
               categoriaP: medicamentos[i].categoriaP,
+              fueTomado: medicamentos[i].fueTomado,
               idMedicamento: medicamentos[i].idMedicamento,
               nombre: medicamentos[i].nombre,
               dosis: medicamentos[i].dosis,
@@ -232,14 +236,14 @@ class _calendarioState extends State<calendario> {
               tomaHasta: medicamentos[i].tomaHasta,
               dias: medicamentos[i].dias,
               hora: medicamentos[i].hora));
-        }
-        if (fechaFormat.format(medicamentos[i].tomaHasta) ==
+        } else if (fechaFormat.format(medicamentos[i].tomaHasta) ==
             fechaFormat.format(fechaSeleccionada)) {
           medicamentosFiltros.add(Medicamento(
               color: medicamentos[i].color,
               categoriaP: medicamentos[i].categoriaP,
               idMedicamento: medicamentos[i].idMedicamento,
               nombre: medicamentos[i].nombre,
+              fueTomado: medicamentos[i].fueTomado,
               dosis: medicamentos[i].dosis,
               tomaDesde: medicamentos[i].tomaDesde,
               tomaHasta: medicamentos[i].tomaHasta,

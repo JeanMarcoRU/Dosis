@@ -137,6 +137,7 @@ class ui extends StatelessWidget {
       medicamentos.add(Medicamento(
           color: getColor(medicamentosList[i]["Color"]),
           categoriaP: medicamentosList[i]["CategoriaP"],
+          fueTomado: false,
           idMedicamento: medicamentosIDs[i],
           nombre: medicamentosList[i]["Nombre"],
           dosis: medicamentosList[i]["Dosis"],

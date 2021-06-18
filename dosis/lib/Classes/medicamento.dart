@@ -7,11 +7,13 @@ class Medicamento {
   DateTime tomaDesde, tomaHasta;
   List dias;
   Color color;
+  bool fueTomado;
 
   //void cargaPerfiles();
   Medicamento(
       {this.idMedicamento,
       this.letralogo,
+      this.fueTomado,
       this.nombre,
       this.dosis,
       this.tomaDesde,

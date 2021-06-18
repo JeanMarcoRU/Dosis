@@ -1,3 +1,4 @@
+import 'package:dosis/Classes/medicamento.dart';
 import 'package:dosis/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class MedicamentoBox extends StatefulWidget {
   final Function press;
+  final Medicamento medicamento;
   final Color userColor;
   bool isPressed;
   String nombre;
@@ -14,7 +16,8 @@ class MedicamentoBox extends StatefulWidget {
   MedicamentoBox({
     Key key,
     this.press,
-    this.isPressed = false,
+    this.medicamento,
+    this.isPressed,
     this.nombre,
     this.dosis,
     this.hora,
@@ -147,6 +150,7 @@ class _MedicamentoBoxState extends State<MedicamentoBox> {
                       onChanged: (bool value) {
                         setState(() {
                           widget.isPressed = value;
+                          widget.medicamento.fueTomado = value;
                         });
                       },
                     ),
