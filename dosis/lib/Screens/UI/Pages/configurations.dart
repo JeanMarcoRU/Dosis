@@ -7,10 +7,16 @@ import '../../../authentication_service.dart';
 import '../../../constants.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:dosis/notifications.dart';
 
-class Config extends StatelessWidget {
+class Config extends StatefulWidget {
   Config({Key key}) : super(key: key);
 
+  @override
+  _ConfigState createState() => _ConfigState();
+}
+
+class _ConfigState extends State<Config> {
   bool notificar = true;
   bool sonido = true;
   bool vibrar = true;
@@ -153,6 +159,27 @@ class SwitchNotificaciones extends StatefulWidget {
 
 class _SwitchNotificacionesState extends State<SwitchNotificaciones> {
   var _notificar = false;
+
+  final Notifications _notifications = Notifications();
+
+  @override
+  void initState() {
+    super.initState();
+    this._notifications.initNotifications();
+  }
+
+  void _pushNotification() {
+    this._notifications.pushNotification();
+  }
+
+  void _cancelarRecordatorios() {
+    this._notifications.cancelAllNotifications();
+  }
+
+  void _zonaRecord() {
+    this._notifications.zonedScheduleNotification();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -172,6 +199,11 @@ class _SwitchNotificacionesState extends State<SwitchNotificaciones> {
             onChanged: (bool value) {
               setState(() {
                 _notificar = value;
+                if (_notificar) {
+                  _pushNotification();
+                } else {
+                  _cancelarRecordatorios();
+                }
               });
             },
           ),

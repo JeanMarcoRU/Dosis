@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dosis/Classes/perfiles.dart';
 import 'package:dosis/Screens/Signup/components/social_icon.dart';
 import 'package:dosis/Screens/UI/Pages/calendario.dart';
 import 'package:dosis/Screens/UI/Pages/medicinas.dart';

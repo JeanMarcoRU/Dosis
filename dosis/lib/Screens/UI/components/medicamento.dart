@@ -1,8 +1,6 @@
 import 'package:dosis/Classes/medicamento.dart';
-import 'package:dosis/Screens/Signup/components/social_icon.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:dosis/constants.dart';
 
 // ignore: must_be_immutable
 class MedicamentoObj extends StatefulWidget {
