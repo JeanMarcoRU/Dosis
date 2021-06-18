@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dosis/Screens/Signup/components/background.dart';
+import 'package:dosis/Screens/Signup/components/backgroundPassword.dart';
 import 'package:dosis/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/components/rounded_button.dart';
@@ -14,7 +14,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Background(
+    return BackgroundPassword(
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -1,7 +1,6 @@
 import 'package:dosis/Classes/categoria.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:dosis/constants.dart';
 
 class CategoriaObj extends StatefulWidget {
   final Categoria categoria;

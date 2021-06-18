@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:dosis/constants.dart';
 
-class BackgroundWhite extends StatelessWidget {
+class BackgroundPassword extends StatelessWidget {
   final Widget child;
-  const BackgroundWhite({
+  const BackgroundPassword({
     Key key,
     @required this.child,
   }) : super(key: key);
@@ -11,7 +12,7 @@ class BackgroundWhite extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      decoration: new BoxDecoration(color: Colors.white),
+      decoration: new BoxDecoration(color: kmelroseColor),
       height: size.height,
       width: double.infinity,
       // Here i can use size.width but use double.infinity because both work as a same

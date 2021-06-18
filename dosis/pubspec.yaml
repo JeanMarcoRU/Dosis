@@ -38,7 +38,7 @@ dependencies:
   flutter_calendar_carousel: ^2.0.1
   table_calendar: ^2.2.3
   dropdownfield: ^1.0.0
-  firebase_messaging: ^5.1.2
+  flutter_local_notifications: ^5.0.0+1
   multi_select_flutter: ^4.0.0
 
 

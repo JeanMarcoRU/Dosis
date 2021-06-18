@@ -10,11 +10,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import '../../../constants.dart';
 import 'Medicamentos/FormularioM.dart';
 import 'Medicamentos/FormularioC.dart';
-import 'package:dosis/Screens/UI/components/categoria.dart';
-import 'package:dosis/Screens/UI/components/medicamento.dart';
 import 'package:dosis/Screens/UI/components/Categorias/detailsCategoria/detailsCategoria.dart';
-
-import 'calendario/perfil_appbar_constructor.dart';
 
 class Medicinas extends StatefulWidget {
   Medicinas({Key key}) : super(key: key);
