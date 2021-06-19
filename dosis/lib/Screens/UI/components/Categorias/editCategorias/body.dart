@@ -87,7 +87,8 @@ class _BodyState extends State<Body> {
                 controller: nombreController,
                 cursorColor: kPrimaryColor,
                 decoration: InputDecoration(
-                  labelText: widget.categoria.nombre,
+                  hintText: widget.categoria.nombre,
+                  //labelText: widget.categoria.nombre,
                   border: InputBorder.none,
                 ),
               ),
@@ -98,7 +99,7 @@ class _BodyState extends State<Body> {
                 controller: descripcionController,
                 cursorColor: kPrimaryColor,
                 decoration: InputDecoration(
-                  labelText: widget.categoria.descripcion,
+                  hintText: widget.categoria.descripcion,
                   border: InputBorder.none,
                 ),
               ),
@@ -114,6 +115,7 @@ class _BodyState extends State<Body> {
                     controller: emojiController,
                     cursorColor: kPrimaryColor,
                     decoration: InputDecoration(
+                      //hintText: widget.categoria.emoji,
                       labelText: widget.categoria.emoji,
                       labelStyle: TextStyle(
                         fontSize: 50,
@@ -366,8 +368,6 @@ class _BodyState extends State<Body> {
     return resultado;
   }
 }
-
-
 
 /*Container(
       margin: const EdgeInsets.all(15.0),

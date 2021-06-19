@@ -1,19 +1,33 @@
-import 'package:dosis/Classes/medicamento.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dosis/Classes/categoria.dart';
+import 'package:dosis/Classes/medicamento.dart';
+import 'package:dosis/Classes/perfiles.dart';
 import 'package:dosis/Screens/Signup/components/backgroundWhite.dart';
 import 'package:dosis/Screens/UI/ui.dart';
+import 'package:flutter/material.dart';
+import 'package:dosis/Screens/Signup/components/backgroundWhite.dart';
 import 'package:dosis/components/rounded_button.dart';
 import 'package:dosis/components/text_field_C.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:dosis/constants.dart';
+
 import 'package:multi_select_flutter/multi_select_flutter.dart';
-import 'package:dosis/Classes/categoria.dart';
-import 'package:dosis/Classes/perfiles.dart';
+
+//import 'package:dropdownfield/dropdownfield.dart';
+
+//import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+//import 'package:intl/intl.dart';
+//import 'package:dropdown_formfield/dropdown_formfield.dart';
 
 class Body extends StatefulWidget {
-  final Medicamento medicamento;
-  Body({Key key, this.medicamento}) : super(key: key);
+  final Categoria categoria;
+  final Perfil perfil;
+  final int i;
+  Body({
+    Key key,
+    this.categoria,
+    this.perfil,
+    this.i,
+  }) : super(key: key);
 
   @override
   _Body_State createState() => _Body_State();
@@ -26,10 +40,8 @@ class _Body_State extends State<Body> {
   final TextEditingController tomaHastaController = TextEditingController();
   final TextEditingController diasController = TextEditingController();
   final TextEditingController horaController = TextEditingController();
-  final TextEditingController categoriaC = TextEditingController();
   CollectionReference _medicamento =
       FirebaseFirestore.instance.collection("Medicamentos");
-
   String categValue;
   String perfil_elegido;
   String color_elegido;
@@ -41,8 +53,10 @@ class _Body_State extends State<Body> {
   final _items = diasS.map((e) => MultiSelectItem<String>(e, e)).toList();
   List<String> _selecteds = [];
 
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    print(categorias);
     cargarOpciones();
     opcionesColores();
     elegirPerfiles();
@@ -61,12 +75,13 @@ class _Body_State extends State<Body> {
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      buscarPerfil(widget.medicamento.color),
+                      "elegir perfil:",
                       style: TextStyle(
+                        fontWeight: FontWeight.bold,
                         decoration: TextDecoration.none,
-                        fontSize: 18.0,
+                        fontSize: 16.0,
                         height: 0,
-                        color: widget.medicamento.color,
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -118,7 +133,6 @@ class _Body_State extends State<Body> {
                 cursorColor: kPrimaryColor,
                 decoration: InputDecoration(
                   //labelText: "Nombre",
-                  hintText: widget.medicamento.nombre,
                   border: InputBorder.none,
                 ),
               ),
@@ -152,7 +166,6 @@ class _Body_State extends State<Body> {
                 cursorColor: kPrimaryColor,
                 decoration: InputDecoration(
                   //labelText: "Dosis",
-                  hintText: widget.medicamento.dosis,
                   border: InputBorder.none,
                 ),
               ),
@@ -213,9 +226,7 @@ class _Body_State extends State<Body> {
                             controller: tomaDesdeController,
                             cursorColor: kPrimaryColor,
                             decoration: InputDecoration(
-                              hintText: widget.medicamento.tomaDesde
-                                  .toString()
-                                  .substring(0, 10),
+                              hintText: "aaaa-mm-dd",
                               //border: InputBorder.none
                             ),
                           ),
@@ -260,9 +271,7 @@ class _Body_State extends State<Body> {
                             cursorColor: kPrimaryColor,
                             decoration: InputDecoration(
                               //labelText: "Hasta",
-                              hintText: widget.medicamento.tomaHasta
-                                  .toString()
-                                  .substring(0, 10),
+                              hintText: "aaaa-mm-dd",
                               //border: InputBorder.none
                             ),
                           ),
@@ -303,13 +312,19 @@ class _Body_State extends State<Body> {
               decoration: BoxDecoration(
                   color: Colors.white, border: Border.all(color: Colors.white)),
               child: MultiSelectChipField<String>(
+                title: Text(
+                  "Días",
+                  style: TextStyle(
+                    color: kgreyDColor,
+                    fontSize: 16,
+                  ),
+                ),
                 items: _items,
                 chipColor: userblueColor,
                 textStyle: TextStyle(color: Colors.white),
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.white, width: 0)),
                 headerColor: Colors.white,
-                initialValue: getDias(widget.medicamento.dias),
                 showHeader: false,
                 selectedChipColor: kPrimaryColor,
                 selectedTextStyle: TextStyle(color: Colors.white),
@@ -332,15 +347,14 @@ class _Body_State extends State<Body> {
             Container(
               //margin: EdgeInsets.all(30),
               height: 100,
-              width: 100,
+              width: 120,
               child: Center(
                 child: TextFieldC(
                   child: TextField(
                     controller: horaController,
                     cursorColor: kPrimaryColor,
                     decoration: InputDecoration(
-                      //labelText: "Hasta",
-                      hintText: widget.medicamento.hora,
+                      hintText: "HH:MM",
                       border: InputBorder.none,
                     ),
                   ),
@@ -418,36 +432,24 @@ class _Body_State extends State<Body> {
               text: "guardar",
               textColor: Colors.white,
               press: () async {
-                if (nombreController.text.isNotEmpty) {
-                  widget.medicamento.nombre = nombreController.text;
-                }
-                if (dosisController.text.isNotEmpty) {
-                  widget.medicamento.dosis = dosisController.text;
-                }
-                if (tomaDesdeController.text.isNotEmpty) {
-                  widget.medicamento.tomaDesde =
-                      DateTime.parse(tomaDesdeController.text);
-                }
-                if (tomaHastaController.text.isNotEmpty) {
-                  widget.medicamento.tomaHasta =
-                      DateTime.parse(tomaHastaController.text);
-                }
-                if (_selecteds.isNotEmpty) {
-                  widget.medicamento.dias = filtrarDias(_selecteds);
-                }
-                if (horaController.text.isNotEmpty) {
-                  widget.medicamento.hora = horaController.text;
-                }
-                await _medicamento
-                    .doc(widget.medicamento.idMedicamento)
-                    .update({
-                  "Nombre": widget.medicamento.nombre,
-                  "Dosis": widget.medicamento.dosis,
-                  "Período de Toma Desde": widget.medicamento.tomaDesde,
-                  "Período de Toma Hasta": widget.medicamento.tomaHasta,
-                  "Días": widget.medicamento.dias,
-                  "Hora": widget.medicamento.hora,
-                  "CategoriaP": widget.medicamento.categoriaP
+                final String nombre = nombreController.text;
+                final String dosis = dosisController.text;
+                final DateTime tomaDesde =
+                    DateTime.parse(tomaDesdeController.text);
+                final DateTime tomaHasta =
+                    DateTime.parse(tomaHastaController.text);
+                List diasC = filtrarDias(_selecteds);
+                final String hora = horaController.text;
+                final String colorM = getColorObj(buscarColor(color_elegido));
+                await _medicamento.add({
+                  "Nombre": nombre,
+                  "Dosis": dosis,
+                  "Período de Toma Desde": tomaDesde,
+                  "Período de Toma Hasta": tomaHasta,
+                  "Días": diasC,
+                  "Hora": hora,
+                  "CategoriaP": categValue,
+                  "Color": colorM
                 });
                 Navigator.push(
                   context,
@@ -465,7 +467,6 @@ class _Body_State extends State<Body> {
     );
   }
 
-  //Funciones
   List<dynamic> filtrarDias(List<String> dias) {
     List resultado = [false, false, false, false, false, false, false];
     for (var i = 0; i < dias.length; i++) {
@@ -494,34 +495,9 @@ class _Body_State extends State<Body> {
     return resultado;
   }
 
-  List<String> getDias(List<dynamic> dias) {
-    List<String> resultado = [];
-    if (dias[0]) {
-      resultado.add("lun");
-    }
-    if (dias[1]) {
-      resultado.add("mar");
-    }
-    if (dias[2]) {
-      resultado.add("mie");
-    }
-    if (dias[3]) {
-      resultado.add("jue");
-    }
-    if (dias[4]) {
-      resultado.add("vie");
-    }
-    if (dias[5]) {
-      resultado.add("sáb");
-    }
-    if (dias[6]) {
-      resultado.add("dom");
-    }
-    return resultado;
-  }
-
   void cargarOpciones() async {
     opcionesCategoria.clear();
+    opcionesCategoria.add("Ninguna");
     for (var i = 0; i < categorias.length; i++) {
       opcionesCategoria.add(categorias[i].nombre);
     }
