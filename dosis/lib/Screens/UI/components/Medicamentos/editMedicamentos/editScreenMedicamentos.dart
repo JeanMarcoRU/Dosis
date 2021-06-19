@@ -23,6 +23,18 @@ class EditScreenMedicamento extends StatelessWidget {
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
+      title: Row(
+        children: <Widget>[
+          Text(
+            "Información Medicamentos",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
       leading: IconButton(
         icon: SocalIcon(
           iconSrc: "assets/icons/cuack.svg",

@@ -8,8 +8,8 @@ import 'package:dosis/Classes/medicamento.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import '../../../constants.dart';
-import 'Medicamentos/FormularioM.dart';
-import 'Medicamentos/FormularioC.dart';
+import 'Medicamentos/Formulario_Medicamentos/FormularioM.dart';
+import 'Medicamentos/Formulario_Categoría/FormularioC.dart';
 import 'package:dosis/Screens/UI/components/Categorias/detailsCategoria/detailsCategoria.dart';
 
 class Medicinas extends StatefulWidget {
