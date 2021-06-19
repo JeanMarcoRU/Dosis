@@ -33,7 +33,7 @@ class detailsCategoria extends StatelessWidget {
                 border: Border(
                   bottom: BorderSide(
                     width: 1.0,
-                    color: kgreySLColor,
+                    color: kmelroseColor,
                   ),
                 ),
               ),
@@ -48,7 +48,7 @@ class detailsCategoria extends StatelessWidget {
                     onPressed: () => Navigator.pop(context),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 10.0),
+                    padding: const EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 0.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
@@ -138,7 +138,7 @@ class detailsCategoria extends StatelessWidget {
               ),
             ),
           ),
-          preferredSize: Size.fromHeight(139)),
+          preferredSize: Size.fromHeight(115)),
       body: _medicamentos(),
     );
   }
