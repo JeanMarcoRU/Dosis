@@ -125,42 +125,95 @@ class _BodyState extends State<Body> {
               ),
             ),
             SizedBox(height: size.height * 0.01),
-            RoundedButton(
-              text: "Guardar",
-              press: () async {
-                if (nombreController.text.isNotEmpty) {
-                  widget.categoria.nombre = nombreController.text;
-                }
-                if (descripcionController.text.isNotEmpty) {
-                  widget.categoria.descripcion = descripcionController.text;
-                }
-                if (emojiController.text.isNotEmpty) {
-                  widget.categoria.emoji = emojiController.text;
-                }
-                /*if (logoController.text.isNotEmpty) {
-                  widget.categoria.letralogo = logoController.text;
-                }*/
-                if (buscarletralogo(color_elegido).isNotEmpty) {
-                  widget.categoria.letralogo = buscarletralogo(color_elegido);
-                  widget.categoria.color = buscarColorXnombre(color_elegido);
-                }
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 40),
+                  child: RoundedButton(
+                    text: "eliminar",
+                    color: kgreyDColor,
+                    textColor: Colors.white,
+                    fontSize: 18,
+                    paddingV: 3,
+                    paddingH: 10,
+                    ancho: 100,
+                    largo: 50,
+                    press: () async {
+                      print(widget.categoria.idCategoria);
+                      await _categoria
+                          .doc(widget.categoria.idCategoria)
+                          .delete();
+                      print("eliminado");
+                      print(widget.categoria.idCategoria);
 
-                await _categoria.doc(widget.categoria.idCategoria).update({
-                  "Color": getColorObj(widget.categoria.color),
-                  "Nombre": widget.categoria.nombre,
-                  "Descripcion": widget.categoria.descripcion,
-                  "Emoji": widget.categoria.emoji,
-                  "letralogo": widget.categoria.letralogo
-                });
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return ui();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return ui();
+                          },
+                        ),
+                      );
                     },
                   ),
-                );
-              },
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 40, right: 20),
+                  child: RoundedButton(
+                    text: "guardar",
+                    color: kPrimaryColor,
+                    textColor: Colors.white,
+                    fontSize: 20,
+                    paddingV: 3,
+                    paddingH: 10,
+                    ancho: 100,
+                    largo: 50,
+                    press: () async {
+                      if (nombreController.text.isNotEmpty) {
+                        widget.categoria.nombre = nombreController.text;
+                      }
+                      if (descripcionController.text.isNotEmpty) {
+                        widget.categoria.descripcion =
+                            descripcionController.text;
+                      }
+                      if (emojiController.text.isNotEmpty) {
+                        widget.categoria.emoji = emojiController.text;
+                      }
+                      /*if (logoController.text.isNotEmpty) {
+                        widget.categoria.letralogo = logoController.text;
+                      }*/
+                      if (buscarletralogo(color_elegido).isNotEmpty) {
+                        widget.categoria.letralogo =
+                            buscarletralogo(color_elegido);
+                        widget.categoria.color =
+                            buscarColorXnombre(color_elegido);
+                      }
+
+                      await _categoria
+                          .doc(widget.categoria.idCategoria)
+                          .update({
+                        "Color": getColorObj(widget.categoria.color),
+                        "Nombre": widget.categoria.nombre,
+                        "Descripcion": widget.categoria.descripcion,
+                        "Emoji": widget.categoria.emoji,
+                        "letralogo": widget.categoria.letralogo
+                      });
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return ui();
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
           ],
         ),
