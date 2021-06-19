@@ -21,6 +21,7 @@ class EditScreenCategoria extends StatelessWidget {
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
+      //title: "Agregar Medicamento",
       backgroundColor: Colors.white,
       elevation: 0,
       leading: IconButton(
@@ -29,6 +30,14 @@ class EditScreenCategoria extends StatelessWidget {
           color: kgreyLColor,
         ),
         onPressed: () => Navigator.pop(context),
+      ),
+      title: Text(
+        "Información Categoría",
+        style: TextStyle(
+          decoration: TextDecoration.none,
+          fontSize: 20.0,
+          color: Colors.black,
+        ),
       ),
     );
   }

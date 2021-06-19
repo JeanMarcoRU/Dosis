@@ -64,18 +64,16 @@ class detailsCategoria extends StatelessWidget {
                           height: 5,
                         ),
                         GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return EditScreenCategoria(
-                                    categoria: categoria,
-                                  );
-                                },
-                              ),
-                            );
-                          },
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return EditScreenCategoria(
+                                  categoria: categoria,
+                                );
+                              },
+                            ),
+                          ),
                           child: Container(
                             width: 100,
                             height: 25,
