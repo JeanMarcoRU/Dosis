@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:dosis/Classes/categoria.dart';
 import 'package:dosis/Screens/Signup/components/social_icon.dart';
 import 'package:dosis/constants.dart';
@@ -31,71 +33,110 @@ class detailsCategoria extends StatelessWidget {
                 border: Border(
                   bottom: BorderSide(
                     width: 1.0,
-                    color: kgreySLColor,
+                    color: kmelroseColor,
                   ),
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                child: Row(
-                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    IconButton(
-                      icon: SocalIcon(
-                        iconSrc: "assets/icons/cuack.svg",
-                        //color: Colors.white,
-                      ),
-                      onPressed: () => Navigator.pop(context),
+              child: Row(
+                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  IconButton(
+                    icon: SocalIcon(
+                      iconSrc: "assets/icons/cuack.svg",
+                      //color: Colors.white,
                     ),
-                    Column(
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 0.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            categoria.nombre,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 25,
+                        Text(
+                          categoria.nombre,
+                          style: TextStyle(
+                            color: kPrimaryColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 40,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        GestureDetector(
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return EditScreenCategoria(
+                                  categoria: categoria,
+                                );
+                              },
+                            ),
+                          ),
+                          child: Container(
+                            width: 100,
+                            height: 25,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                width: 1,
+                                color: kPrimaryColor,
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "editar",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: kPrimaryColor,
+                                  fontSize: 17,
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: RoundedButton(
-                            text: "editar",
-                            textColor: Colors.white,
-                            //style: TextStyle(color: kPrimaryColor),
-                            fontSize: 14,
-                            color: kPrimaryColor,
-                            paddingV: 3,
-                            paddingH: 3,
-                            ancho: 90,
-                            largo: 30,
-                            press: () {
-                              print(categoria.idCategoria);
-                              print(categoria.nombre);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return EditScreenCategoria(
-                                      categoria: categoria,
-                                    );
-                                  },
-                                ),
-                              );
-                            },
+                        /*RoundedButton(
+                          text: "editar",
+                          textColor: kPrimaryColor,
+                          //style: TextStyle(color: kPrimaryColor),
+                          fontSize: 14,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15),
+                            border: Border.all(
+                              width: 1,
+                              color: kPrimaryColor,
+                            ),
                           ),
-                        ),
+                          paddingV: 3,
+                          paddingH: 3,
+                          ancho: 90,
+                          largo: 30,
+                          press: () {
+                            print(categoria.idCategoria);
+                            print(categoria.nombre);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return EditScreenCategoria(
+                                    categoria: categoria,
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                        ),*/
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
-          preferredSize: Size.fromHeight(100)),
+          preferredSize: Size.fromHeight(115)),
       body: _medicamentos(),
     );
   }
