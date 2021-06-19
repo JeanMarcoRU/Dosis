@@ -104,13 +104,23 @@ class _BodyState extends State<Body> {
               ),
             ),
             SizedBox(height: size.height * 0.05),
-            TextFieldC(
-              child: TextField(
-                controller: emojiController,
-                cursorColor: kPrimaryColor,
-                decoration: InputDecoration(
-                  labelText: widget.categoria.emoji,
-                  border: InputBorder.none,
+            Container(
+              //margin: EdgeInsets.all(30),
+              height: 100,
+              width: 100,
+              child: Center(
+                child: TextFieldC(
+                  child: TextField(
+                    controller: emojiController,
+                    cursorColor: kPrimaryColor,
+                    decoration: InputDecoration(
+                      labelText: widget.categoria.emoji,
+                      labelStyle: TextStyle(
+                        fontSize: 50,
+                      ),
+                      border: InputBorder.none,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -132,9 +142,11 @@ class _BodyState extends State<Body> {
                 }*/
                 if (buscarletralogo(color_elegido).isNotEmpty) {
                   widget.categoria.letralogo = buscarletralogo(color_elegido);
+                  widget.categoria.color = buscarColorXnombre(color_elegido);
                 }
 
                 await _categoria.doc(widget.categoria.idCategoria).update({
+                  "Color": getColorObj(widget.categoria.color),
                   "Nombre": widget.categoria.nombre,
                   "Descripcion": widget.categoria.descripcion,
                   "Emoji": widget.categoria.emoji,
@@ -188,6 +200,17 @@ class _BodyState extends State<Body> {
     for (var i = 0; i < perfiles.length; i++) {
       if (perfiles[i].nombre == nombre) {
         resultado = perfiles[i].letralogo;
+        break;
+      }
+    }
+    return resultado;
+  }
+
+  Color buscarColorXnombre(String nombre) {
+    Color resultado = userblueColor;
+    for (var i = 0; i < perfiles.length; i++) {
+      if (perfiles[i].nombre == nombre) {
+        resultado = perfiles[i].color;
         break;
       }
     }
