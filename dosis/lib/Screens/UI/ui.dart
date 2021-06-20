@@ -146,20 +146,26 @@ class ui extends StatelessWidget {
     print(medicamentosIDs);
     medicamentos.clear();
     for (var i = 0; i < medicamentosList.length; i++) {
-      //print(medicamentosList[i]["Días"]);
-      medicamentos.add(Medicamento(
-          color: getColor(medicamentosList[i]["Color"]),
-          categoriaP: medicamentosList[i]["CategoriaP"],
-          fueTomado: false,
-          idMedicamento: medicamentosIDs[i],
-          nombre: medicamentosList[i]["Nombre"],
-          dosis: medicamentosList[i]["Dosis"],
-          tomaDesde: DateTime.parse(
-              medicamentosList[i]["Período de Toma Desde"].toDate().toString()),
-          tomaHasta: DateTime.parse(
-              medicamentosList[i]["Período de Toma Hasta"].toDate().toString()),
-          dias: medicamentosList[i]["Días"],
-          hora: medicamentosList[i]["Hora"]));
+      if (medicamentosList[i]["cuentaEmail"] == emailUser) {
+        medicamentos.add(Medicamento(
+            cuentaEmail: medicamentosList[i]["cuentaEmail"],
+            color: getColor(medicamentosList[i]["Color"]),
+            categoriaP: medicamentosList[i]["CategoriaP"],
+            fueTomado: false,
+            idMedicamento: medicamentosIDs[i],
+            nombre: medicamentosList[i]["Nombre"],
+            dosis: medicamentosList[i]["Dosis"],
+            tomaDesde: DateTime.parse(medicamentosList[i]
+                    ["Período de Toma Desde"]
+                .toDate()
+                .toString()),
+            tomaHasta: DateTime.parse(medicamentosList[i]
+                    ["Período de Toma Hasta"]
+                .toDate()
+                .toString()),
+            dias: medicamentosList[i]["Días"],
+            hora: medicamentosList[i]["Hora"]));
+      }
     } // for
 
     medicamentos.sort((Medicamento a, Medicamento b) =>

@@ -4,6 +4,7 @@ import 'package:dosis/Classes/medicamento.dart';
 import 'package:dosis/Classes/perfiles.dart';
 import 'package:dosis/Screens/Signup/components/backgroundWhite.dart';
 import 'package:dosis/Screens/UI/ui.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/Screens/Signup/components/backgroundWhite.dart';
 import 'package:dosis/components/rounded_button.dart';
@@ -19,6 +20,7 @@ import 'package:multi_select_flutter/multi_select_flutter.dart';
 //import 'package:dropdown_formfield/dropdown_formfield.dart';
 
 class Body extends StatefulWidget {
+  final String emailUser = FirebaseAuth.instance.currentUser.email;
   final Categoria categoria;
   final Perfil perfil;
   final int i;
@@ -442,6 +444,7 @@ class _Body_State extends State<Body> {
                 final String hora = horaController.text;
                 final String colorM = getColorObj(buscarColor(color_elegido));
                 await _medicamento.add({
+                  "cuentaEmail": widget.emailUser,
                   "Nombre": nombre,
                   "Dosis": dosis,
                   "Período de Toma Desde": tomaDesde,
