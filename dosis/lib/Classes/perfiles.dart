@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Perfil {
-  String idPerfil,
+  String cuentaEmail,
+      idPerfil,
       letralogo,
       avatar,
       nombre,

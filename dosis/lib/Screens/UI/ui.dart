@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dosis/Classes/perfiles.dart';
 import 'package:dosis/Classes/categoria.dart';
 import 'package:dosis/Classes/medicamento.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/Screens/UI/components/body.dart';
 
@@ -10,6 +10,9 @@ import '../../constants.dart';
 
 // ignore: camel_case_types
 class ui extends StatelessWidget {
+  final String emailUser = FirebaseAuth.instance.currentUser.email;
+  //FirebaseAuth _user = FirebaseAuth.instance.currentUser as FirebaseAuth;
+
   final List perfileslist = [];
   final List perfilesIDs = [];
   final List categoriaslist = [];
@@ -18,6 +21,8 @@ class ui extends StatelessWidget {
   final List medicamentosIDs = [];
   @override
   Widget build(BuildContext context) {
+    print(emailUser +
+        " + hola email user here ----------------------------------------");
     perfilAux.clear();
     avatares = [
       "assets/avatares/blue.png",
