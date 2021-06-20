@@ -33,6 +33,7 @@ class ui extends StatelessWidget {
       "assets/avatares/purple.png"
     ];
     perfilAux.add(Perfil(
+        cuentaEmail: "",
         idPerfil: "",
         letralogo: "X",
         avatar: "assets/avatares/grey.png",
@@ -71,21 +72,24 @@ class ui extends StatelessWidget {
     }
     perfiles.clear();
     for (var i = 0; i < perfileslist.length; i++) {
-      perfiles.add(Perfil(
-          idPerfil: perfilesIDs[i],
-          visibilidad: true, //POR DEFECTO
-          letralogo: perfileslist[i]["letralogo"],
-          avatar: perfileslist[i]["avatar"],
-          nombre: perfileslist[i]["nombre"],
-          apellidos: perfileslist[i]["apellidos"],
-          numeroCedula: perfileslist[i]["cedula"],
-          fechaNacimiento: DateTime.parse(
-              perfileslist[i]["fechaNacimiento"].toDate().toString()),
-          edad: perfileslist[i]["edad"],
-          genero: perfileslist[i]["genero"],
-          tipoSangre: perfileslist[i]["tipoSangre"],
-          estadoCivil: perfileslist[i]["estadoCivil"],
-          color: getColor(perfileslist[i]["color"])));
+      if (perfileslist[i]["cuentaEmail"] == emailUser) {
+        perfiles.add(Perfil(
+            cuentaEmail: perfileslist[i]["cuentaEmail"],
+            idPerfil: perfilesIDs[i],
+            visibilidad: true, //POR DEFECTO
+            letralogo: perfileslist[i]["letralogo"],
+            avatar: perfileslist[i]["avatar"],
+            nombre: perfileslist[i]["nombre"],
+            apellidos: perfileslist[i]["apellidos"],
+            numeroCedula: perfileslist[i]["cedula"],
+            fechaNacimiento: DateTime.parse(
+                perfileslist[i]["fechaNacimiento"].toDate().toString()),
+            edad: perfileslist[i]["edad"],
+            genero: perfileslist[i]["genero"],
+            tipoSangre: perfileslist[i]["tipoSangre"],
+            estadoCivil: perfileslist[i]["estadoCivil"],
+            color: getColor(perfileslist[i]["color"])));
+      }
     }
   } //void
 
@@ -108,13 +112,17 @@ class ui extends StatelessWidget {
     }
     categorias.clear();
     for (var i = 0; i < categoriaslist.length; i++) {
-      categorias.add(Categoria(
-          color: getColor(categoriaslist[i]["Color"]),
-          idCategoria: categoriaIDs[i],
-          letralogo: categoriaslist[i]["letralogo"],
-          nombre: categoriaslist[i]["Nombre"],
-          descripcion: categoriaslist[i]["Descripcion"],
-          emoji: categoriaslist[i]["Emoji"]));
+      if (categoriaslist[i]["cuentaEmail"] == emailUser) {
+        categorias.add(Categoria(
+            cuentaEmail: categoriaslist[i]["cuentaEmail"],
+            color: getColor(categoriaslist[i]["Color"]),
+            idCategoria: categoriaIDs[i],
+            letralogo: categoriaslist[i]["letralogo"],
+            nombre: categoriaslist[i]["Nombre"],
+            descripcion: categoriaslist[i]["Descripcion"],
+            emoji: categoriaslist[i]["Emoji"]));
+      }
+
       //print(categorias[i].idCategoria);
     }
   }
@@ -138,20 +146,26 @@ class ui extends StatelessWidget {
     print(medicamentosIDs);
     medicamentos.clear();
     for (var i = 0; i < medicamentosList.length; i++) {
-      //print(medicamentosList[i]["Días"]);
-      medicamentos.add(Medicamento(
-          color: getColor(medicamentosList[i]["Color"]),
-          categoriaP: medicamentosList[i]["CategoriaP"],
-          fueTomado: false,
-          idMedicamento: medicamentosIDs[i],
-          nombre: medicamentosList[i]["Nombre"],
-          dosis: medicamentosList[i]["Dosis"],
-          tomaDesde: DateTime.parse(
-              medicamentosList[i]["Período de Toma Desde"].toDate().toString()),
-          tomaHasta: DateTime.parse(
-              medicamentosList[i]["Período de Toma Hasta"].toDate().toString()),
-          dias: medicamentosList[i]["Días"],
-          hora: medicamentosList[i]["Hora"]));
+      if (medicamentosList[i]["cuentaEmail"] == emailUser) {
+        medicamentos.add(Medicamento(
+            cuentaEmail: medicamentosList[i]["cuentaEmail"],
+            color: getColor(medicamentosList[i]["Color"]),
+            categoriaP: medicamentosList[i]["CategoriaP"],
+            fueTomado: false,
+            idMedicamento: medicamentosIDs[i],
+            nombre: medicamentosList[i]["Nombre"],
+            dosis: medicamentosList[i]["Dosis"],
+            tomaDesde: DateTime.parse(medicamentosList[i]
+                    ["Período de Toma Desde"]
+                .toDate()
+                .toString()),
+            tomaHasta: DateTime.parse(medicamentosList[i]
+                    ["Período de Toma Hasta"]
+                .toDate()
+                .toString()),
+            dias: medicamentosList[i]["Días"],
+            hora: medicamentosList[i]["Hora"]));
+      }
     } // for
 
     medicamentos.sort((Medicamento a, Medicamento b) =>

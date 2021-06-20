@@ -17,6 +17,7 @@ class Perfil {
   bool visibilidad;
   //void cargaPerfiles();
   Perfil({
+    this.cuentaEmail,
     this.visibilidad,
     this.idPerfil,
     this.letralogo,

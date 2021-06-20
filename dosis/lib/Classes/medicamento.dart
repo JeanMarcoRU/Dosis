@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Medicamento {
-  String idMedicamento, letralogo, nombre, dosis, hora, categoriaP;
+  String cuentaEmail, idMedicamento, letralogo, nombre, dosis, hora, categoriaP;
   DateTime tomaDesde, tomaHasta;
   List dias;
   Color color;
@@ -9,7 +9,8 @@ class Medicamento {
 
   //void cargaPerfiles();
   Medicamento(
-      {this.idMedicamento,
+      {this.cuentaEmail,
+      this.idMedicamento,
       this.letralogo,
       this.fueTomado,
       this.nombre,

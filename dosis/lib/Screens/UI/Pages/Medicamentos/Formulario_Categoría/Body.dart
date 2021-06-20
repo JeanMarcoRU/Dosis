@@ -5,11 +5,13 @@ import 'package:dosis/Screens/Signup/components/backgroundWhite.dart';
 import 'package:dosis/Screens/UI/ui.dart';
 import 'package:dosis/components/rounded_button.dart';
 import 'package:dosis/components/text_field_C.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/constants.dart';
 
 class Body extends StatefulWidget {
+  final String emailUser = FirebaseAuth.instance.currentUser.email;
   final Perfil perfil;
   final Categoria categoria;
 
@@ -145,6 +147,7 @@ class _BodyState extends State<Body> {
                 final String colorM = getColorObj(buscarColor(color_elegido));
                 final String letralogo = buscarletralogo(color_elegido);
                 await _categoria.add({
+                  "cuentaEmail": widget.emailUser,
                   "Nombre": nombre,
                   "Descripcion": descripcion,
                   "Emoji": emoji,
