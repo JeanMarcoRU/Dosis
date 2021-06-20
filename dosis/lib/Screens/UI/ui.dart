@@ -33,6 +33,7 @@ class ui extends StatelessWidget {
       "assets/avatares/purple.png"
     ];
     perfilAux.add(Perfil(
+        cuentaEmail: "",
         idPerfil: "",
         letralogo: "X",
         avatar: "assets/avatares/grey.png",
@@ -71,21 +72,24 @@ class ui extends StatelessWidget {
     }
     perfiles.clear();
     for (var i = 0; i < perfileslist.length; i++) {
-      perfiles.add(Perfil(
-          idPerfil: perfilesIDs[i],
-          visibilidad: true, //POR DEFECTO
-          letralogo: perfileslist[i]["letralogo"],
-          avatar: perfileslist[i]["avatar"],
-          nombre: perfileslist[i]["nombre"],
-          apellidos: perfileslist[i]["apellidos"],
-          numeroCedula: perfileslist[i]["cedula"],
-          fechaNacimiento: DateTime.parse(
-              perfileslist[i]["fechaNacimiento"].toDate().toString()),
-          edad: perfileslist[i]["edad"],
-          genero: perfileslist[i]["genero"],
-          tipoSangre: perfileslist[i]["tipoSangre"],
-          estadoCivil: perfileslist[i]["estadoCivil"],
-          color: getColor(perfileslist[i]["color"])));
+      if (perfileslist[i]["cuentaEmail"] == emailUser) {
+        perfiles.add(Perfil(
+            cuentaEmail: perfileslist[i]["cuentaEmail"],
+            idPerfil: perfilesIDs[i],
+            visibilidad: true, //POR DEFECTO
+            letralogo: perfileslist[i]["letralogo"],
+            avatar: perfileslist[i]["avatar"],
+            nombre: perfileslist[i]["nombre"],
+            apellidos: perfileslist[i]["apellidos"],
+            numeroCedula: perfileslist[i]["cedula"],
+            fechaNacimiento: DateTime.parse(
+                perfileslist[i]["fechaNacimiento"].toDate().toString()),
+            edad: perfileslist[i]["edad"],
+            genero: perfileslist[i]["genero"],
+            tipoSangre: perfileslist[i]["tipoSangre"],
+            estadoCivil: perfileslist[i]["estadoCivil"],
+            color: getColor(perfileslist[i]["color"])));
+      }
     }
   } //void
 

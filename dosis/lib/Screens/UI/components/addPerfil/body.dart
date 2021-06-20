@@ -1,15 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dosis/Classes/perfiles.dart';
 import 'package:dosis/Screens/UI/components/addPerfil/perfil_title_add.dart';
-import 'package:dosis/Screens/UI/components/editPerfil/perfil_title_without_edit.dart';
 import 'package:dosis/Screens/UI/ui.dart';
 import 'package:dosis/components/rounded_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
 
 class Body extends StatelessWidget {
+  final String emailUser = FirebaseAuth.instance.currentUser.email;
   final Perfil perfil;
   final TextEditingController nombreC = TextEditingController();
   final TextEditingController apellidosC = TextEditingController();
@@ -410,6 +411,7 @@ class Body extends StatelessWidget {
                           perfilAux[0].estadoCivil = estadoCivilC.text;
 
                           await _perfil.add({
+                            "cuentaEmail": emailUser,
                             "nombre": perfil.nombre,
                             "apellidos": perfilAux[0].apellidos,
                             "avatar": perfilAux[0].avatar,

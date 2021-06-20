@@ -4,6 +4,7 @@ import 'package:dosis/Screens/Signup/components/social_icon.dart';
 import 'package:dosis/Screens/UI/components/addPerfil/add_screen.dart';
 import 'package:dosis/Screens/UI/components/detailsPerfil/details_screen.dart';
 import 'package:dosis/Screens/UI/components/perfil.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:dosis/Screens/UI/Pages/configurations.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -11,6 +12,8 @@ import '../../../constants.dart';
 
 class Perfiles extends StatelessWidget {
   Perfiles({Key key}) : super(key: key);
+
+  final String emailUser = FirebaseAuth.instance.currentUser.email;
 
   final List perfileslist = [];
   final List perfilesIDs = [];
@@ -139,6 +142,7 @@ class Perfiles extends StatelessWidget {
 
   void cargaPerfiles() async {
     perfileslist.clear();
+    perfilesIDs.clear();
     perfiles.clear();
     CollectionReference collectionReference =
         FirebaseFirestore.instance.collection("Perfil");
@@ -154,23 +158,26 @@ class Perfiles extends StatelessWidget {
     }
     perfiles.clear();
     for (var i = 0; i < perfileslist.length; i++) {
-      perfiles.add(Perfil(
-          idPerfil: perfilesIDs[i],
-          visibilidad: true, //POR DEFECTO
-          letralogo: perfileslist[i]["letralogo"],
-          avatar: perfileslist[i]["avatar"],
-          nombre: perfileslist[i]["nombre"],
-          apellidos: perfileslist[i]["apellidos"],
-          numeroCedula: perfileslist[i]["cedula"],
-          fechaNacimiento: DateTime.parse(
-              perfileslist[i]["fechaNacimiento"].toDate().toString()),
-          edad: perfileslist[i]["edad"],
-          genero: perfileslist[i]["genero"],
-          tipoSangre: perfileslist[i]["tipoSangre"],
-          estadoCivil: perfileslist[i]["estadoCivil"],
-          color: getColor(perfileslist[i]["color"])));
+      if (perfileslist[i]["cuentaEmail"] == emailUser) {
+        perfiles.add(Perfil(
+            cuentaEmail: perfileslist[i]["cuentaEmail"],
+            idPerfil: perfilesIDs[i],
+            visibilidad: true, //POR DEFECTO
+            letralogo: perfileslist[i]["letralogo"],
+            avatar: perfileslist[i]["avatar"],
+            nombre: perfileslist[i]["nombre"],
+            apellidos: perfileslist[i]["apellidos"],
+            numeroCedula: perfileslist[i]["cedula"],
+            fechaNacimiento: DateTime.parse(
+                perfileslist[i]["fechaNacimiento"].toDate().toString()),
+            edad: perfileslist[i]["edad"],
+            genero: perfileslist[i]["genero"],
+            tipoSangre: perfileslist[i]["tipoSangre"],
+            estadoCivil: perfileslist[i]["estadoCivil"],
+            color: getColor(perfileslist[i]["color"])));
+      }
     }
-  } //void
+  } //void//void
 
   Color getColor(String color) {
     switch (color) {
