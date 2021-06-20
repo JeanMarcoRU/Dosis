@@ -112,13 +112,17 @@ class ui extends StatelessWidget {
     }
     categorias.clear();
     for (var i = 0; i < categoriaslist.length; i++) {
-      categorias.add(Categoria(
-          color: getColor(categoriaslist[i]["Color"]),
-          idCategoria: categoriaIDs[i],
-          letralogo: categoriaslist[i]["letralogo"],
-          nombre: categoriaslist[i]["Nombre"],
-          descripcion: categoriaslist[i]["Descripcion"],
-          emoji: categoriaslist[i]["Emoji"]));
+      if (categoriaslist[i]["cuentaEmail"] == emailUser) {
+        categorias.add(Categoria(
+            cuentaEmail: categoriaslist[i]["cuentaEmail"],
+            color: getColor(categoriaslist[i]["Color"]),
+            idCategoria: categoriaIDs[i],
+            letralogo: categoriaslist[i]["letralogo"],
+            nombre: categoriaslist[i]["Nombre"],
+            descripcion: categoriaslist[i]["Descripcion"],
+            emoji: categoriaslist[i]["Emoji"]));
+      }
+
       //print(categorias[i].idCategoria);
     }
   }
