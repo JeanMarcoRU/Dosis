@@ -35,7 +35,7 @@ class Body extends StatelessWidget {
                     Icons.lock,
                     color: kPrimaryColor,
                   ),
-                  hintText: "Contraseña",
+                  hintText: "Nueva Contraseña",
                   border: InputBorder.none,
                 ),
               ),

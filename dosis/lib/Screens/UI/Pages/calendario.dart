@@ -6,6 +6,8 @@ import '../../../constants.dart';
 import 'calendario/mes_appbar_constructor.dart';
 import 'calendario/perfil_appbar_constructor.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -18,6 +20,8 @@ class Calendario extends StatefulWidget {
 
 class _CalendarioState extends State<Calendario> {
   List medicamentosFiltros = [];
+  CollectionReference _medicamento =
+      FirebaseFirestore.instance.collection("Historial");
 
   void queryMedicamentos() async {
     medicamentosFiltros.clear();

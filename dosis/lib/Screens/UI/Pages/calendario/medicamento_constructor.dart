@@ -142,6 +142,7 @@ class _MedicamentoBoxState extends State<MedicamentoBox> {
                         ? kPrimaryColor
                         : Colors.white.withOpacity(0.5),
                   ),
+                  /*
                   child: Transform.scale(
                     scale: 2.0,
                     child: Checkbox(
@@ -154,7 +155,7 @@ class _MedicamentoBoxState extends State<MedicamentoBox> {
                         });
                       },
                     ),
-                  ),
+                  ),*/
                 ),
               ],
             ),
