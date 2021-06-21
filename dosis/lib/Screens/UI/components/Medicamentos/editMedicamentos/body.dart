@@ -443,6 +443,7 @@ class _Body_State extends State<Body> {
                     .update({
                   "Nombre": widget.medicamento.nombre,
                   "Dosis": widget.medicamento.dosis,
+                  "HistorialM": widget.medicamento.historialM,
                   "Período de Toma Desde": widget.medicamento.tomaDesde,
                   "Período de Toma Hasta": widget.medicamento.tomaHasta,
                   "Días": widget.medicamento.dias,
