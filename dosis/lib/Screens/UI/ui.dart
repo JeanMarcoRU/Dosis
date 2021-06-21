@@ -148,6 +148,7 @@ class ui extends StatelessWidget {
     for (var i = 0; i < medicamentosList.length; i++) {
       if (medicamentosList[i]["cuentaEmail"] == emailUser) {
         medicamentos.add(Medicamento(
+            historialM: medicamentosList[i]["HistorialM"],
             cuentaEmail: medicamentosList[i]["cuentaEmail"],
             color: getColor(medicamentosList[i]["Color"]),
             categoriaP: medicamentosList[i]["CategoriaP"],

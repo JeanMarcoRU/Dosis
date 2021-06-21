@@ -22,6 +22,7 @@ class _CalendarioState extends State<Calendario> {
   List medicamentosFiltros = [];
   CollectionReference _medicamento =
       FirebaseFirestore.instance.collection("Historial");
+  final List historial = [];
 
   void queryMedicamentos() async {
     medicamentosFiltros.clear();
@@ -29,6 +30,7 @@ class _CalendarioState extends State<Calendario> {
     for (var i = 0; i < medicamentos.length; i++) {
       if (buscarPerfil(medicamentos[i].color)) {
         medicamentosFiltros.add(Medicamento(
+            historialM: medicamentos[i].historialM,
             color: medicamentos[i].color,
             fueTomado: medicamentos[i].fueTomado,
             categoriaP: medicamentos[i].categoriaP,
@@ -85,6 +87,7 @@ class _calendarioState extends State<calendario> {
   Column muestraMediBoxes;
   var fechaSeleccionada = DateTime.now();
   var fechaFormat = DateFormat('MM/dd/yyyy');
+
   @override
   void initState() {
     // TODO: implement initState
@@ -104,10 +107,12 @@ class _calendarioState extends State<calendario> {
     queryMedicamentos();
     muestraMediBoxes = Column(
       children: medicamentosFiltros.map((medicamento) {
+        int index = fechaSeleccionada.difference(medicamento.tomaDesde).inDays;
         return MedicamentoBox(
           medicamento: medicamento,
           userColor: medicamento.color,
-          isPressed: medicamento.fueTomado,
+          indiceDia: index,
+          isPressed: medicamento.historialM[index],
           nombre: medicamento.nombre,
           hora: medicamento.hora,
           dosis: medicamento.dosis,
@@ -209,6 +214,10 @@ class _calendarioState extends State<calendario> {
     );
   }
 
+  void updateIndex(List historial, int index) {
+    historial[index] = !historial[index];
+  }
+
   void queryMedicamentos() async {
     medicamentosFiltros.clear();
 
@@ -217,6 +226,7 @@ class _calendarioState extends State<calendario> {
         if (medicamentos[i].tomaDesde.isBefore(fechaSeleccionada) &&
             !medicamentos[i].tomaHasta.isBefore(fechaSeleccionada)) {
           medicamentosFiltros.add(Medicamento(
+              historialM: medicamentos[i].historialM,
               color: medicamentos[i].color,
               categoriaP: medicamentos[i].categoriaP,
               fueTomado: medicamentos[i].fueTomado,
@@ -230,6 +240,7 @@ class _calendarioState extends State<calendario> {
         } else if (fechaFormat.format(medicamentos[i].tomaDesde) ==
             fechaFormat.format(fechaSeleccionada)) {
           medicamentosFiltros.add(Medicamento(
+              historialM: medicamentos[i].historialM,
               color: medicamentos[i].color,
               categoriaP: medicamentos[i].categoriaP,
               fueTomado: medicamentos[i].fueTomado,
@@ -243,6 +254,7 @@ class _calendarioState extends State<calendario> {
         } else if (fechaFormat.format(medicamentos[i].tomaHasta) ==
             fechaFormat.format(fechaSeleccionada)) {
           medicamentosFiltros.add(Medicamento(
+              historialM: medicamentos[i].historialM,
               color: medicamentos[i].color,
               categoriaP: medicamentos[i].categoriaP,
               idMedicamento: medicamentos[i].idMedicamento,

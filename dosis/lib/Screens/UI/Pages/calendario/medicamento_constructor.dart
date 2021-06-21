@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dosis/Classes/medicamento.dart';
 import 'package:dosis/constants.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 class MedicamentoBox extends StatefulWidget {
   final Function press;
   final Medicamento medicamento;
+  int indiceDia;
   final Color userColor;
   bool isPressed;
   String nombre;
@@ -17,6 +19,7 @@ class MedicamentoBox extends StatefulWidget {
     Key key,
     this.press,
     this.medicamento,
+    this.indiceDia,
     this.isPressed,
     this.nombre,
     this.dosis,
@@ -30,6 +33,8 @@ class MedicamentoBox extends StatefulWidget {
 }
 
 class _MedicamentoBoxState extends State<MedicamentoBox> {
+  CollectionReference _medicamento =
+      FirebaseFirestore.instance.collection("Medicamentos");
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -142,7 +147,6 @@ class _MedicamentoBoxState extends State<MedicamentoBox> {
                         ? kPrimaryColor
                         : Colors.white.withOpacity(0.5),
                   ),
-                  /*
                   child: Transform.scale(
                     scale: 2.0,
                     child: Checkbox(
@@ -151,11 +155,11 @@ class _MedicamentoBoxState extends State<MedicamentoBox> {
                       onChanged: (bool value) {
                         setState(() {
                           widget.isPressed = value;
-                          widget.medicamento.fueTomado = value;
+                          updateIndice(widget.indiceDia, widget.isPressed);
                         });
                       },
                     ),
-                  ),*/
+                  ),
                 ),
               ],
             ),
@@ -163,5 +167,20 @@ class _MedicamentoBoxState extends State<MedicamentoBox> {
         )
       ],
     );
+  }
+
+  void updateIndice(int i, bool valor) async {
+    widget.medicamento.historialM[i] = valor;
+
+    await _medicamento.doc(widget.medicamento.idMedicamento).update({
+      "Nombre": widget.medicamento.nombre,
+      "Dosis": widget.medicamento.dosis,
+      "HistorialM": widget.medicamento.historialM,
+      "Período de Toma Desde": widget.medicamento.tomaDesde,
+      "Período de Toma Hasta": widget.medicamento.tomaHasta,
+      "Días": widget.medicamento.dias,
+      "Hora": widget.medicamento.hora,
+      "CategoriaP": widget.medicamento.categoriaP
+    });
   }
 }

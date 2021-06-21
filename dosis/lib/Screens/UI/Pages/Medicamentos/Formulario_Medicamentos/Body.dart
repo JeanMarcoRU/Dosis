@@ -50,6 +50,7 @@ class _Body_State extends State<Body> {
   List<String> opcionesCategoria = [];
   List<String> opColores = [];
   List<String> opPerfiles = [];
+  List historialM = [false, false, false, false, false, false, false, false];
   List opciones = [];
   static List<String> diasS = ["lun", "mar", "mie", "jue", "vie", "sáb", "dom"];
   final _items = diasS.map((e) => MultiSelectItem<String>(e, e)).toList();
@@ -444,6 +445,7 @@ class _Body_State extends State<Body> {
                 final String hora = horaController.text;
                 final String colorM = getColorObj(buscarColor(color_elegido));
                 await _medicamento.add({
+                  "HistorialM": historialM,
                   "cuentaEmail": widget.emailUser,
                   "Nombre": nombre,
                   "Dosis": dosis,

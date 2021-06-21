@@ -6,6 +6,7 @@ class Medicamento {
   List dias;
   Color color;
   bool fueTomado;
+  List historialM;
 
   //void cargaPerfiles();
   Medicamento(
@@ -20,6 +21,7 @@ class Medicamento {
       this.categoriaP,
       this.dias,
       this.hora,
+      this.historialM,
       this.color});
 }
 
