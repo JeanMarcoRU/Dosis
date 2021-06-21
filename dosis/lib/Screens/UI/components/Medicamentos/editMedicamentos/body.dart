@@ -256,7 +256,7 @@ class _Body_State extends State<Body> {
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: TextField(
-                            //controller: tomaHastaController,
+                            controller: tomaHastaController,
                             cursorColor: kPrimaryColor,
                             decoration: InputDecoration(
                               //labelText: "Hasta",

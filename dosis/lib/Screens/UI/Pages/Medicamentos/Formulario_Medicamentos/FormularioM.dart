@@ -1,5 +1,6 @@
 import 'package:dosis/Classes/medicamento.dart';
 import 'package:dosis/Screens/Signup/components/social_icon.dart';
+import 'package:dosis/Screens/UI/Pages/Medicamentos/formMedicamentos.dart';
 import 'package:dosis/constants.dart';
 import 'package:flutter/material.dart';
 import 'Body.dart';
